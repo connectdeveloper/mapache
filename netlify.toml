@@ -1,0 +1,32 @@
+# Global settings applied to the whole site.
+[build]
+  publish = "public"
+  command = "roots compile"
+
+# Production context: All deploys to the main
+# repository branch will inherit these settings.
+[context.production]
+  command = "roots compile"
+  [context.production.environment]
+    ACCESS_TOKEN = "super secret"
+
+# Deploy Preview context: All Deploy Previews
+# will inherit these settings.
+[context.deploy-preview.environment]
+  ACCESS_TOKEN = "not so secret"
+
+# Branch Deploy context: All deploys to branches
+# that are not the main one that are not in
+# an active Deploy Preview will inherit these settings.
+[context.branch-deploy]
+#command = "TZ=America/Cancun roots compile -e dev"
+  command = "roots compile -e dev"
+
+# Specific branch context: Deploys from this branch
+# will take these settings and override their
+# current ones.
+[context.feature]
+  command = "roots compile -e dev"
+
+[context."features/branch"]
+  command = "roots compile -e dev"
