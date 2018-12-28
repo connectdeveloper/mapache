@@ -1,0 +1,93 @@
+
+
+script(src='/js/min/jquery.min.js')
+
+script(src='/js/min/foundation-min.js')
+
+//- script(src='/js/min/equalize.min.js')
+
+script(src='/js/min/app-min.js')
+
+//- script(scr='/js/jquery.backgrounder.js').
+
+//- check if there are slider variables and if so add the slider script
+if headerSliderVars
+	script.
+		$(document).ready(function(){
+			!{headerSliderVars}
+			});
+
+//- embedly script makes sense of the stuff in the markdown with embed links
+script.
+	(function(w, d){
+		var id='embedly-platform', n = 'script';
+		if (!d.getElementById(id)){
+			w.embedly = w.embedly || function() {(w.embedly.q = w.embedly.q || []).push(arguments);};
+			var e = d.createElement(n); e.id = id; e.async=1;
+			e.src = ('https:' === document.location.protocol ? 'https' : 'http') + '://cdn.embedly.com/widgets/platform.js';
+			var s = d.getElementsByTagName(n)[0];
+			s.parentNode.insertBefore(e, s);
+		}
+	})(window, document);
+
+//- analytics script
+//- check what environment we are building in so that we don't get phantom analytics data
+//- if environment == "production"
+//- 	-console.log("we got GA!!!!!!!")
+script.
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-84556059-1', 'auto');
+	ga('send', 'pageview');
+
+//- window.intercomSettings = {
+//-   email: "example@example.com",
+//-   name: "John Doe",
+//-   user_id: "123",
+//-   created_at: 1234567890,
+//-   app_id: "YOUR_APP_ID",
+//-   custom_launcher_selector: '#my_custom_link'
+//- };
+
+script.
+	window.intercomSettings = {
+	app_id: "hzdwbffv",
+	custom_launcher_selector: '.c-button--subsection.open-chat'
+	};
+
+
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/hzdwbffv';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
+
+//- script.
+//- 	//- var counter = 0;
+//- 	//- window.onhashchange = function() {
+//- 	//- 	window.history.replaceState({visited: ++counter}, "visited page", 
+
+//- 	//- 	window.location.search+window.location.hash);
+//- 	//- }
+
+//- 	//- window.onpopstate = function(event) {
+//- 	//- 	if(event.state.visited && counter>event.state.visited) {
+//- 	//- 	counter -= 2;
+//- 	//- 	window.history.go(-1*event.state.visited);
+//- 	//- 	} else {
+//- 	//- 	counter = event.state.visited;
+//- 	//- 	}
+//- 	//- }
+
+//- 	function goBack() {
+//- 		window.history.back(-1);
+//- 	}
+
+
+
+
+
+
+
+
+//- a place to load layout specific scripts
+//- block end__script

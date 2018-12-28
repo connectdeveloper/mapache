@@ -1,0 +1,775 @@
+/*scroll bars  */
+
+$scrollers:scale-color($moyen, $lightness: -30%);	
+
+@include scrollbars(.5em, $scrollers, $lightless);
+
+/* spacing
+	everything is mesured on a 4,8,16 pixel basis
+	calculated in rems of course
+
+*/
+
+$minipad : rem-calc(4);
+$smallpad: rem-calc(8);
+$pad : rem-calc(16);
+
+%smallpadding-topbottom {
+	padding-top: $smallpad;
+	padding-bottom: $smallpad;
+}
+%smallpadding-leftright {
+	padding-left: $smallpad;
+	padding-right: $smallpad;
+}
+%smallpadding-top {
+	padding-top: $smallpad;
+}
+
+%smallpadding-right {
+	padding-left: $smallpad;
+}
+
+%smallpadding-bottom {
+	padding-bottom: $smallpad;
+}
+
+%smallpadding-left {
+	padding-left: $smallpad;
+}
+
+%smallpadding-topbottom {
+	padding-top: $smallpad;
+	padding-bottom: $smallpad;
+} 
+
+%smallmargin-top {
+	margin-top: $smallpad;
+}
+
+
+
+%smallmargin-right {
+	margin-left: $smallpad;
+}
+
+%smallmargin-bottom {
+	margin-bottom: $smallpad;
+}
+
+%smallmargin-left {
+	margin-left: $smallpad;
+}
+
+%smallmargin-leftright {
+	margin-left: $smallpad;
+	margin-right: $smallpad;
+}
+
+%minimargin-top {
+	margin-top: $minipad;
+}
+
+%minimargin-right {
+	margin-left: $minipad;
+}
+
+%minimargin-bottom {
+	margin-bottom: $minipad;
+}
+
+%minimargin-left {
+	margin-left: $minipad;
+}
+
+%minipadding-topbottom {
+	padding-top: $minipad;
+	padding-bottom: $minipad;
+}
+
+%minipadding-leftright {
+	padding-left: $minipad;
+	padding-right: $minipad;
+}
+
+%minipadding-top {
+	padding-top: $minipad;
+}
+
+%minipadding-right {
+	padding-left: $minipad;
+}
+
+%minipadding-bottom {
+	padding-bottom: $minipad;
+}
+
+%minipadding-left {
+	padding-left: $minipad;
+}
+
+%smallmargin-topbottom {
+	margin-top: $smallpad;
+	margin-bottom: $smallpad;
+}
+%smallmargin-leftright {
+	margin-left: $smallpad;
+	margin-right: $smallpad;
+}
+
+%minimargin-topbottom {
+	margin-top: $minipad;
+	margin-bottom: $minipad;
+}
+
+%minimargin-leftright {
+	margin-left: $minipad;
+	margin-right: $minipad;
+}
+
+%minimargin-top {
+	margin-top: $minipad;
+}
+
+%minimargin-right {
+	margin-left: $minipad;
+}
+
+%minimargin-bottom {
+	margin-bottom: $minipad;
+}
+
+%minimargin-left {
+	margin-left: $minipad;
+}
+
+/* colours */
+// $dark:#523C3B;
+// $featured:#4A4A4A;
+// $highlight: rgba(yellow,.83);
+
+//-
+// bug!!!
+
+ $medium:#000;
+//- can't seem to delete this
+
+// $alert: red;
+// $light: #F5F6ED;
+
+
+/* body */
+body {
+	padding-bottom: $pad*2;
+	font-color:$dark;
+	background: $light;
+		@media #{$medium-up} {
+		background: $lightless;
+	}
+	overflow-y:scroll;
+	overflow-x:hidden;
+}
+
+a {
+	font-color: $moyen;
+	h3, h4, h5 {
+	font-color: $moyen;
+	// border-bottom:$highlight 2px solid;
+	}
+}
+p {
+	letter-spacing: -0.011em;
+}
+
+a:focus {
+	color: $moyen;
+}
+/* Add the wrapper for the navigation */
+
+.wrapper {
+	display: block;
+	width:100%;
+	// width:100vw;
+	position: absolute;
+	z-index: 0;
+	top: 0;
+	bottom:0;
+	right:0;
+	left: 0;
+	// overflow-y:scroll;
+	// overflow-x:hidden;
+}
+
+
+/*Set up the grid*/
+.c-block {
+ 	 // @include grid-row($behavior: collapse); // Other options include collapse and nest-collapse.
+  	@extend .row;
+  	@extend .collapse;
+  	// Default $behavior value is false
+
+ }
+
+ .c-block__column {
+	background: $light;
+ 	// background: red;
+ 	@include grid-column(
+    // Control the number of columns
+    $columns:12,
+    // Specify whether or not this is the last column in the row
+
+    $collapse:true,
+
+    $center:true,
+
+    $last-column:true
+
+  );
+
+ 	@media #{$medium-up} {
+
+ 		@include grid-column(
+	    // Control the number of columns
+	    $columns:8,
+
+	    $center:true,
+
+	    $last-column:true
+	  );
+ 	}
+ }
+
+/* masts */
+
+%mastTitle {
+	// font-size: rem-calc(22);
+	font-size: rem-calc(18);
+	// font-weight: 700;
+	line-height: rem-calc(24);
+
+	@media #{$medium-up} {
+		font-size: rem-calc(20);
+		// font-weight: 700;
+		line-height: rem-calc(24);
+	}
+
+	@media #{$large-up} {
+		font-size: rem-calc(24);
+		// font-weight: 700;
+		line-height: rem-calc(28);
+	}
+}
+
+%mastTitle--large {
+	// font-size: rem-calc(22);
+	font-size: rem-calc(20);
+	// font-weight: 700;
+	line-height: rem-calc(24);
+
+	@media #{$medium-up} {
+		font-size: rem-calc(24);
+		// font-weight: 700;
+		line-height: rem-calc(28);
+	}
+
+	@media #{$large-up} {
+		font-size: rem-calc(28);
+		// font-weight: 700;
+		line-height: rem-calc(32);
+	}
+}
+
+%mastTitle--small {
+	font-size: rem-calc(18);
+	// font-weight: 700;
+	line-height: rem-calc(20);
+}
+
+/* flexbox variables */
+/* if you need to make the items behave like rows */
+.flexorama {
+	@extend %flexbox;
+	@include flex-dir(column);
+}
+
+/* if you need the items to behave like columns */
+.flexorama--row {
+	@extend %flexbox;
+	@include flex-dir(row);
+	@include flex-wrap(wrap);
+	@include justify-content(space-between);
+	width: 100%;
+	@extend %smallpadding-leftright;
+
+}
+
+
+/*headings */
+
+.c-linetitle {
+	font-family: 'IM Fell DW Pica',  serif;
+	font-weight: 400;
+	text-align: center;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+	padding-right: auto;
+	padding-left: auto;
+	position: relative;
+	z-index: 4;
+
+	span {
+		background: $light;
+		display: inline-block;
+		position: relative;
+		z-index: 3;
+		// max-width:75%;
+		@media #{$medium-up} {
+			// max-width:60%;
+		}
+		@extend %smallpadding-leftright;
+	}
+
+
+	&:before {
+		content:" ";
+		width: calc(100% - $pad);
+		line-height: inherit;
+		border-top: 1px solid $dark;
+		display:inline-block;
+		position: absolute;
+		height: 4px;
+		left:$smallpad;
+		right:$smallpad;
+		top:50%;
+		z-index: 3;
+		// background: red;
+
+
+	}
+
+}
+
+%text-shadow {
+	text-shadow: 1px 1px 3px rgba(#000,0.4);
+	}
+
+/* center the headings inside tab pannels */
+.tabs-content{
+	& > h4, & > h2, & > h3, & > h5{
+		text-align: center;
+	}
+}
+
+/* media objects */
+
+%mediaobject {
+	background: $lightless;
+	&:hover {
+		background-color: rgba($moyen,1);
+		cursor: pointer;
+		color:white;
+	}
+
+	a {
+		:hover & {
+		font-color: $anchor-font-color-hover!important;
+		}
+	}
+
+	&:after {
+		content:" ";
+		// width:100%;
+		width: calc(100% - $pad);
+		line-height: inherit;
+		// border-top: 1px solid $dark;
+		display:inline-block;
+		position: absolute;
+		height: 1px;
+		background: rgba($dark,.4);
+		left:$smallpad;
+		right:$smallpad;		// right: rem-calc(-10);
+		bottom: 0;
+		z-index: 3;
+	}
+
+
+}
+
+%media__copy {
+
+			// font-size: rem-calc(13);
+
+		a{ margin: 0;
+		   line-height: rem-calc(16);
+
+			}
+
+		h4 {
+			// background: yellow;
+			// font-family: 'IM Fell DW Pica', serif;
+			margin: 0;
+			font-weight: 400;
+			font-size:  rem-calc(16);
+			line-height: rem-calc(16);
+			// font-size:  rem-calc (16);
+			// line-height: rem-calc(18);
+		}
+
+		p {
+			// background: cyan;
+			margin: 0;
+			line-height: rem-calc(15);
+			font-size:  rem-calc(13);
+			letter-spacing: -0.015em;
+			// line-height: rem-calc(18);
+			// font-size:  rem-calc (14);
+		}
+
+}
+
+%single__smalllines {
+		/* display for tiny detail lines */
+		margin: 0;
+		font-weight: 500;
+		line-height: rem-calc(24);
+		font-size:  rem-calc(14);
+}
+
+
+/* rules */
+
+$ruledark:1px solid rgba($bright,0.6);
+
+%rule--bottom {
+	border-bottom: $ruledark;
+}
+
+
+%rule--top {
+	border-top: $ruledark;
+}
+
+/* labels */
+.c-label {
+	font-size: rem-calc(10);
+	color: $darkless;
+	text-transform: uppercase;
+}
+
+/* buttons */
+
+.c-button--section {
+  @include button(
+    // $padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+    $pad,
+    // Background color. We can set $bg:false for a transparent background. Default: $primary-color.
+    $bg:$moyen,
+    // If true, set to button radius which is $global-radius or explicitly set radius amount in px (ex. $radius:10px). Default:false.
+    $radius:$minipad,
+    // We can set $full-width:true to remove side padding extend width. Default:false
+    $full-width:false,
+    // We can set $disabled:true to create a disabled transparent button. Default:false
+    $disabled:false
+  );
+  width:calc(100% - #{$pad});
+  margin-left: $smallpad;
+  margin-right:$smallpad;
+  margin-top: $smallpad;
+
+}
+
+.c-button--subsection {
+  @include button(
+    // $padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+    $minipad,
+    // Background color. We can set $bg:false for a transparent background. Default: $primary-color.
+    $bg:$moyen,
+    // If true, set to button radius which is $global-radius or explicitly set radius amount in px (ex. $radius:10px). Default:false.
+    $radius:$minipad,
+    // We can set $full-width:true to remove side padding extend width. Default:false
+    $full-width:false,
+    // We can set $disabled:true to create a disabled transparent button. Default:false
+    $disabled:false
+  ); 
+  width:calc(100% - #{$pad});
+  margin-left: $minipad/2;
+  margin-right:$minipad/2;
+  margin-top: $minipad/2;
+  width: auto;
+  margin-bottom: $minipad/2;
+  font-size: rem-calc(13)
+
+}
+
+.c-button--secondary {
+  @include button(
+    // $padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+    $minipad,
+    // Background color. We can set $bg:false for a transparent background. Default: $primary-color.
+    $bg:white,
+    // If true, set to button radius which is $global-radius or explicitly set radius amount in px (ex. $radius:10px). Default:false.
+    $radius:$minipad,
+    // We can set $full-width:true to remove side padding extend width. Default:false
+    $full-width:false,
+    // We can set $disabled:true to create a disabled transparent button. Default:false
+    $disabled:false
+  ); 
+  width:calc(100% - #{$pad});
+  margin-left: $minipad/2;
+  margin-right:$minipad/2;
+  margin-top: $minipad/2;
+  width: auto;
+  margin-bottom: $minipad/2;
+  font-size: rem-calc(13);
+  border:1px solid $moyen;
+  color: $moyen;
+}
+
+.c-button--transfer-booknow {
+  @include button(
+    // $padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+    $minipad,
+    // Background color. We can set $bg:false for a transparent background. Default: $primary-color.
+    $bg:$moyen,
+    // If true, set to button radius which is $global-radius or explicitly set radius amount in px (ex. $radius:10px). Default:false.
+    $radius:$minipad,
+    // We can set $full-width:true to remove side padding extend width. Default:false
+    $full-width:false,
+    // We can set $disabled:true to create a disabled transparent button. Default:false
+    $disabled:false
+  ); 
+  width:calc(100% - #{$pad});
+  margin-left: $minipad/2;
+  margin-right:$minipad/2;
+  margin-top: $minipad/2;
+  width: auto;
+  margin-bottom: $minipad/2;
+  border:1px solid $moyen;
+  font-size: rem-calc(13)
+}
+
+
+
+// .c-button-group {
+//   @include button-group-container(
+//     // we use this to add styles for a button group container. Default: true
+//     $styles:true,
+//     // We use this if we want the button group container floated. It relies on the $default-float scss variable. Default: false;
+//     $float:false
+//   );
+//  .c-button .c-button--grouped { @include button; }
+// }
+
+// x.c-button--grouped {
+
+// }
+
+
+.c-button-group  { @include button-group-container();
+  .c-button--grouped{ @include button(); }
+
+  & > li {
+    @include button-group-style(
+      // This controls the radius of the left and right edges. Set to true or px value. Default: false
+      $radius:true,
+      // This makes the buttons take up even space in their container. Set to the number of buttons in the group. Default: false.
+      $even:false,
+      // Controls how the buttons in the group float set to left or right. Default: $default-float.
+      $float:left
+    );
+  }
+
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  text-align: center;
+
+}
+
+
+/* special pages */
+
+.error404 {
+
+ 	@media #{$small-only} {
+	  
+	  }
+	@media #{$medium-up} {
+	  
+	  }
+	@media #{$large-up} {
+	  
+	  }
+
+}
+
+
+.c-main-content--404 {
+  position: relative;
+ background: none;
+
+  p{
+     font-size: rem-calc(12);
+
+    @media #{$medium-up} {
+      font-size: rem-calc(16);
+    }
+    // color: $lightless;  
+  }
+}
+
+
+.c-button-group--404{
+	 width:80%;
+	.c-button--grouped {
+		text-align: center;
+		border: 1px solid $lightless;
+
+		@media #{$small-only} {
+	  	font-size: rem-calc(12);
+	  	padding:$smallpad;
+	  }
+		@media #{$medium-up} {
+		  font-size: rem-calc(14);
+	  	  padding:$smallpad;
+		  }
+		@media #{$large-up} {
+		  
+		  }
+
+	}
+
+	
+
+}
+
+// tables
+// .c-timetable__body
+// .c-timetable__departure
+// .c-timetable__time
+// .c-timetable__service
+
+// .period
+
+
+
+%table-row {/* set the globalstyle for our rows */
+	border-top: solid 1px $dark;
+	border-left: solid $smallpad $light;
+	border-right: solid $smallpad $light;
+	padding: Smallpad;
+	// border-style: solid;
+	background-color: #ffffff;
+	border-collapse: collapse;
+	width:calc(100%-#{$pad})
+	}
+
+
+.c-timetable {
+	 // width:calc(100% - #{$pad});
+	 // width: 100%;
+	 // @extend %smallmargin-leftright;
+	 border:none;
+	 border-collapse: collapse;
+	 @media #{$medium-up} {
+	 	width: 100%;
+	 }
+
+	 td {
+	 	@extend %minipadding-topbottom;
+	 	//@extend %minipadding-//;
+	 }
+}
+
+/* tr each row is a departure */
+.c-timetable__departure, .c-timetable__flight 
+	
+	{
+	@extend %table-row;
+	}
+
+
+.c-timetable__header-row {
+	@extend %table-row;
+	border-top:none;
+	}
+
+.period {
+	font-size: 60%;
+}
+
+.c-timetable__departure--next,.is_next{
+	border-left: $smallpad $alert solid;
+	border-right: $smallpad $alert solid;
+	color: $alert;
+
+	
+
+	& .c-timetable__time  {
+		padding-left: $minipad;
+	}
+
+}
+
+.c-timetable__time {
+	// border-top:solid 1px $dark;
+	.c-timetable__body & {		
+		font-size: rem-calc(18);
+		font-weight: 700;
+		}
+
+	width: 23%;
+}
+
+.c-timetable__service {
+	
+	font-size: rem-calc(15);
+
+	width: 22%;
+
+}
+
+.c-timetable__connections {
+	width: 55%;
+}
+
+
+.c-timetable__user {
+	width: 70%;
+}
+
+.c-timetable__price {
+	width: 30%;
+}
+
+.c-timetable__unit {
+	width: 30%;
+}
+.c-timetable__driver {
+	width: 30%;
+}
+
+.c-timetable__details {
+	width: 30%;
+}
+
+
+//-chat icon
+
+@media #{$small-only}{
+
+	#custom_fc_button {
+	  width: 10%;
+	  position: fixed;
+	  right: 30px;
+	  bottom: 10px;
+	}
+	#imageicon {
+	  height: 30%;
+	  width: 30%
+}
+
+}
+
+

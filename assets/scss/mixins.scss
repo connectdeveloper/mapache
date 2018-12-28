@@ -1,0 +1,140 @@
+ @mixin vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+%vertical-align {
+	@include vertical-align;
+}
+
+
+@mixin visuallyhidden{
+  border: 0;
+  clip: rect(0 0 0 0);
+  position: absolute;
+  overflow: hidden;
+  margin: -1px;
+  padding: 0;
+  width: 1px;
+  height: 1px;
+  &.focusable:active,
+  &.focusable:focus {
+    clip: auto;
+    position: static;
+    overflow: visible;
+    margin: 0;
+    width: auto;
+    height: auto}
+  }
+
+@mixin visuallyshown{
+  clip: auto;
+  clip: rect(auto auto auto auto);
+  position: static;
+  overflow: visible;
+  margin: 0;
+  width: auto;
+  height: auto;
+  }
+
+/* lets make some bubbles  */
+  @mixin border ($radius){
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+  }
+
+  %circle {
+  	@include border(50%);
+  }
+
+
+/* animation mixins */
+// ----
+// Sass (v3.4.9)
+// Compass (v1.0.1)
+// ----
+
+@mixin prefix($property, $value) {
+  $vendors: (webkit moz ms o);
+
+  @each $vendor in $vendors {
+    #{"-" + $vendor + "-" + $property}: #{$value};
+  }
+
+  #{$property}: #{$value};
+}
+
+@mixin animation($name, $value) {
+  @include prefix(animation, $value);
+
+  @at-root {
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
+
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+
+    @-o-keyframes #{$name} {
+      @content;
+    }
+
+    @keyframes #{$name} {
+      @content;
+    }
+  }
+} 
+
+// div {
+//   @include animation(fadein, fadein 2s ease infinite) {
+//     0%   { opacity: 0; }
+//     100% { opacity: 1; }
+//   }
+// }
+
+
+// presentation styles
+
+// div {
+//   width: 100px;
+//   height: 100px;
+//   margin: 50px auto;
+//   background: #474747;
+// }
+
+
+
+/// Mixin to customize scrollbars
+/// Beware, this does not work in all browsers
+/// @author Hugo Giraudel
+/// @param {Length} $size - Horizontal scrollbar's height and vertical scrollbar's width
+/// @param {Color} $foreground-color - Scrollbar's color
+/// @param {Color} $background-color [mix($foreground-color, white, 50%)] - Scrollbar's color
+/// @example scss - Scrollbar styling
+///   @include scrollbars(.5em, slategray);
+@mixin scrollbars($size, $foreground-color, $background-color) {
+  // For Google Chrome
+  ::-webkit-scrollbar {
+      width:  $size;
+      height: $size;
+  }
+
+  ::-webkit-scrollbar-thumb {
+      background: $foreground-color;
+  }
+
+  ::-webkit-scrollbar-track {
+      background: $background-color;
+  }
+
+  // For Internet Explorer
+  body {
+    scrollbar-face-color: $foreground-color;
+    scrollbar-track-color: $background-color;
+  }
+}

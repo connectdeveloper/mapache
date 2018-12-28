@@ -1,0 +1,14 @@
+
+mixin c-business-aside-list(places, placeCategoryId, language)
+	each place in places
+		if place.belongsToCategory(placeCategoryId) && place.premium
+			+c-listing--premium (
+			place.getGalleryImages(language),
+			'#',
+			place.getLanguageUrl(language),
+			place.name,
+			place.cost_low,
+			place.food_types,
+			place.business_subtype
+			 )
+

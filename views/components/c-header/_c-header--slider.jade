@@ -1,0 +1,15 @@
+//- the header component for premium singles
+// bof header c-header--slider
+
+.c-header.c-header--slider
+	.c-block
+		.c-block__column
+			h1.c-single__title 
+				| #{single_name}
+
+	a.c-logo(href= '#{root_url}')
+		img.c-logo__image(src='/images/holboxeno-logo.svg' alt="Holboxeño Logo")
+	.c-block--column.c-slider.c-slider--header
+		//-load the slider image mixin
+		+slider
+

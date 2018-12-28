@@ -1,0 +1,77 @@
+//- index.jade
+//-bof variables
+block metas
+	//- section page vars set these manually
+	- var bodyClasses 		= "home"
+	- var language			= "en"//-either 'en' or 'es' 
+	- var theUrl			= "/en/" 
+	- var locale			= "/es/" 
+	- var thisPageId    	= "5D8DGDHks0GyWCEmGeWU06" // the contentful page id
+
+	- var page_events   	= contentful.todaysEvents
+	- var places        	= contentful.businesses
+	- var pages         	= contentful.pages
+	- var foodId        	= "2uMGbEfB7uoYAQMkAS6IIu"
+	- var beautyId			= "4KhysAQdUAggkq0sKAwsSc"
+	- var accomodationsId   = "5JaTcdyMKs0WKsMqmIyuUU"
+	- var shoppingId  		= "6Hse8fD5YsuO4eE2EsCYqk"
+	- var realEstateId		= "73yjrbZoXuuSs8wWQimSoI"
+	- var thingsToDoId  	= "6KZiwvHEqsaSewQGUEYAig"
+	- var toursId       	= "2I8IujX52EAy8uqauEkcm8"
+	- var tab1_id 			= "todays-featured-events"
+	- var tab2_id 			= "featured-food-and-drink"
+	- var tab3_id 			= "featured-activities"
+
+	- var tab_number 		= "tabs--three"
+
+	
+	//- Find the section page based on thisPageId
+	- var sectionPage = null
+	if contentful.sectionPages
+		each currentSectionPage in contentful.sectionPages
+			if currentSectionPage.sys.id == thisPageId
+				- sectionPage = currentSectionPage
+
+	include ../partials/_page__vars.jade
+
+
+//- make sure you put the urls correctly
+extends ../_pages/_layout-section-page.jade 
+
+//-the main copy that for this page
+block copy 
+	h1.c-header__title  
+		span #{title}
+	.c-main-content__copy
+		!= marked(copy)
+
+
+//-name the tabs in the subnav
+block tab1
+	| Events
+
+block tab2 
+	| Food &amp; Drink
+
+block tab3
+	if (language=="en")
+		| Activities
+	else
+		| Actividades
+
+//- insert the content in the tab content blocks
+//- tab1 content
+block tab1Content
+	include ../_tabs/_index__tabcontent--events.jade
+
+//- tab3 content
+block tab2Content
+	//- h3.c-linetitle
+	//- 	span 
+	//- 		| Restaurants
+
+	include ../_tabs/_index__tabcontent--food-and-drink.jade
+
+//- tab13 content
+block tab3Content
+	include ../_tabs/_index__tabcontent--activities.jade

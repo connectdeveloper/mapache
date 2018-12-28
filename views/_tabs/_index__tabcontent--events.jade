@@ -1,0 +1,35 @@
+//- index__events
+
+//- this is the tab  content inside the tab "events" in the home page
+//- dependencies : index.jade
+
+h3.c-linetitle
+	span 
+		if (language =="es")
+			| Hoy en Holbox
+		else 
+			| Today in Holbox 
+
+//- block1 loop1
+
++allEvents(dayOne,dayOneList,todaysEvents, repeatEvents)
+
+
+
+if (language =="en")
+
+	+c-button--section("/whats-on-in-holbox.html")
+		| See all events in Holbox
+else
+	+c-button--section("/que-hacer-en-holbox.html")
+		| Ve todos los eventos en Holbox
+
+	//- if index == 3 
+	//- 	section.c-block--advert
+	//- 		if (language == "en")
+	//- 			| advertisement
+	//- 		else 
+	//- 			| publicidad
+	//- 		include ../components/c-ad/_c-ad--index-event-promo.jade 
+
+//- load the button mixin

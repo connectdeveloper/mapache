@@ -1,0 +1,117 @@
+- var root_url ="/"
+
+block metas
+
++metaImages(hero_image)
+
+meta(charset='utf-8')
+title #{title}
+meta(http-equiv='content-language', content='#{language}')
+meta(name='B-verify' content='916aea6eabfedc84396a197015c2a0bdae2b9bfe')
+<link rel="alternate" href='#{spanish_url}' hreflang="es_MX" />
+<link rel="alternate" href='#{english_url}' hreflang="en_US" />
+if keywords
+	meta(name='keywords', content='#{keywords}')
+else
+	meta(name='keywords', content='')
+meta(name='description', content='#{description}')
+if og_title && og_description
+	meta(name='og:title', content='#{og_title}')
+	meta(name='og:type', content='website')
+	meta(name='og:description', content='#{og_description}')
+	if og_image	
+		meta(name='og:image', content='#{og_image}')
+	meta(name='og:url', content='#{og_url}')
+	meta(name='og:locale', content='#{language}')
+	meta(name='og:locale:alternate', content='#{language_alt}')
+else 
+	meta(name='og:title', content='#{title}')
+	meta(name='og:type', content='website')
+	meta(name='og:description', content='#{description}')
+	if og_image	
+		meta(name='og:image', content='https:#{og_image}')
+	meta(name='og:url', content='#{og_url}')
+	meta(name='og:locale', content='#{language}')
+	meta(name='og:locale:alternate', content='#{language_alt}')
+
+if twitter_title && twitter_description
+	if twitter_image 
+		meta(name='twiter:card', content='summary_large_image')
+	else
+		meta(name='twiter:card', content='summary')
+	meta(name='twitter:site', content='#{twitter_site}')
+	if twitter_title
+		meta(name='twitter:title', content='#{twitter_title}')
+	if twitter_description
+	meta(name='twitter:description', content='#{twitter_description}')
+	if twitter_image	
+		meta(name='twitter:image', content='https:#{twitter_image}')
+		meta(name='twitter:image:alt', content='#{twitter_image_alt}')
+else 
+	if twitter_image 
+		meta(name='twiter:card', content='summary_large_image')
+	else
+		meta(name='twiter:card', content='summary')
+	meta(name='twitter:site', content='#{twitter_site}')
+	meta(name='twitter:title', content='#{title}')
+	meta(name='twitter:description', content='#{description}')
+	if twitter_image	
+		meta(name='twitter:image', content='#{twitter_image}')
+		meta(name='twitter:image:alt', content='#{twitter_image_alt}')
+meta(name='viewport', content='width=device-width, initial-scale=1.0, minimal-ui')
+//- add robot instructions
+if robots
+	meta(name='robots', content='#{robots}')
+//- add metadata error classes for error pages
+if bodyClasses =="404"
+	meta(name='errortype' content='404 - Not Found')
+	meta(name='errorpage' content='true')
+
+meta(name='apple-mobile-web-app-capable', content='yes')
+meta(name='viewport', content='width=device-width, initial-scale=1, minimal-ui')
+//- <link rel="alternate" hreflang="es" href="http://es.example.com/" />
+//- link(rel='apple-touch-icon', sizes='57x57', href='/images/favicon/apple-touch-icon-57x57.png')
+//- link(rel='apple-touch-icon', sizes='114x114', href='/images/favicon/apple-touch-icon-114x114.png')
+//- link(rel='apple-touch-icon', sizes='72x72', href='/images/favicon/apple-touch-icon-72x72.png')
+//- link(rel='apple-touch-icon', sizes='144x144', href='/images/favicon/apple-touch-icon-144x144.png')
+//- link(rel='apple-touch-icon', sizes='60x60', href='/images/favicon/apple-touch-icon-60x60.png')
+//- link(rel='apple-touch-icon', sizes='120x120', href='/images/favicon/apple-touch-icon-120x120.png')
+//- link(rel='apple-touch-icon', sizes='76x76', href='/images/favicon/apple-touch-icon-76x76.png')
+//- link(rel='apple-touch-icon', sizes='152x152', href='/images/favicon/apple-touch-icon-152x152.png')
+//- link(rel='apple-touch-icon', sizes='180x180', href='/images/favicon/apple-touch-icon-180x180.png')
+//- link(rel='icon', type='image/png', href='/images/favicon/favicon-192x192.png', sizes='192x192')
+//- link(rel='icon', type='image/png', href='/images/favicon/favicon-160x160.png', sizes='160x160')
+//- link(rel='icon', type='image/png', href='/images/favicon/favicon-96x96.png', sizes='96x96')
+link(rel='icon', type='image/png', href='/images/favicon/favicon-16x16.png', sizes='16x16')
+link(rel='icon', type='image/png', href='/images/favicon/favicon-32x32.png', sizes='32x32')
+link(rel='icon', type='image/png', href='/images/favicon/favicon-48x48.png', sizes='48x48')
+link(rel='icon', type='image/png', href='/images/favicon/favicon-64x64.png', sizes='64x64')
+link(rel='icon', type='image/png', href='/images/favicon/favicon-96x96.png', sizes='96x96')
+//- meta(name='msapplication-TileColor', content='#2d89ef')
+//- meta(name='msapplication-TileImage', content='/images/favicon/mstile-144x144.png')
+link(rel='stylesheet', href='/css/app.css')
+script(src='/js/min/modernizr.min.js')
+<link href="https://fonts.googleapis.com/css?family=Averia+Libre:300,300i,400|IM+Fell+DW+Pica:400,400i" rel="stylesheet">
+
+<script src='https://api.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.js'></script>
+<link href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.12.2/mapbox-gl.css" rel="stylesheet">
+
+// All content copyright of El Holboxeño and in case you are wondering this ain't drupal, joomla or Wordpress or some template you can buy, just hand coded goodness. 
+// It's called node biatch, look it up.
+
+
+//-Facebook Pixel Code 
+script
+	| !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+	| n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+	| n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+	| t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+	| document,'script','https://connect.facebook.net/en_US/fbevents.js');
+	| fbq('init', '1904337963117879'); // Insert your pixel ID here.
+	| fbq('track', 'PageView');
+noscript
+	img(height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1904337963117879&ev=PageView&noscript=1")
+<script src="https://wchat.freshchat.com/js/widget.js"></script>
+
+//-DO NOT MODIFY 
+//-End Facebook Pixel Code 

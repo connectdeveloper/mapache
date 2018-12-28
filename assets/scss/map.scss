@@ -1,0 +1,204 @@
+#map { 
+	width:100%; 
+	display: block;
+	@extend %smallmargin-topbottom;
+	background: $highlight;
+	height: 50vh;
+	@media #{$medium-up}{
+		height: 45vh;
+	}
+
+	@media #{$large-up}{
+		height: 40vh;
+	}
+}
+
+
+#c-map--full {
+	width: 95vw;
+	height: 95vh;
+	display: block;
+	background: $highlight;
+
+}
+
+
+$popup__back:rgba($lightless, 0.75)!important;;
+
+%popup__colour {
+	background: $popup__back;
+}
+
+.mapboxgl-map {
+		& button, & .button {
+		margin:0;
+	}
+}
+
+.mapboxgl-ctrl-top-right {
+	z-index: 10;
+	} 
+
+.mapboxgl-popup-tip {
+
+
+	.mapboxgl-popup-anchor-top &{
+		border-bottom-color: $popup__back;
+
+	}
+
+	.mapboxgl-popup-anchor-bottom &{
+		border-top-color: $popup__back;	
+	}
+
+	.mapboxgl-popup-anchor-bottom-left &{
+		border-top-color: $popup__back;
+		border-bottom: none;
+    	border-left: none;
+    /* border-top-color: #fff; */
+	}
+
+	.mapboxgl-popup-anchor-bottom-right &{
+		border-top-color: $popup__back;
+		border-bottom: none;
+    	border-right: none;
+	}
+
+	.mapboxgl-popup-anchor-top-left &{
+		border-bottom-color: $popup__back;
+	}
+
+	.mapboxgl-popup-anchor-top-right &{
+		border-bottom-color: $popup__back;		
+	}
+
+	.mapboxgl-popup-anchor-left &{
+		border-right-color: $popup__back;
+	}
+
+	.mapboxgl-popup-anchor-right &{
+		border-left-color: $popup__back;		
+	}
+
+	
+
+}
+
+.mapboxgl-popup {
+
+	&.mapboxgl-popup-anchor-top{
+		margin-bottom:#{-$pad*1.2}; 
+	}
+
+	&.mapboxgl-popup-anchor-bottom{
+		margin-top:#{-$pad*.75};
+	}
+
+	&.mapboxgl-popup-anchor-bottom-left{
+		// margin-right:#{-$pad*2};
+	}
+
+	&.mapboxgl-popup-anchor-bottom-right{
+		// margin-left:#{-$pad*2};
+	}
+
+	&.mapboxgl-popup-anchor-top-left{
+		// margin-left:$smallpad; 
+	}
+
+	&.mapboxgl-popup-anchor-top-right{
+		
+	}
+
+	&.mapboxgl-popup-anchor-left{
+
+	}
+
+	&.mapboxgl-popup-anchor-right{
+		
+	}
+
+
+}
+
+
+.mapboxgl-popup-content {
+
+	padding:$minipad!important;
+
+	@extend %popup__colour;
+	font-family: $font-family-sans-serif;
+
+}
+
+.mapboxgl-popup-close-button {
+	padding: 0;
+	margin: 0;
+	
+	width: #{$pad*2}!important;
+	height: #{$pad*2}!important;
+	
+	top: #{-$pad*1}!important;
+	right: #{-$pad*1}!important;
+
+	font-size: rem-calc(20);
+	line-height: 0;
+
+	.mapboxgl-popup-anchor-top-right & {
+	top: #{-$pad*1}!important;
+	right: none!important;
+	left: #{-$pad*1}!important;
+	}
+
+	@media #{$medium-up}{
+			width: #{$pad*2}!important;
+			height: #{$pad*2}!important; 
+			
+			top: #{-$pad*1}!important;
+			right: #{-$pad*1}!important;
+
+			font-size: rem-calc(20);
+	}
+
+	-webkit-border-radius: 50%!important;
+  	-moz-border-radius: 50%!important;
+  	border-radius: 50%!important;
+	background: $moyen!important;
+	
+	&:hover{
+		background: scale-color($moyen, $lightness: 12%)!important;
+		//background: none!important;
+	}
+
+	// position: absolute;
+
+}
+
+.c-map__popup.c-map__popup--premium{
+
+}
+
+.c-popup__location {
+
+}
+
+.c-popup__title {
+	margin: 0;
+	line-height: rem-calc(14);
+}
+
+
+.c-popup__date-time{
+	background: rgba($highlight,.7);
+	// height: 100%;
+	// font-size: rem-calc(18);
+	font-size: rem-calc(12);
+	line-height: rem-calc(14);
+	min-width: 45%;
+	padding: $minipad;
+	text-align: center;
+	letter-spacing: -0.045em;
+	font-weight: 700;
+
+}
+

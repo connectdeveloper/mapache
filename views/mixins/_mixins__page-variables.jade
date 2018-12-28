@@ -1,0 +1,131 @@
+//- dev
+
+mixin page-variables__dev
+   - console.log(entry._url)
+
+//- global
+mixin page-variables__global
+  - var language             = entry.getLanguage(entry._url) //-either 'en' or 'es'
+  - var locale               = entry.getAlternateUrl(entry._url) //-the absolute path to the alternate language version
+
+//- meta
+mixin page-variables__meta
+  - var title               = entry.getTitle(entry._url) //-the title should be less than 70 characters
+  - var description         = entry.getDescription(language) //- keep to bellow 155 characters add call to action
+  - var og_title            = entry.ogTItle //-95 characters make this enticing to facebook users
+  - var og_image            = asset(entry.ogImage)//-not sure what to pu here yet
+  - var og_url              = entry._url//-the relative path of this page
+  - var og_description      = entry.getOgDescription(language) //-you have 297 characters to work with
+  - var twitter_card        = entry.twitterCard //-summary, photo or player
+  - var twitter_url         = entry._url//-relative path to root
+  - var twitter_title       = entry.name//-70 characters
+  - var twitter_description = entry.getTwitterDescription(language) //-200 characters
+  - var twitter_image       = asset(entry.ogImage) //-must be bigger thatn 60x60
+  //- - var keywords            = entry.getKeywords(language) //-metadata keywords
+
+//- taxonomy
+mixin page-variables__taxonomy
+  | null
+
+//- events
+mixin page-variables__events
+  //- attributes
+  - var premium 		= entry.premium
+  - var plus			= entry.plus
+  - var event_url	 	    = entry._url
+  - var event_start_time = entry.getStartTime()
+  - var event_end_time = entry.endTime
+  - var event_date      = dateFormat(entry.date, language)
+  - var event_location_url = entry.getLocationPath(language)
+  //- content
+  - var event_name	     = entry.getName(language)
+  - var amenities		     = entry.getAmenities(language)
+  - var hero_image    = asset(entry.getHeroImage(language))
+  - var hero_image_alt = entry.heroAlt
+  - var telephone		= entry.telephone
+  - var address		= entry.getAddress()
+  - var email			= entry.email
+  - var capacity		= entry.capacity
+  - var event_categories = entry.getCategories(language)
+  - var event_location_name = entry.getLocationName()
+  - var event_price       = entry.price
+  - var event_type          = entry.type
+  - var master_event 	      = [{name:'hero4',alt:'some text'}]//-is this part of a chain or a global event
+  - var gallery_images    	= entry.images
+  - var geo_location        = entry.getGeolocation()
+  - var copy			         = entry.getCopy(language)
+  - var alternateLocation  = entry.getEventLocationAlternate(language)
+
+
+//- business units
+mixin page-variables__business-units
+  //- A. taxonomies
+  - var businessCategory     = entry.getCategory()
+  - var business_type        = entry.getCategoryName(language) //-ood_and_drink, business, service
+  - var businessId           = entry.sys.idea
+  - var premium              = entry.premium //-true or false
+  - var plus                 = entry.plus//-true or false
+  - var feature              = false//-true or false
+  //- B.attributes by business_type
+  - var single_name          = entry.singleName
+  - var cost_low             = entry.cost_low
+  - var cost_high            = entry.cost_high
+  - var food_types           = entry.food_types
+  - var amenities            = entry.amenities
+  - var room_types           = entry.room_types
+  - var check_in_time        = entry.check_in_time
+  - var check_out_time       = entry.check_out_time
+  - var has_pool             = entry.hasPool
+  - var pet_friendly         = entry.petFriendly //-true or false
+  - var credit_cards         = entry.credit_cards_accepted
+  //- C. business_info
+  - var chef                = entry.chef
+  - var telephone           = entry.telephone
+  - var address             = entry.address
+  - var email               = entry.email
+  - var url                 = entry.website
+  - var twitter             = entry.twitter
+  - var facebook            = entry.twitter
+  - var capacity            = entry.capacity
+  - var opening_time        = entry.getOpeningTime(language)
+  - var wifi                = entry.wifi//-true or false
+  - var manager             = entry.manager
+  - var proximity_to_beach  = entry.proximity_to_beach
+  - var geo_location        = entry.geo_location.lon + ',' + entry.geo_location.lat
+  - var part_of             = entry.part_of //-is this part of a chain or a global event
+  //- D. content
+  - var copy                =  entry.getCopy(language)
+  - var recomendation       = entry.getRecommendations(language)
+  - var gallery_images      = entry.getGalleryImages(language)
+  - var logo                = " "
+  //- E. feature content
+  - var listing_feature_title  = entry.getListingFeatureTitle(language)
+  - var listing_feature_image   = [{image:asset(entry.getListingFeatureImage(language)),alt:entry.getListingFeatureContent(language)}]
+  - var listing_feature_image_src  = asset(entry.getListingFeatureImage(language))
+  - var excerpt = entry.getExcerpt(language)
+
+//- pages
+//- mixin page_variables__page
+//-   |
+
+//- blog
+//- mixin page_variables__blog
+//-   |
+//- section_page
+//- mixin page_variables__section-page
+
+
+//- Now we combine these to load the appropriate vars for each content type
+
+//- busines-unit__vars
+mixin business-unit__vars
+  +page-variables__dev
+  +page-variables__global
+  +page-variables__meta
+  +page-variables__business-units
+
+mixin event__vars
+  +page-variables__dev
+  +page-variables__global
+  +page-variables__meta
+  +page-variables__events

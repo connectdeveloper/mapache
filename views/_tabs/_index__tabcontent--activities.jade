@@ -1,0 +1,29 @@
+//- this is the tab  content inside the tab "activities" in the home page
+//- dependencies : index.jade
+
+//- c-linetitle
+h3.c-linetitle
+	span 
+		if (language == "en")
+			| Activities
+		else
+			| Actvidades
+
+//- TODO: ¿limitar el numero de lugares?
+each page in pages
+	if page.page_category.sys.id == activitiesPageId && page.featured == true
+			+c-page--premium (
+			page.getHeroImage(language),
+			page.getLanguageUrl(language),
+			page.getHeading(language),
+			'page.price',
+			page.getExcerpt(language)
+			)
+
+
+if (language == "en")
+	+c-button--section('/en/activities/')
+		| See all activities in Holbox
+else
+	+c-button--section('/es/actividades/')
+		| Desc&uacute;bre todas las actividades en Holbox

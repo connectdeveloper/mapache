@@ -1,0 +1,40 @@
+
+//- this file builds the content for food-and-drink--common pages
+//- single__content
+section.c-block.c-single__content.c-single__content--page
+	.c-block__column
+		!= marked(copy)
+
+		//- section.c-block--advert
+		//- 	if (language == "en")
+		//- 		| advertisement
+		//- 	else 
+		//- 		| publicidad
+		//- 	include c-ad/_c-ad--food-and-drink.jade
+		
+		if gallery_images
+			.c-slider.c-slider--page
+				+slider
+			br
+
+		//-if this page has related  business units then  lets load them below
+
+		if selected_bu
+			- var places  = contentful.businesses
+			//-rooloop through selected BUs
+			each biz in selected_bu 
+				//- and compare the sys.id with the BUs in the contentful.businesses object
+				//- if there is a match then load inside mixn
+				each place in places
+
+					if place.sys.id == biz.sys.id
+						//- console.log("we have a mmmmmmmmmmmmmmmmmmm a t c h")
+						+c-listing--premium (
+						place.getGalleryImages(language),
+						'#',
+						place.getLanguageUrl(language),
+						place.name,
+						place.cost_low,
+						place.food_types,
+						place.business_subtype
+						)

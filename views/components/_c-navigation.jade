@@ -1,0 +1,195 @@
+//- c-navigation
+//- the main navigation for the website
+//- should be all in one piece
+//- 	has two states:
+//- 	.is--collapsed
+//- 	.is--extented
+
+
+mixin c-list__navigation--item(tierClass,sizeClass,bodyClass,url_en,url_es,string_en,string_es)
+	- mininavbuttonClass =  'c-mininav__button--'+ bodyClass
+	if (language == "en") 
+		- url= url_en
+		- string = string_en
+	else
+		- url= url_es
+		- string = string_es
+
+	- listItemClass =tierClass +" "+ sizeClass +" "+ bodyClass
+	li(class=listItemClass)
+		a.c-mininav__button(class=mininavbuttonClass href=url)
+			if block 
+				block
+			=string
+
+//-bof mininav
+.c-mininav__container.is-collapsed
+	ul.c-mininav
+		//- language togglers
+		if (language == "en") 
+			li.c-mininav__languages: a.c-mininav__button.c-mininav__button--language.language__spanish(href="#{locale}")
+				.language__label
+					| Cambiar a
+				img.language__icon(src="/images/language__es2.svg" alt="Español")
+		else
+			li.c-mininav__languages: a.c-mininav__button.c-mininav__button--language.language__english(href="#{locale}")
+				.language__label
+					| Switch to
+				img.language__icon(src="/images/language__en.svg" alt="English")
+
+		li.c-list__navigation
+			ul.c-list__flexbox
+				//- home
+				+c-list__navigation--item(
+					"single",
+					"",
+					"home",
+					"/en/",
+					"/es/",
+					"Home",
+					"Inicio")
+				
+				//- tier 2
+
+				+c-list__navigation--item(
+					"one-third",
+					"tier2",
+					"ferries",
+					"/en/holbox-island-ferry-times.html",
+					"/es/horario-ferries-isla-holbox.html",
+					"Ferry Times",
+					"Horarios Ferry")
+
+				+c-list__navigation--item(
+					"two-third",
+					"tier2",
+					"transportation",
+					"/en/getting-to-holbox-bus-times-transfers-car-rental-taxis-and-flights.html",
+					"/es/como-llegar-a-holbox-horarios-autobuses-traslados-renta-auto-taxis-vuelos.html",
+					"Bus Times, Transfers, Taxis, Car Rental & Flights",
+					"Horarios Buses, Traslados, Taxis, Renta Auto y vuelos")
+
+
+				//- tier 3
+
+				+c-list__navigation--item(
+					"two-four-up",
+					"tier3",
+					"events",
+					"/en/whats-on-in-holbox.html",
+					"/es/que-hacer-en-holbox.html",
+					"Events",
+					"Eventos")
+
+				+c-list__navigation--item(
+					"two-four-up",
+					"tier3",
+					"tours",
+					"/en/tours/",
+					"/es/tours/",
+					"Tours",
+					"Tours")
+
+				+c-list__navigation--item(
+					"two-four-up",
+					"tier3",
+					"activities",
+					"/en/activities/",
+					"/es/actividades/",
+					"Activities",
+					"Actividades")
+
+				+c-list__navigation--item(
+					"two-four-up",
+					"tier3",
+					"tour-operators",
+					"/en/tour-operators-kiteboarding-schools-and-rentals/",
+					"/es/tour-operadores-escuelas-de-kiteboarding-y-rentas/",
+					"Tour Operators, Watersports & Rentals",
+					"Tour Operadores, Deportes Acuaticos y Renta")
+
+				//- tier 4
+				+c-list__navigation--item(
+					"two-four-up",
+					"tier4",
+					"accomodations",
+					"/en/accommodations-in-holbox/",
+					"/es/habitaciones-en-holbox/",
+					"Hotels, Hostels, Camping & Vacation Rental",
+					"Hoteles, Hostales, Camping y Renta Vacacional")
+
+				+c-list__navigation--item(
+					"two-four-up",
+					"tier4",
+					"food",
+					"/en/food-drink-in-holbox/",
+					"/es/comer-y-beber-en-holbox/",
+					"Food & Drink",
+					"Comida y Bebida")
+
+				+c-list__navigation--item(
+					"two-four-up",
+					"tier4",
+					"shopping",
+					"/en/shopping-in-holbox/",
+					"/es/shopping-en-holbox/",
+					"Shopping",
+					"Shopping")
+
+				+c-list__navigation--item(
+					"two-four-up",
+					"tier4",
+					"health",
+					"/en/health-beauty-spa-tattoos/",
+					"/es/salud-belleza-spas-tatuajes/",
+					"Health, Beauty, Spa & Tattoos",
+					"Salud, Belleza, Spas & Tatuajes")
+
+				//- tier 5
+
+				+c-list__navigation--item(
+					"",
+					"tier5",
+					"medical",
+					"/en/medical-and-pharmacies/",
+					"/es/medicina-y-farmacias/",
+					"Medical & Pharmacies",
+					"Medicina y Farmacias")
+
+				+c-list__navigation--item(
+					"",
+					"tier5",
+					"services",
+					"/en/services/",
+					"/es/servicios/",
+					"Services",
+					"Servicios")
+
+				+c-list__navigation--item(
+					"",
+					"tier5",
+					"weddings",
+					"/en/wedding-planners-travel-photography-and-video/",
+					"/es/wedding-planners-fotografia-y-video-touristico/",
+					"Weddings, Photo & Video",
+					"Bodas, Foto y Video")
+
+				+c-list__navigation--item(
+					"single",
+					"tier3",
+					"blog",
+					"/en/blog/",
+					"/es/blog/",
+					"Blog",
+					"Blog")
+
+
+	.c-mininav__toggler
+		span
+		if (language == "en") 
+			| MENU
+		else
+			| MEN&Uacute;
+
+
+

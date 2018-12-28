@@ -1,0 +1,25 @@
+//- index.jade
+//-bof variables
+block metas
+	//- section page vars set these manually
+	- var bodyClasses 		= "map"
+	- var language			= "en"//-either 'en' or 'es' 
+	- var theUrl			= "/en/" 
+	- var locale			= "/es/" 
+	- var places        	= contentful.businesses
+
+
+	//- include ../partials/_page__vars.jade
+
+
+//- make sure you put the urls correctly
+extends ../_pages/_layout-map-page.jade 
+
+//-the main copy that for this page
+block copy 
+	h1.c-header__title  
+		//- span #{title}
+		| the map
+	.c-main-content__copy
+		//- != marked(copy)
+

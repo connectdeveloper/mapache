@@ -1,0 +1,109 @@
+//-bof variables
+block metas
+	include partials/_section-page__vars.jade
+
+extends _pages/_layout-section-page.jade 
+
+//-the main copy that for this page
+block copy
+	h1.c-header__title
+		span #{heading}
+	.c-main-content__copy
+		!= marked(copy)
+
+
+//-name the tabs in the subnav
+if (subtype1)
+	block tab1
+		if (language=="en")
+			span= subtype1.fields.name_en
+		else
+			span= subtype1.fields.name_es
+
+if (subtype2)
+	block tab2
+		if (language=="en")
+			span= subtype2.fields.name_en
+		else
+			span= subtype2.fields.name_es
+
+if (subtype3)
+	block tab3
+		if (language=="en")
+			span= subtype3.fields.name_en
+		else
+			span= subtype3.fields.name_es
+
+if (subtype4)
+	block tab4
+		if (language=="en")
+			span= subtype4.fields.name_en
+		else
+			span= subtype4.fields.name_es
+
+if (subtype5)
+	block tab5
+		if (language=="en")
+			span= subtype5.fields.name_en
+		else
+			span= subtype5.fields.name_es
+
+if (subtype6)
+	block tab6
+		if (language=="en")
+			span= subtype6.fields.name_en
+		else
+			span= subtype6.fields.name_es
+
+//- insert the content in the tab content blocks
+//- tab1 content
+if (subtype1)
+	block tab1Content
+		if (whatToShow == "Business Units")
+			+c-place-list(subtype1, places, subtype1.sys.id, language)
+		else
+			+c-pages-list(subtype1, pages, subtype1.sys.id, language)
+
+//- tab3 content
+if (subtype2)
+	block tab2Content
+		if (whatToShow == "Business Units")
+			+c-place-list(subtype2, places, subtype2.sys.id, language)
+		else
+			+c-pages-list(subtype2, pages, subtype2.sys.id, language)
+			
+
+//- tab13 content
+if (subtype3)
+	block tab3Content
+		if (whatToShow == "Business Units")
+			+c-place-list(subtype3, places, subtype3.sys.id, language)
+		else
+			+c-pages-list(subtype3, pages, subtype3.sys.id, language)
+
+//- tab13 content
+if (subtype4)
+	block tab4Content
+		if (whatToShow == "Business Units")
+			+c-place-list(subtype4, places, subtype4.sys.id, language)
+		else
+			+c-pages-list(subtype4, pages, subtype4.sys.id, language)
+
+//- tab13 content
+if (subtype5)
+	block tab5Content
+		if (whatToShow == "Business Units")
+			+c-place-list(subtype5, places, subtype5.sys.id, language)
+		else
+			+c-pages-list(subtype5, pages, subtype5.sys.id, language)
+
+//- tab13 content
+if (subtype6)
+	block tab6Content
+		if (whatToShow == "Business Units")
+			+c-place-list(subtype6, places, subtype6.sys.id, language)
+		else
+			+c-pages-list(subtype6, pages, subtype6.sys.id, language)
+
+
+

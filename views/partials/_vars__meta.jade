@@ -1,0 +1,53 @@
+//- map the values pertaining to metadata for section pages or for all pages, business-units, events etc
+if sectionPage
+	//- meta
+	- var title  					= sectionPage.getTitle(language)
+	- var description  				= sectionPage.getDescription(language)
+	- var keywords   				= sectionPage.getKeywords(language)
+	//- facebook
+	- var og_title	 				= sectionPage.getOgTitle(language)
+	- var og_description 			= sectionPage.getOgDescription(language)
+	if language =="en"
+		- var og_url 				= "https://the.holboxeno.com"+theUrl
+		- var og_site_name 			= "The Holboxeño"
+	else
+		- var og_url 				= "https://el.holboxeno.com"+theUrl
+		- var og_site_name 			= "El Holboxeño"
+	//-twitter
+	if language =="en"
+		- var twitter_site 			= "@theholboxeno"
+	else
+		- var twitter_site 			= "@elholboxeno"
+	- var twitter_title 			= sectionPage.getTwitterTitle(language)
+	- var twitter_description 		= sectionPage.getTwitterDescription(language)
+
+
+else 
+	//- general metadata
+	- var title   					= entry.getTitle(language)
+	- var description 				= entry.getDescription(language)
+	- var keywords 					= entry.getKeywords(language)
+	//- facebook
+	- var og_title 					= entry.getOgTitle(language)
+
+	- var og_description 			= entry.getOgDescription(language)
+	if language =="en"
+		- var og_url 				= "https://the.holboxeno.com"+entry._url
+		- var og_site_name 			= "The Holboxeño"
+	else
+		- var og_url 				= "https://el.holboxeno.com"+entry._url
+		- var og_site_name 			= "El Holboxeño"
+	//-twitter
+	if language =="en"
+		- var twitter_site 			= "@theholboxeno"
+		//- patch because getTwitterDescription(language) is not working
+		//- 
+		//- 
+		- var twitter_description	= entry.twitter_description_en
+	else
+		- var twitter_site 			= "@elholboxeno"
+		//- patch because getTwitterDescription(language) is not working
+		//- 
+		//- 
+		- var twitter_description	= entry.twitter_description_es
+	- var twitter_title 			= entry.getTwitterTitle(language)

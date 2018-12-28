@@ -1,0 +1,248 @@
+
+//-imag
+
+//-
+mixin theSrcSet(theImage)
+	//- checck if this should be set for sliders
+	if headerType == 'slider'
+		//-set the break points withs widths, heights and fit tipes
+		- xsmall		= 	{width:'750', 	height:'750',  fit:'crop', viewport:'320', quality:'75'}
+		- small			= 	{width:'900',	height:'900',  fit:'crop', viewport:'640', quality:'75'}
+		- medium		= 	{width:'950', 	height:'950',  fit:'crop', viewport:'960', quality:'85'}
+		- large 		= 	{width:'1220', 	height:'1200',  fit:'crop', viewport:'1440', quality:'85'}
+		- xlarge 		= 	{width:'1420', 	height:'1400',  fit:'crop', viewport:'1600', quality:'85'}
+		- ridiculous 	= 	{width:'3000', 	height:'3000',  fit:'crop', viewport:'2950', quality:'60'}
+		- source 		= 	{width:'1200', 	height:'600',  fit:'crop', quality:'90'}
+	
+		//- check if it's a jpeg to make it progressive
+		if (theImage !== null)||(theImage.indexOf('.jpeg'||'.JPEG'||'.jpg') > -1)
+			- isProgressive = "&fl=progressive "
+		else
+			- isProgressive = " "
+		//- combine the sizes to strings for each viewport size
+		- srcsetXsmall	 	= theImage+'?h='+xsmall.height+'&q='+xsmall.quality+isProgressive+xsmall.viewport+'w,'
+		- srcsetSmall 	 	= theImage+'?h='+small.height+'&q='+small.quality+isProgressive+small.viewport+'w,'
+		- srcsetMedium   	= theImage+'?h='+medium.height+'&q='+medium.quality+isProgressive+medium.viewport+'w,'
+		- srcsetLarge    	= theImage+'?h='+large.height+'&q='+large.quality+isProgressive+large.viewport+'w,'
+		- srcsetXlarge   	= theImage+'?h='+xlarge.height+'&q='+xlarge.quality+isProgressive+xlarge.viewport+'w,'
+		- srcsetRidiculous  = theImage+'?h='+ridiculous.height+'&fit='+ridiculous.fit+'&q='+xlarge.quality+isProgressive+ridiculous.viewport+'w'
+		- sourceSource 		= theImage+'?h='+source.height+'&fit='+source.fit+'&q=90'
+		//- and now combine them all together
+		- theSrcSet 		= srcsetXsmall+srcsetSmall+srcsetMedium+srcsetLarge+srcsetXlarge
+
+	
+	else
+		//-set the break points withs widths, heights and fit tipes
+		- xsmall		= 	{width:'450', 	height:'750',  fit:'fill', viewport:'320', quality:'75'}
+		- small			= 	{width:'700',	height:'900',  fit:'fill', viewport:'640', quality:'75'}
+		- medium		= 	{width:'1024', 	height:'950',  fit:'fill', viewport:'960', quality:'85'}
+		- large 		= 	{width:'1440', 	height:'1200',  fit:'fill', focus:'bottom',viewport:'1440', quality:'85'}
+		- xlarge 		= 	{width:'1700', 	height:'1200',  fit:'fill', focus:'bottom', viewport:'1600', quality:'85'}
+		- ridiculous 	= 	{width:'3000', 	height:'3000',  fit:'fill', focus:'bottom',viewport:'2950', quality:'60'}
+		- source 		= 	{width:'1200', 	height:'600',  fit:'fill', quality:'90'}
+	
+		// check if it's a jpeg to make it progressive
+		if (theImage.indexOf('.jpeg'||'.JPEG') > -1)
+			- isProgressive = "&fl=progressive "
+		else
+			- isProgressive = " "
+		//- combine the sizes to strings for each viewport size
+		- srcsetXsmall	 	= theImage+'?w='+xsmall.width+'&h='+xsmall.height+'&fit='+xsmall.fit+'460'+xsmall.quality+isProgressive+xsmall.viewport+'w,'
+		- srcsetSmall 	 	= theImage+'?w='+small.width+'&h='+small.height+'&fit='+small.fit+'&q='+small.quality+isProgressive+small.viewport+'w,'
+		- srcsetMedium   	= theImage+'?w='+medium.width+'&h='+medium.height+'&fit='+medium.fit+'&q='+medium.quality+isProgressive+medium.viewport+'w,'
+		- srcsetLarge    	= theImage+'?w='+large.width+'&h='+large.height+'&f='+large.focus+'&fit='+large.fit+'&q='+large.quality+isProgressive+large.viewport+'w,'
+		- srcsetXlarge   	= theImage+'?w='+xlarge.width+'&h='+xlarge.height+'&fit='+xlarge.fit+'&q='+xlarge.quality+isProgressive+xlarge.viewport+'w,'
+		- srcsetRidiculous  = theImage+'?w='+ridiculous.width+'&h='+ridiculous.height+'&fit='+ridiculous.fit+'&q='+xlarge.quality+isProgressive+ridiculous.viewport+'w'
+		- sourceSource 		= theImage+'?w='+source.width+'&h='+source.height+'&fit='+source.fit+'&q=90'
+		//- and now combine them all together
+		- theSrcSet 		= srcsetXsmall+srcsetSmall+srcsetMedium+srcsetLarge+srcsetXlarge
+
+
+//- images__get_first_from_array
+mixin images__get_first_from_array(listing_thumbnail)
+	- if (listing_thumbnail && listing_thumbnail.length > 0)
+		- first_from_array = asset(listing_thumbnail[0])
+		- first_from_array_alt = listing_thumbnail[0].fields.description
+		//- console.log("the alt text is " + first_from_array_alt)
+		//- console.log("the first image " + first_from_array)
+	- first_from_array
+
+//- create the links to all of the socialmedia images needed
+mixin metaImages(hero_image)
+	//-check of there is actually an image as some events will be empty and the same for BUs
+	if hero_image
+		if (content_type == "bu")
+			//- console.log('meta images•••••••••••••••••••••••••••••••••••••••••••this is an Business Unit')
+			+images__get_first_from_array(hero_image)
+			- metaImage= first_from_array
+			- metaAlt= first_from_array_alt
+
+		else if (content_type == "page" || "event")
+			//- console.log('meta images-------------------------this is a page or an event')
+			- metaImage = asset(hero_image)
+			- metaAlt = hero_image.fields.description
+
+	//- - theAlt = hero_image.fields.description
+	- facebookMod 	 	= "?w=1200&h=630&fit=fill"
+	- og_image		 	= metaImage+facebookMod
+	- twitterMod 	 	= "?w=750&h=560&fit=fill"
+	- twitter_image  	= metaImage+twitterMod
+	- twitter_image_alt = metaAlt
+
+
+//- c-event__image--premium
+mixin c-event__image--premium(event_thumbnail)
+	- imageMod = "?w=307&h=192&fl=progressive&fit=thumb"
+	- imageSrc = event_thumbnail+imageMod
+	img.c-event__image.c-event__image--premium(src!=imageSrc alt=)
+
+
+//- c-page__image--premium
+mixin c-page__image--premium(event_thumbnail)
+	- imageMod = "?&w=621&h=310&q=80&fl=progressive&fit=thumb"
+	- imageSrc = asset(event_thumbnail)+imageMod
+	img.c-listing__image.c-listing__image--premium(src!=imageSrc alt= )
+
+//- c-listing__image--premium
+mixin c-listing__image--premium(listing_thumbnail)
+	+images__get_first_from_array(listing_thumbnail)
+	- listing_thumbnail = first_from_array
+	- listing_alt = first_from_array_alt
+	- imageMod = "?&w=621&h=275&q=80&fl=progressive&fit=thumb"
+	- imageSrc = listing_thumbnail+imageMod
+	img.c-listing__image.c-listing__image--premium(src!=imageSrc alt= listing_alt)
+
+
+//- for the secondary listing image
+mixin c-listing__image--secondary(secondary_listing_thumbnail)
+	+images__get_first_from_array(secondary_listing_thumbnail)
+	- secondary_listing_thumbnail = first_from_array
+	- listing_alt = first_from_array_alt
+	- imageMod = "?&w=151&h=151&fl=progressive&fit=thumb"
+	- imageSrc = secondary_listing_thumbnail+imageMod
+	img.c-listing__image.c-listing__image--secondary(src=imageSrc alt=listing_alt)
+
+//- c-listing__placeholder--secondary
+mixin c-listing__placeholder--secondary(secondary_listing_thumbnail)
+	if (secondary_listing_thumbnail && secondary_listing_thumbnail.length > 0)
+		+c-listing__image--secondary(secondary_listing_thumbnail)
+	else
+		img.c-listing__image.c-listing__image--secondary(src="/images/placeholder.png" alt=)
+		//- console.log("_________ ")
+		//- console.log("no pic ")
+		//- console.log("_________ ")
+
+//- for the round featurebox image
+mixin c-featurebox__image
+	- imageMod = "?&w=120&h=120&fl=progressive&fit=fill"
+	- listing_feature_image_src = asset(listing_feature_image)
+	- imageSrc = listing_feature_image_src+imageMod
+	- imageAlt = listing_feature_image.fields.description
+	img.c-featurebox__image(src=imageSrc alt= imageAlt)
+
+
+//- header images
+
+//- header slider vars
+
+//- the setting for the slider if there is only one image
+- sliderSingle = "$('.c-slider').slick({dots: true', variableWidth: true,  slidesToShow: 1});"
+//- the setting for the slider if there is more than one image and is in the header for a BU
+- sliderBuHeaderMultiples = "$('.c-slider').slick({dots: true,  centerMode: true, variableWidth: true, centerPadding: '0px'});"
+//- the setting for the slider  if there is more than one image and it's inside  the content block of a page
+- sliderPageMultiples = "$('.c-slider').slick({dots: true,  centerMode: true, variableWidth: true, centerPadding: '0px'});"
+
+
+
+mixin slider__image(slide)
+	- theImage = asset(slide)
+	- headerType = 'slider'
+	+theSrcSet(theImage)
+	img(
+			srcset!=theSrcSet, src!=sourceSource, alt=theAlt,class=slideClass
+		)
+
+
+mixin slider__multipleSlide
+	each slide in gallery_images
+		if slide.fields.description
+			- slide_alt = slide.fields.description
+		else
+			- slide_alt = ""
+		div
+			+slider__image(slide)
+
+	
+//- slider
+mixin slider
+	//- checkk if premium and a BU else check if the basic has an image else load placeholder
+	if gallery_images && content_type == "bu"
+		//- map the slider vars string 
+		- headerSliderVars = sliderBuHeaderMultiples
+		- slideClass = ".c-slide.c-slide--header"
+			+slider__multipleSlide
+	
+		//- check if this is a page 
+	else if gallery_images && content_type == "page"
+		- headerSliderVars = sliderPageMultiples
+		- slideClass = ".c-slide.c-slide--page"
+			+slider__multipleSlide
+
+	
+		//- else if gallery_images && !premium && gallery_images.length > 0 
+		//- 	- headerSliderVars = sliderBuHeaderMultiples
+		//- 	- slideClass = ".c-slide.c-slide--header"
+		//- 		+slider__multipleSlide
+
+		//- else if gallery_images && !premium && gallery_images.length >0 && !gallery_images[1]
+		//- 	- slide = gallery_images[0]
+		//- 	- slide_alt = gallery_images[0].fields.description
+		//- 		//- each slide in gallery_images 
+		//- 		- headerSliderVars = sliderSingle
+		//- 		div.slide--basic-plus
+		//- 			+slider__image(slide)
+
+	else 
+		- headerSliderVars = sliderSingle
+		div
+			img.header-slider--image(src="/images/premiumImage.jpg", width=2559, height=1433 Alt="Recreation of pattern:Raoul Dufy - Floraison ")
+
+	if gallery_images_test
+		each slide in gallery_images_test
+			div
+				+slider__image(slide.url)
+	
+
+mixin c-event__image--common
+	img.c-event__image.c-event__image--common(src= event_thumbnail, alt= "")
+
+
+mixin c-header__eventimage(hero_image)
+	if hero_image
+		- theImage = asset(hero_image)
+		+theSrcSet(theImage)
+		- theAlt = hero_image.fields.description
+		//- console.log ("the hero image for ___________________________________"+ theImage)
+		//- console.log ("the alt for ___________________________________"+ theAlt)
+		img.c-header__heroimage.c-header__heroimage--event(
+			srcset!=theSrcSet, src!=sourceSource, alt=theAlt
+			)
+	else 
+		- theImage = "/images/premiumImage.jpg"
+		img.c-header__heroimage.c-header__heroimage--event( src=theImage, width=2559, height=1433 alt="Recreation of pattern:Raoul Dufy - Floraison ")
+		//- - console.log ("+++++++++++++++++++++++++++I aint got nothing +++++++++++++++++++++++++++++++++++++")
+
+//- mixin c-header__heroimage(hero_image)
+//- 	- console.log ("the hero image for"+ title +"is not defined yet" )
+
+mixin c-header__heroimage(hero_image)
+	if hero_image
+		- theImage = asset(hero_image)
+		+theSrcSet(theImage)
+		- theAlt = hero_image.fields.description
+		//- console.log("||||||||||||||||||||||||||||||||||||||||||||||||||||||the hero image for"+entry.name+"___________________________________"+ theImage)
+		img.c-header__heroimage(
+			srcset!=theSrcSet, src!=sourceSource, alt=theAlt
+			) 
+	
+

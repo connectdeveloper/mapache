@@ -1,0 +1,206 @@
+//- pages
+
+mixin c-pages-list(category, pages, placeCategoryId, language)
+	if (category.fields.subtypes && category.fields.subtypes.length >= 2)
+		+c-pages-list-mul-cat(category, pages, placeCategoryId, language)
+	else
+		+c-pages-list-single-cat(category, pages, placeCategoryId, language, true)
+
+
+mixin c-pages-list-mul-cat(category, pages, placeCategoryId, language)
+
+	- var showAdvert = false
+
+		
+	each subtype in category.fields.subtypes
+		+c-pages-list-single-cat(subtype, pages, subtype.sys.id, language, false)
+
+		//- if showAdvert
+		//- 	- showAdvert = false
+		//- 	section.c-block--advert
+		//- 	| advertisement
+		//- 	a.c-advert(href="#")
+		//- 		img.c-advert__creative(src="/images/advertbox.png")
+
+mixin c-pages-list-single-cat(category, pages, pageCategoryId, language, advert)
+	h3.c-linetitle
+		if (language=="en")
+			span= category.fields.name_en
+		else
+			span= category.fields.name_es
+
+	each page in pages
+		if page.category_subtype.sys.id == pageCategoryId
+			+c-page--premium (
+			page.getHeroImage(language),
+			page.getLanguageUrl(language),
+			page.getHeading(language),
+			'page.price',
+			page.getExcerpt(language)
+			)
+			//- +c-listing--premium (page.getGallery(language),'#',page.getLanguageUrl(language),page.getTitle(language))
+			//- 	p= page.getDescription(language)
+
+	//- //- load the advert mixin
+	//- +c-advert('/images/sunrise.svg','an image alt tag','#')
+
+	//- if (advert)
+	//- 	// advert component
+	//- 	section.c-block--advert
+	//- 		| advertisement
+	//- 		a.c-advert(href="#")
+	//- 			img.c-advert__creative(src="/images/advertbox.png")
+
+
+
+
+
+
+
+
+//- places business units
+mixin c-place-list(category, places, placeCategoryId, language)
+	if (category.fields.subtypes && category.fields.subtypes.length >= 2)
+		+c-place-list-mul-cat(category, places, placeCategoryId, language)
+	else
+		+c-place-list-single-cat(category, places, placeCategoryId, language, false)
+
+
+mixin c-place-list-single-cat(category, places, placeCategoryId, language, advert)
+
+	h3.c-linetitle(id=S(category.fields.name_en).slugify().s)
+		if (language=="en")
+			span= category.fields.name_en
+		else
+			span= category.fields.name_es
+
+	each place in places
+		if place.subscription_level
+			if place.belongsToCategory(placeCategoryId) && place.plus && place.subscription_level.fields.name == "ultra"
+				+c-listing--premium (
+				place.getGalleryImages(language),
+				'#',
+				place.getLanguageUrl(language),
+				place.name,
+				place.cost_low,
+				place.food_types,
+				place.business_subtype
+				)
+				//- +c-listing--premium (place.getGalleryImages(language),'#',place.getLanguageUrl(language),place.name)
+				//- 	p= place.getDescription(language)		
+
+	each place in places
+		if place.subscription_level
+			if place.belongsToCategory(placeCategoryId) && place.plus && place.premium && place.subscription_level.fields.name != "ultra"
+				+c-listing--premium (
+				place.getGalleryImages(language),
+				'#',
+				place.getLanguageUrl(language),
+				place.name,
+				place.cost_low,
+				place.food_types,
+				place.business_subtype
+				)
+				//- +c-listing--premium (place.getGalleryImages(language),'#',place.getLanguageUrl(language),place.name)
+				//- 	p= place.getDescription(language)
+		else if place.belongsToCategory(placeCategoryId) && place.plus  && place.premium
+				+c-listing--premium (
+				place.getGalleryImages(language),
+				'#',
+				place.getLanguageUrl(language),
+				place.name,
+				place.cost_low,
+				place.food_types,
+				place.business_subtype
+				)
+				//- +c-listing--premium (place.getGalleryImages(language),'#',place.getLanguageUrl(language),place.name)
+				//- 	p= place.getDescription(language)
+
+
+	each place in places
+		if place.belongsToCategory(placeCategoryId) && !place.plus && place.premium
+			+c-listing--premium (
+			place.getGalleryImages(language),
+			'#',
+			place.getLanguageUrl(language),
+			place.name,
+			place.cost_low,
+			place.food_types,
+			place.business_subtype
+			)
+			//- +c-listing--premium (place.getGalleryImages(language),'#',place.getLanguageUrl(language),place.name)
+			//- 	p= place.getDescription(language)
+
+	//- //- load the advert mixin
+	//- +c-advert('/images/sunrise.svg','an image alt tag','#')
+
+	//- if (advert)
+	//- 	// advert component
+	//- 	section.c-block--advert
+	//- 		| advertisement
+	//- 		a.c-advert(href="#")
+	//- 			img.c-advert__creative(src="/images/advertbox.png")
+
+	//- start the flexorama row to hold the .c-listing--secondary block
+	
+	//- //- TODO: ¿limitar el número de lugares?
+
+
+	- var placesSec = []
+	- var placesPic = []
+	- var placesNoPic = []
+
+	//- load all basic with images
+	each place in places
+		if place.belongsToCategory(placeCategoryId) && !place.premium 
+			- placesSec.push(place)
+
+	each place in placesSec
+		if place.getGalleryImages(language) && place.getGalleryImages(language).length > 0
+			- placesPic.push(place)
+		else 
+			- placesNoPic.push(place)
+
+	.flexorama--row
+		each place in placesPic
+			+c-listing--secondary (place.getLanguageUrl(language),place.name,place.getGalleryImages(language), place.cost_low,place.business_subtype)
+
+		each place in placesNoPic
+			+c-listing--secondary (place.getLanguageUrl(language),place.name,place.getGalleryImages(language), place.cost_low,place.business_subtype)
+
+			
+
+mixin c-place-list-mul-cat(category, places, placeCategoryId, language)
+	- var showAdvert = false
+	//- add a mininav of subsctions
+	h4.c-linetitle(id='c-section__title--'+category.fields.name_en)
+		if (language=="en")
+			span
+				| In this section
+		else
+			span
+				| En esta sección
+
+	each subtype in category.fields.subtypes
+		//- slugify the subtipe title
+		a.c-button--subsection(href='#'+S(subtype.fields.name_en).slugify().s) 
+			if (language=="en")
+				=subtype.fields.name_en
+			else
+				=subtype.fields.name_es
+
+
+	each subtype in category.fields.subtypes
+		+c-place-list-single-cat(subtype, places, subtype.sys.id, language, false)
+		//- if showAdvert
+		//- 	- showAdvert = false
+		//- 	section.c-block--advert
+		//- 	| advertisement
+		//- 	a.c-advert(href="#")
+		//- 		img.c-advert__creative(src="/images/advertbox.png")
+
+		a.c-button--subsection(href='#c-section__title--'+category.fields.name_en)
+			if (language=="en")
+				| Back up to sub-categories
+			else
+				| Regresar a subcategor&iacute;as

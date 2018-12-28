@@ -1,0 +1,104 @@
+
+block metas
+	//-bof variables
+	include ../_dates.jade
+
+	//- section page vars set these manually
+	- var bodyClasses		= "events"
+	- var language     		= "es"
+	- var theUrl			= "/es/que-hacer-en-holbox.html"
+	- var locale 			= "/en/whats-on-in-holbox.html"
+	- var thisPageId    	= "38iKsUDHUkEm4sqgEIsSay" // the contentful page id
+	
+	- var pages         	= contentful.pages
+	- var tab1_id           = "eventos-hoy"
+	- var tab2_id 			= "eventos-mañana"
+	- var tab3_id 			= "eventos-tres-en-dias"
+	- var tab4_id 			= "eventos-en-cuatro-dias"
+	- var tab5_id 			= "eventos-futuros"
+	- var tab_number 		= "tabs--five"
+
+	//- buscar la página de sección
+	- var sectionPage = null
+	if contentful.sectionPages
+		each currentSectionPage in contentful.sectionPages
+			if currentSectionPage.sys.id == thisPageId
+				- sectionPage = currentSectionPage
+
+	include ../partials/_page__vars.jade
+
+
+//- make sure you put the urls correctly
+extends ../_pages/_layout-section-page.jade 
+
+//- set up the meta tags
+
+//-the main copy that for this page
+block copy
+	h1.c-header__title  
+		span #{heading}
+	.c-main-content__copy
+		!= marked(copy)
+
+
+			
+//-name the tabs in the subnav
+block tab1
+	if (language=="en")
+		| Today
+		br
+		| !{dayOne.en}
+
+	else
+		| Hoy
+		br
+		| !{dayOne.es}
+
+block tab2
+	if (language=="en")
+		| Tomorrow
+		br
+		| !{dayTwo.en}
+	else
+		| Ma&ntilde;ana
+		br
+		| !{dayTwo.es}
+
+block tab3
+	if (language=="en")
+		| This !{dayThree.en}
+	else
+		| Este !{dayThree.es}
+
+block tab4
+	if (language=="en")
+		| This !{dayFour.en}
+	else
+		| Este !{dayFour.es}
+
+block tab5
+	if (language=="en")
+		| Upcoming events
+	else
+		| Pr&oacute;ximos eventos
+
+//- insert the content in the tab content blocks
+//- tab1 content
+block tab1Content
+	include ../_tabs/_events__tabcontent--today.jade
+
+//- tab2 content
+block tab2Content
+	include ../_tabs/_events__tabcontent--tomorrow.jade
+
+//- tab3 content
+block tab3Content
+	include ../_tabs/_events__tabcontent--day-three.jade
+
+//- tab4 content
+block tab4Content
+	include ../_tabs/_events__tabcontent--day-four.jade
+
+//- tab5 content
+block tab5Content
+	include ../_tabs/_events__tabcontent--future.jade

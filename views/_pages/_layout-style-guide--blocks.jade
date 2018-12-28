@@ -1,0 +1,36 @@
+//- this will pull various blocks to check the styling
+//- not for production
+
+
+//- load the mixins
+include ../mixins/_mixins.jade
+
+
+//- set the doctype
+doctype html
+//- start HTML
+html
+	//- load the head 
+	head
+		//- and the partial with all of the meta
+		include ../partials/_head.jade
+	body(class=bodyClasses)
+
+		
+		article.wrapper
+
+			include ../components/c-header/_c-header--slider.jade
+
+			include ../components/_c-style-guide__all-blocks.jade
+
+
+			include ../partials/_c-footer.jade
+
+		include ../components/_c-navigation.jade
+
+		include ../partials/_end.jade
+
+
+//- enable the slider with this layout specific scripts
+//- block end__script
+	|	<script >$(document).ready(function(){$('.c-slider').slick({dots: true,});});</script>

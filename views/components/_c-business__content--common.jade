@@ -1,0 +1,66 @@
+
+//- this file builds the content for business--premium pages
+//- single__content
+section.c-block.c-single__content.c-single__content--common
+	.c-block__column
+		
+		.c-single__quicklook
+			.c-quicklook__line1
+				if cost_low
+					- priceOf = {en:"From: ",es:"Desde: "};
+					if (language == "en")
+						span.c-label #{priceOf.en} 
+					else 
+						span.c-label #{priceOf.es} 
+					| #{cost_low}
+			.c-quicklook__line2
+				if room_types
+					+related-list__loop(room_types, "Room types", "Tipos de habitación")
+
+		//- the copy
+		.c-main-content__copy
+			if copy
+				!= marked(copy)
+
+		//- single details
+		.c-single__details
+			.c-single__amenities
+				if capacity
+					if (language == "en")
+						span.c-label 
+							| CAPACITY: 
+						| #{capacity}
+						
+					else
+						span.c-label 
+							| CAPACIDAD: 
+						| #{capacity}
+							
+				.show-for-small-only
+					br
+				if amenities
+					+business-unit__ammenities-loop(amenities)
+
+
+			if opening_time
+				.c-single__hours 
+					if (language == "en")
+						span.c-label Opening Times: 
+					else 
+						span.c-label Horario: 
+					| #{opening_time}
+
+		+c-single__contactinfo
+
+		#map
+		include _c-map--listing.jade		
+
+		//-c-single__events
+		h4.c-linetitle
+			span
+				if (language == "en")
+					| Other options you might like<br>
+				else 
+					| Otras opciones que te pueden gustar<br>
+		
+		+c-business-aside-list (contentful.businesses, businessCategory, language)

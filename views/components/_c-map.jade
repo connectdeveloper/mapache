@@ -1,0 +1,73 @@
+script
+	//- |	mapboxgl.accessToken = 'pk.eyJ1IjoiY2FuaWNhY3VhZHJhZGEiLCJhIjoiY2lpdHN0dzQzMDAwZHVia25mMTM3eTNobiJ9.LkbHsZJr45BNEKT4fm8CbA'
+	//- |	var map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/canicacuadrada/ciit3bltk00gx8tm0xmtqfaks', center: [-87.388257, 21.513666], zoom: 14 });
+	| mapboxgl.accessToken = 'pk.eyJ1IjoiY2FuaWNhY3VhZHJhZGEiLCJhIjoiY2lpdHN0dzQzMDAwZHVia25mMTM3eTNobiJ9.LkbHsZJr45BNEKT4fm8CbA';
+	| var bounds = [ [-87.029318, 21.607033 ], // Southwest coordinates
+	| [-87.511000, 21.375750]  // Northeast coordinates
+	|	];
+	| var markers = {
+	|     "type": "FeatureCollection",
+	|     "features": [{
+	|         "type": "Feature", "properties": {
+	|             "description": 
+	|    				"<div class=\".c-map__popup\">\
+	|						<h5 class=\".c-popup__title\">#{event_name}</h5>\
+	|					    <a href=\"#event_location_url\"><span> @#{event_location}</span></a>\
+	|				    	<div class=\".c-popup__date-time\">\
+	|				    		#{event_date}&ensp;#{event-time}\
+	|				    	</div>\
+	|				    </div>"	,
+	|   "marker-symbol": "map-pin"
+	|         }, "geometry": {
+	|             "type": "Point",  "coordinates": [#{geo_location}] }
+	|     }]
+	| };
+	| 
+	| var map = new mapboxgl.Map({
+	|     container: 'map',
+	//- |     style: 'mapbox://styles/mapbox/streets-v8',
+	//- |	  style: 'mapbox://styles/canicacuadrada/ciit3bltk00gx8tm0xmtqfaks',
+	|     style: 'mapbox://styles/canicacuadrada/ciixbebgt00m18tm0yp0jq3pb',
+	|     center: [#{geo_location}],
+	|     zoom: 13,
+	|     maxBounds: bounds // Sets bounds as max
+	| });
+	| 
+	| map.on('style.load', function () {
+	|     // Add marker data as a new GeoJSON source.
+	|     map.addSource("markers", {
+	|         "type": "geojson", "data": markers
+	|     });
+	| 
+	|     // Add a layer showing the markers.
+	|     map.addLayer({
+	|         "id": "markers", "interactive": true, "type": "symbol", "source": "markers", "layout": {
+	|             "icon-image": "{marker-symbol}"
+	|         }
+	|     });
+	| });
+	| 
+	| // When a click event occurs near a marker icon, open a popup at the location of
+	| // the feature, with description HTML from its properties.
+	| map.addControl(new mapboxgl.Navigation());
+	| map.on('click', function (e) {
+	|     map.featuresAt(e.point, {layer: 'markers', radius: 10, includeGeometry: true}, function (err, features) {
+	|         if (err || !features.length)
+	|             return;
+	| 
+	|         var feature = features[0];
+	| 
+	|         new mapboxgl.Popup()
+	|             .setLngLat(feature.geometry.coordinates)
+	|             .setHTML(feature.properties.description)
+	|             .addTo(map);
+	|     });
+	| });
+	| 
+	| // Use the same approach as above to indicate that the symbols are clickable
+	| // by changing the cursor style to 'pointer'.
+	| map.on('mousemove', function (e) {
+	|     map.featuresAt(e.point, {layer: 'markers', radius: 10}, function (err, features) {
+	|         map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+	|     });
+	| });

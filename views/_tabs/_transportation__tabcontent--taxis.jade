@@ -1,0 +1,97 @@
+//- transportation__tabcontent--taxies
+
+//- this is the tab  content inside the tab "taxis" in the getting to holbox page
+//- dependencies : getting-to-holbox.jade
+
+
+
+h3.c-linetitle
+	span 
+		if (language=="en")
+			| Taxis in Chiquil&aacute; price list
+		else 
+			| Taxis en Chiquil&aacute; lista de precios
+
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__user 
+				if (language=="en")
+					| Journey	
+				else
+					| Destinos
+			td.c-timetable__prices
+				if (language=="en")
+					| Price 
+				else
+					| Precio
+	tbody.c-timetable__body
+		+c-timetable__prices('$100 usd')
+			if (language=="en")
+				| Chiquila &#8594; Canc&uacute;n Airport
+			else
+				| Chiquila &#8594; Aeropuerto Canc&uacute;n
+		+c-timetable__prices('$100 usd')
+			| Chiquila &#8594;  Cancún 
+		+c-timetable__prices('$120 usd')
+			| Chiquila &#8594;  Playa del Carmen 
+		+c-timetable__prices('$120 usd')
+			| Chiquila &#8594; Tulum 
+		+c-timetable__prices('$100 usd')
+			| Chiquila &#8594; Valladolid 
+		+c-timetable__prices('$90 usd')
+			| Chiquila &#8594; Coba
+		+c-timetable__prices('$220 usd')
+			| Chiquila &#8594; Mérida 
+		+c-timetable__prices('$120 usd')
+			| Chiquila &#8594; Chichen Itza
+
+h3.c-linetitle
+	span 
+		if (language=="en")
+			| Book a Taxi
+		else 
+			| Reserva un taxi
+
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__unit 
+				if (language=="en")
+					| Unit	
+				else
+					| Unidad
+			td.c-timetable__driver
+				if (language=="en")
+					| Admin	
+				else
+					| Administrador
+			td.c-timetable__details
+				if (language=="en")
+					| Contact 
+				else
+					| Contacto
+	tbody.c-timetable__body
+		+c-timetable__taxi('Pedro Avalos', '+52-1-984-130-07-49')
+			| Taxi 067
+			br
+			| Taxi 053
+			br
+			| Taxi 087
+			br
+			| Taxi 82
+		+c-timetable__taxi('Julio', '+52-1-984-133-12-99')
+			| Taxi 020
+		+c-timetable__taxi('Miguel Angel ', '+52-1-984-128-6802')
+			| Taxi 032
+			br
+			| Taxi 064
+			br
+			| Taxi 010
+

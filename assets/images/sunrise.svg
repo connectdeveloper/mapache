@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="46px" height="39px" viewBox="0 0 46 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 40.3 (33839) - http://www.bohemiancoding.com/sketch -->
+    <title>sunrise</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <rect id="path-1" x="0" y="0" width="46" height="40"></rect>
+        <radialGradient cx="50%" cy="43.5089985%" fx="50%" fy="43.5089985%" r="98.2963714%" id="radialGradient-3">
+            <stop stop-color="#FFE500" offset="0%"></stop>
+            <stop stop-color="#FDC600" offset="67.4326371%"></stop>
+            <stop stop-color="#FD7100" offset="99.9561543%"></stop>
+        </radialGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-4">
+            <stop stop-color="#4BBE48" offset="0%"></stop>
+            <stop stop-color="#045B12" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="sunrise" transform="translate(0.000000, -1.000000)">
+            <mask id="mask-2" fill="white">
+                <use xlink:href="#path-1"></use>
+            </mask>
+            <g id="Mask"></g>
+            <g id="Group-7" mask="url(#mask-2)">
+                <g transform="translate(0.000000, -1.000000)" id="Group-6">
+                    <g>
+                        <g id="Group-5">
+                            <rect id="Mask" x="0" y="0" width="46" height="40"></rect>
+                            <g id="Group" transform="translate(0.000000, 2.000000)">
+                                <ellipse id="Oval-Copy" fill="url(#radialGradient-3)" cx="22.9858998" cy="30.0409426" rx="13.0409426" ry="13.0409426"></ellipse>
+                                <rect id="Rectangle-4-Copy-4" fill="url(#radialGradient-3)" transform="translate(5.898533, 27.260682) rotate(14.000000) translate(-5.898533, -27.260682) " x="2.44724392" y="24.7606817" width="6.90257831" height="5" rx="2.5"></rect>
+                                <g id="Group-2" transform="translate(14.944957, 0.000000)" fill="#FDC600">
+                                    <rect id="Rectangle-4-Copy-2" transform="translate(7.500000, 10.951289) rotate(90.000000) translate(-7.500000, -10.951289) " x="2.54871084" y="8.45128916" width="9.90257831" height="5" rx="2.5"></rect>
+                                    <polygon id="Triangle-Copy" points="15 8.43693642 0 8.43693642 7.5 0"></polygon>
+                                </g>
+                                <g id="Group-4" transform="translate(0.000000, 12.000000)">
+                                    <g id="Group-3">
+                                        <rect id="Rectangle-4-Copy-3" fill="url(#radialGradient-3)" transform="translate(11.208197, 4.208197) rotate(45.000000) translate(-11.208197, -4.208197) " x="7.75690776" y="1.70819692" width="6.90257831" height="5" rx="2.5"></rect>
+                                        <rect id="Rectangle-4-Copy-5" fill="url(#radialGradient-3)" transform="translate(35.208197, 4.208197) scale(-1, 1) rotate(45.000000) translate(-35.208197, -4.208197) " x="31.7569078" y="1.70819692" width="6.90257831" height="5" rx="2.5"></rect>
+                                        <rect id="Rectangle-4-Copy-6" fill="url(#radialGradient-3)" transform="translate(39.980418, 15.260682) scale(-1, 1) rotate(14.000000) translate(-39.980418, -15.260682) " x="36.5291291" y="12.7606817" width="6.90257831" height="5" rx="2.5"></rect>
+                                        <rect id="Rectangle-Copy-2" fill="url(#linearGradient-4)" x="0" y="22" width="46" height="5.54933727"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

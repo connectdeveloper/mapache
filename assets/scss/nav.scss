@@ -1,0 +1,651 @@
+
+// set the height of the collapsed nav
+$collapsed-height:$pad*3+$smallpad;
+
+/* navigation styles */
+
+$screencolor:scale-color($moyen, $lightness: -50%);	
+
+%menu--text-shadow {
+	text-shadow: 2px 2px 3px rgba(#000,0.8);
+	}
+
+%menu--text-glow {
+	text-shadow: 0px 0px 2px rgba(#fff,1);
+	}
+.wrapper.is-extended{
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+}
+
+.c-mininav__container {
+		padding-top:$pad;
+		margin-left: auto;
+		margin-right: auto;
+		text-align: center;
+		position: absolute;
+		z-index: 200;
+
+
+	&.is-collapsed {
+		z-index: 200;
+		bottom:0;
+		top: auto;
+		margin-left: auto;
+		margin-right: auto;
+		height: $collapsed-height;
+		position: fixed;
+		left:0;
+		right:0;
+		padding-top: 0;
+
+		// -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+		// -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+		// box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.75);
+		
+		@media #{$medium-up}{
+			width:60%;
+		}
+
+
+	}
+
+	&.is-extended {
+		width: 100vw;
+		height: 130vh;
+		// position: absolute;
+		top:0;
+		left:0;
+		bottom:110vh;
+		right: 0;
+		// background: red;
+
+		background: rgba($screencolor,0.8)
+	}
+}
+
+.c-mininav{
+		li {
+		list-style: none;
+	}
+	// background: $moyen;
+
+}
+
+.c-list__navigation { /* holds the actual navigation */
+
+	margin-left: auto;
+	margin-right: auto;
+	position: absolute;
+	list-style: none;
+	left: 0;
+	right:0;
+	width: 90%;
+	
+	// min-height: 40vh;
+	@media #{$medium-up}{
+		width:60%;
+		
+		}
+	.is-extended & {
+		top:10vh;
+		@media #{$medium-up}{
+			top: 15vh;
+		}
+
+		@media #{$medium-up}{
+			top: 30vh;
+		}
+	}
+
+	.is-collapsed & {
+		/* set the styling to the bottom bar when the nav is collapsed */
+		width:100%;
+		// background: $moyen;
+		// with plus button
+		padding-right: $pad*5+$smallpad;
+
+		// padding-right: $pad*3+$pad;
+		@media #{$medium-up}{
+			// padding-right: $pad*3.7+$pad;
+			padding-right: $pad*7+$minipad;
+		}
+	}
+ 
+	li {
+		// /* secondary items are hidden from the navigation when it is collapsed */
+		// .is-collapsed &.secondary{
+		// 	@include visuallyhidden;
+		// 	@include order (30)
+
+		// }
+
+		.is-collapsed & {
+			@include visuallyhidden;
+			@include order (30)
+
+		}
+
+		transition: all .1s ease-out;
+		
+		.is-extended & {
+			width:calc(33.3333% - #{$minipad});
+		}
+
+		// width:calc(50% - #{$minipad});
+		// background: red;
+
+		//  @media #{$medium-up}{
+		// 	width:calc(33.3333% - #{$minipad});
+		// }
+
+		/* buttons that appear at the top of the menu (three up) */
+		&.single{
+			/* when the nav is open */
+			.is-extended & {
+				width:calc(100% - #{$minipad});
+
+				@media #{$medium-up}{
+					// width:calc(25% - #{$minipad});
+					width:calc(100% - #{$minipad});
+					}
+				}
+			
+			
+		 }
+
+
+		 &.one-third{
+			/* when the nav is open */
+			.is-extended & {
+				width:calc(33.3333% - #{$minipad});
+				
+				
+				@media #{$medium-up}{
+						width:calc(33.3333% - #{$minipad});
+					}
+			}
+		 }
+
+		 &.two-third{
+			/* when the nav is open */
+			.is-extended & {
+				width:calc(66.6666% - #{$minipad});
+				
+				
+				@media #{$medium-up}{
+						width:calc(66.6666% - #{$minipad});
+					}
+			}
+		 }
+
+		/* buttons that appear at the top of the menu (three up) */
+		&.two-four-up{
+			/* when the nav is open */
+			.is-extended & {
+				width:calc(50% - #{$minipad});
+				
+				
+				@media #{$medium-up}{
+						width:calc(25% - #{$minipad});
+					}
+			}
+		 }
+
+		/* The second row of buttons (should be two up) */
+		&.secondrow {
+			 @media #{$medium-up}{
+				width:calc(50% - #{$minipad});
+			}
+		}
+
+		// the big button with the next ferry times
+		&.fullrow {
+			width:calc(100% - #{$minipad});
+			// text-align: center;
+			// background: rgba($dark,.5);
+			}
+		/* Style the buttons that appear when the nav is collapsed */
+		&.primary {
+
+			
+			.is-collapsed & {
+				width: 39%;
+				height: $collapsed-height;
+				
+
+				 @media #{$medium-up}{
+					width: 33.3333%;
+					}
+
+	  			&:hover {
+	  				background: scale-color($moyen, $lightness: 12%);
+	  				cursor:pointer;
+	  				& .c-mininav__button {
+	  					color: $light;
+	  				}
+	  			}
+			}
+
+			&.home{
+				.is-collapsed & {
+					 @media #{$small-only}{
+						width: 22%;}
+					}
+				}	
+		}
+	}
+}
+
+
+
+%active {
+	background:$bright;
+	color: $dark;
+	@extend %menu--text-glow;
+	// color: $light;
+}
+
+.home .is-collapsed .home,
+.events .is-collapsed .events,
+.food-and-drink  .is-collapsed .food ,
+.ferries  .is-collapsed .ferries {
+	@extend %active;
+}
+
+
+.home .is-extended .home  .c-mininav__button,
+.events .is-extended .events .c-mininav__button,
+.food-and-drink  .is-extended .food  .c-mininav__button,
+.health  .is-extended .health  .c-mininav__button,
+.shopping  .is-extended .shopping  .c-mininav__button,
+.medical  .is-extended .medical  .c-mininav__button,
+.ferries  .is-extended .ferries  .c-mininav__button,
+.transportation  .is-extended .transportation  .c-mininav__button,
+.services  .is-extended .services  .c-mininav__button,
+.accommodations  .is-extended .accommodations  .c-mininav__button,
+.tours  .is-extended .tours  .c-mininav__button,
+.activities  .is-extended .activities  .c-mininav__button,
+.weddings  .is-extended .weddings  .c-mininav__button
+{
+	@extend %active;
+
+}
+
+.c-list__flexbox {
+		@extend .flexorama--row;
+		width: 100%;
+		// min-height: 300px;
+		height: $pad*3+$smallpad;
+		// background: yellow;
+		margin: 0;
+		// padding: $pad;
+		// padding-bottom: $pad*3;
+		@include align-items(flex-start);
+		@include justify-content(space-around);
+		@include flex-grow(2);
+		// padding: $smallpad;
+		.is-collapsed & {
+			padding-left: 0;
+
+		}
+
+		transition: all .1s easeout;
+
+		.is-extended &{
+			// padding: $pad;
+
+				  & li {
+				  	// margin:4px;
+	 			 }
+
+			 @media #{$medium-up}{
+			 	padding: 0;
+					// @include vertical-align;
+				}
+
+			}
+
+		}
+
+// set the styling for the navigation buttons
+.c-mininav__button {
+		// font-size: rem-calc
+	  @include button(
+	    // $padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+	    $smallpad,
+	    // Background color. We can set $bg:false for a transparent background. Default: $primary-color.
+	    $bg:false,
+	    // If true, set to button radius which is $global-radius or explicitly set radius amount in px (ex. $radius:10px). Default:false.
+	    $radius:0,
+	    // We can set $full-width:true to remove side padding extend width. Default:false
+	    $full-width:false,
+	    // We can set $disabled:true to create a disabled transparent button. Default:false
+	    $disabled:false
+	  );
+	  // width:calc(100% - #{$pad});
+	  width: 100%;
+	  margin-bottom: $minipad;;
+	  // padding-bottom: $minipad;
+	  // padding: 4px;
+	  
+	  text-transform: uppercase;
+	  color: $light;
+
+
+
+	  .is-extended & {
+		background: $moyen;
+		height: $pad*4;
+		// @extend %menu--text-shadow;
+		font-size: rem-calc(12);
+		line-height: rem-calc(12);
+		@extend .flexorama--row;
+		@include align-items(center);
+		@include justify-content(space-around);
+
+		@media #{$medium-up}{
+			font-size: rem-calc(13);
+			line-height: rem-calc(16);
+			height: $pad*6;
+			}
+
+		@media #{$large-up}{
+			font-size: rem-calc(15);
+			line-height: rem-calc(17);
+			height: $pad*8;
+			}
+
+		  &:hover {	  	
+	  		// border-bottom: $smallpad $lightless solid;
+	  		color: $light;
+	  		background: scale-color($moyen, $lightness: -14%);	
+	  		}
+		  	
+
+	  }
+
+
+		.tier2 & {
+	  		//background: scale-color($moyen, $lightness: -5%);
+	  		//border-top:5px solid rgba(#F6A623,1); 
+	  		background: #26A5BD; 
+	  	}
+
+	  	.tier3 & {
+	  		//background: scale-color($moyen, $lightness: -10%);
+	  		//border-top:5px solid rgba(#42E3A5,1); 
+	  		background: #FF9100; 
+	  	}
+
+	  	.tier4 & {
+	  		//background: scale-color($moyen, $lightness: -30%);
+	  		//border-top:5px solid rgba($light,1); 
+	  		background: #7DBE05; 
+	  	}
+
+	  	.tier5 & {
+	  		//background: scale-color($moyen, $lightness: -50%); 
+	  		//border-top:5px solid rgba(#FF7ADE,1); 
+	  		background: #C30077; 
+	  	}
+
+
+	  /* style the buttons in the primary nav
+	  or the collapsed */
+	  .is-collapsed .primary & {
+	  	@extend .flexorama--row;
+		@include align-items(center);
+		@include justify-content(space-around);
+		// padding:$minipad;
+		margin-bottom: none;
+		margin-top: none;
+		padding: 0;
+		// padding-left: $minipad;
+		// padding-right: $minipad;
+		font-size: rem-calc(12);
+		border-left:1px solid rgba($light,0.5); 
+		// display: inline-block;;
+		// vertical-align: middle;
+		height: inherit;
+		line-height: $pad;
+		@media #{$small-only}{
+		letter-spacing: -0.02em;
+			}
+		// @extend %vertical-align;
+
+		@media #{$medium-up}{
+			font-size: rem-calc(14);
+			}
+
+		@media #{$large-up}{
+			font-size: rem-calc(18);
+			}
+		// background: $dark;
+	  }
+
+	 // .active  & {
+	 //  	background:$bright;
+	 //  	color: $light;
+	 //  	// height: $pad*3.25;
+	 //  	// border-bottom: $smallpad $featured solid;
+
+	 //  }
+
+	  &:hover {	  	
+	  	// border-bottom: $smallpad $lightless solid;
+	  	// color: $light;
+	  }
+
+	  &.c-mininav__button--language {
+	  	&:hover{
+	  		background: none;
+	  	}
+	  }
+}
+
+// set the togglers
+ a.c-mini-nav__button:focus {
+	  	outline: 0!important;
+	  	color:none!important;
+	  	box-shadow: none!important;
+	  	-webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
+	  	-webkit-focus-ring-color: $moyen 0!important;
+ }
+
+
+/* language toggler */
+.c-mininav__languages {
+	position: fixed;
+	width:$pad*3.1;
+	height:$pad*3.1;
+	margin-right: 0;
+	z-index: 400;
+	// bottom:$minipad;
+	top:$minipad;
+	right:calc(#{$pad}*5.5);
+	transition: all .5s ease;
+	overflow: hidden;
+	@include border($smallpad);
+
+	@media #{$medium-up}{
+		right:20%;
+		margin-right: $minipad;
+		width:$pad*3.74;
+		height:$pad*3;
+		top:$minipad;
+	 }
+}
+
+
+.c-mininav__button--language {
+	width:inherit;
+	height:inherit;
+	// margin:-$pad*0.1;
+	padding: 0;
+
+	 .is-extended &{
+	 	padding: 0;
+	 	margin:0;
+	 	display: block;
+	 }     
+
+	.language__label {
+		font-size: rem-calc(9.5);
+		line-height: rem-calc(9.5);
+		color: #fff; 
+		position: absolute;
+		z-index: 210;
+		left:0;
+		right:0;
+		bottom:0;
+		text-shadow: 2px 2px 4px rgba(#000,0.9);
+		background: rgba($dark,0.75);
+		@include border($smallpad);
+		 .is-extended &{
+		 	bottom:rem-calc(16);
+		 }
+
+		@media #{$medium-up}{
+			font-size: rem-calc(10);
+			line-height: rem-calc(11);
+			// bottom:$pad*4;
+			}
+
+	}
+
+	.language__icon {
+		background:white;
+		object-fit: cover;
+  		object-position: 50% -50%;
+  		// height: 60%;
+  		// width: 100%;
+	}
+
+	&.language__english{
+		
+	}
+
+	&.language__spanish{
+	
+	}
+
+}
+
+/* menu toggler */
+
+.c-mininav__toggler {
+	position: fixed;
+	color: white;
+	@include border($smallpad);
+	height:$pad*3.1;
+	line-height:$pad*3;
+	z-index: 300;
+	top:$minipad;
+	padding-left:$pad*2;
+	padding-right:$minipad; 
+	right:$minipad;
+	background: rgba($moyen,.5);
+	// display: inline-block;
+	transition: none;
+
+	@media #{$medium-up}{
+		padding-left:$pad*2.2;
+		height:$pad*3;
+		right:calc(20% + (#{($pad*4)+$minipad}));
+		top:$minipad;
+
+	 }
+
+
+	&.is_open {
+		background: none;
+	}
+
+
+}
+
+
+.c-mininav__toggler span, .c-mininav__toggler span:before, .c-mininav__toggler span:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: $minipad;
+  width: $pad*1.2;
+  background: white;
+  position: absolute;
+  display: block;
+  content: '';
+
+  @media #{$medium-up}{
+  	width: $pad*1.5;
+  }
+
+
+}
+
+.c-mininav__toggler span {
+	top:$pad*1.5;
+	margin-left:-$pad*1.6; 
+	
+	@media #{$medium-up}{
+		top:$pad*1.3;
+  		margin-left:-$pad*1.8; 
+  	}
+}
+
+.c-mininav__toggler span:before {
+  top: -$smallpad;
+}
+.c-mininav__toggler span:after {
+  bottom: -$smallpad; 
+}
+
+
+
+.c-mininav__toggler span, .c-mininav__toggler span:before, .c-mininav__toggler span:after {
+  transition: all 500ms ease-in-out;
+}
+.c-mininav__toggler.is_open span {
+  background-color: transparent;
+}
+.c-mininav__toggler.is_open span:before, .c-mininav__toggler.is_open span:after {
+  top: 0;
+}
+.c-mininav__toggler.is_open span:before {
+  transform: rotate(45deg);
+}
+.c-mininav__toggler.is_open span:after {
+  transform: rotate(-45deg);
+}
+
+
+
+
+/* set the ferries megabutton */
+.c-mininav__ferries {
+	background: rgba($dark,.7);
+	@extend .flexorama--row;
+	padding: $smallpad;
+	border-radius: $minipad;
+	@media #{$medium-up}{
+		width: 70%;
+		margin-right:15%;
+		margin-left:15%;
+	}
+}
+
+.c-mininav__ferriesbox {
+display: block;
+
+}
+
+.c-mininav__ferrydirection {
+	font-size: 80%;
+}
+
+.c-mininav__ferrytime {
+	font-size: 120%;
+}
+
+

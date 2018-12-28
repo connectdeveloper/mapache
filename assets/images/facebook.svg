@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>facebook</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="listings-mobile-portrait" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="foodDrink-single-Premium" sketch:type="MSArtboardGroup" transform="translate(-140.000000, -706.000000)">
+            <g id="listing-amenetiesinfo" sketch:type="MSLayerGroup" transform="translate(1.000000, 580.000000)">
+                <g id="facebook" transform="translate(139.000000, 126.000000)" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-41" fill="#3C5A96" x="0" y="0" width="14" height="14" rx="3"></rect>
+                    <path d="M5.81256947,5.50886931 L4.82608696,5.50886931 L4.82608696,6.98155639 L5.81256947,6.98155639 L5.81256947,11.3076923 L7.70955448,11.3076923 L7.70955448,6.96315459 L9.03301963,6.96315459 L9.17391304,5.50886931 L7.70955448,5.50886931 L7.70955448,4.68047498 C7.70955448,4.33757431 7.78505432,4.20181927 8.14734839,4.20181927 L9.17389018,4.20181927 L9.17389018,2.69230769 L7.86050844,2.69230769 C6.44896775,2.69230769 5.81256947,3.26065123 5.81256947,4.34911725 L5.81256947,5.50886931 L5.81256947,5.50886931 Z" id="facebook-icon-2" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

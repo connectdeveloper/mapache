@@ -1,0 +1,63 @@
+//images
+
+
+
+
+
+//- for the round featurebox image
+mixin c-featurebox__image
+	- imageMod = "?&w=120&h=120&fit=crop"
+	- imageSrc = listing_feature_image_src+imageMod
+	img.c-featurebox__image(src=imageSrc alt=)
+
+
+mixin header-slider--image
+	if gallery_images
+		each slide in gallery_images
+			div
+				img.header-slider--image(
+					srcset=asset(slide)+'?w=320&h=330&fit=thumb 320w,'+asset(slide)+'?w=700&h=480&fit=thumb 640w,'+asset(slide)+'?w=1000&h=750&fit=thumb 960w,'+asset(slide)+'?w=1300&h=900&fit=thumb 1200w&fit=thumb'+asset(slide)+'?w=1700&h=900&fit=thumb 1600w',
+					src=asset(slide)+'?w=1200&h=600&fit=fill'
+				)
+
+
+
+mixin c-event__image--common
+	img.c-event__image.c-event__image--common(src= event_thumbnail, alt= "")
+
+//- setting the basic sizes for slider images
+mixin srcset-slider
+	- xsmall	= [w:320; h:260; fit:"thumb"; breakpoint:320]
+	- small	 = [w:700; h:400; fit:"thumb"; breakpoint:620]
+	- medium	 = [w:950; h:650; fit:"fill"; breakpoint:620]
+	- large	 = [w:1200; h:650; fit:"fill"; breakpoint:960]
+	- xlarge	= [w:1200; h:650; fit:"fill"; breakpoint:960]
+	- plain	 = [w:1200; h:600; fit:"fill"]
+
+
+mixin c-image(imageSrc,image_classes)
+	//- create the sourceset strings for each viewport size
+	- comp_xsmall = imageSrc+'?w='+xsmall.w+'&h'+xsmall.h+='&fit='+xsmall.fit+' '+xsmall.breakpoint+','
+	- comp_small = imageSrc+'?w='+small.w+'&h'+small.h+='&fit='+small.fit+' '+small.breakpoint+','
+	- comp_medium = imageSrc+'?w='+medium.w+'&h'+medium.h+='&fit='+medium.fit+' '+medium.breakpoint+','
+	- comp_large = imageSrc+'?w='+large.w+'&h'+large.h+='&fit='+large.fit+' '+large.breakpoint+','
+	- comp_xlarge = imageSrc+'?w='+xlarge.w+'&h'+xlarge.h+='&fit='+xlarge.fit+' '+xlarge.breakpoint+','
+	//- combine all the sizes to one string
+	- sourcet_comp = comp_xsmall+comp_small+comp_large+comp_xlarge
+	//-create the standard image info
+	- plain_comp = imageSrc+'?w='+plain.w+'&h='plain.h'&fit='+plain.fit
+	//- now put it all together
+	img(class= image_classes; srcset=srcset-comp; src=plain-comp)
+
+
+mixin header-slider--image-dev2
+	- image_classes = ".header-slider--image"
+	if gallery_images
+		each slide in gallery_images
+			//-map the url to the imageSrce var
+			-imageSrc = asset(slide)
+			//-load the srcset vars
+			+srcset-slider
+			//- write the image
+			div
+				+c-image(imageSrc,image_classes)

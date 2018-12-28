@@ -1,0 +1,122 @@
+//- map file for events
+
+//- if the name has the date inside strip it put
+if (event_name.indexOf('---') > -1)
+	- event_name_map = event_name.split('---')[0]
+else 
+	- event_name_map = event_name
+
+if daysString
+	- event_date = daysString
+
+if event_location_url
+	- mapDescription = "<div class='c-map__popup c-map__popup--premium'><h5 class='c-popup__title'>"+event_name_map+"</h5><a class='c-popup__link' href='"+event_location_url+"'><span class='c-popup__location' >@"+event_location_name+"</span></a><div class='c-popup__date-time'>"+event_date+"<br>"+event_start_time+"&nbsp;&ndash;&nbsp;"+event_end_time+"</div></div>"
+else 
+	- mapDescription= "<div class='c-map__popup c-map__popup--premium'><h5 class='c-popup__title'>"+event_name_map+"</h5><span class='c-popup__location'> @"+event_location_name+"</span><div class='c-popup__date-time'>"+event_date+"<br>"+event_start_time+"&nbsp;&ndash;&nbsp;"+event_end_time+"</div></div>"
+
+
+script.
+	mapboxgl.accessToken = 'pk.eyJ1IjoiY2FuaWNhY3VhZHJhZGEiLCJhIjoiY2lpdHN0dzQzMDAwZHVia25mMTM3eTNobiJ9.LkbHsZJr45BNEKT4fm8CbA';
+	 var bounds = [ [-87.029318, 21.607033 ], // Southwest coordinates
+	 [-87.511000, 21.375750]  // Northeast coordinates
+		];
+	 var markers = {
+	     "type": "FeatureCollection",
+	     "features": [{
+	         "type": "Feature", "properties": {
+	             "description": 
+					"!{mapDescription}"	,
+	   			"marker-symbol": "h-marker-mid"
+	         }, "geometry": {
+	             "type": "Point",  "coordinates": [#{geo_location}] }
+	     }]
+	 };
+	 
+	 var map = new mapboxgl.Map({
+	     container: 'map',
+	//- |     style: 'mapbox://styles/mapbox/streets-v8',
+	//- |	  style: 'mapbox://styles/canicacuadrada/ciit3bltk00gx8tm0xmtqfaks',
+	     style: 'mapbox://styles/canicacuadrada/ciixbebgt00m18tm0yp0jq3pb',
+	     center: [#{geo_location}],
+	     zoom: 16,
+	     bearing: -35, // bearing in degrees
+	     maxBounds: bounds // Sets bounds as max
+	 });
+	// disable map zoom when using scroll
+	map.scrollZoom.disable();
+	// When a click event occurs near a marker icon, open a popup at the location of
+	// the feature, with description HTML from its properties.
+	map.addControl(new mapboxgl.Navigation());
+
+
+	map.on('style.load', function () {
+	     // Add marker data as a new GeoJSON source.
+	     map.addSource("markers", {
+	         "type": "geojson", "data": markers
+	     });
+	 
+	     // Add a layer showing the markers.
+	     map.addLayer({
+	         "id": "markers", "interactive": true, "type": "symbol", "source": "markers", "layout": {
+	             "icon-image": "{marker-symbol}"
+	         }
+	     });
+	 });
+	 
+
+	 var permapopup = new mapboxgl.Popup({closeOnClick: true})
+		.setLngLat([#{geo_location}])
+		.setHTML("!{mapDescription}")
+		.addTo(map);
+
+
+
+	 map.on(function (e) {
+	     map.featuresAt(e.point, {layer: 'markers', radius: 10, includeGeometry: true}, function (err, features) {
+	         if (err || !features.length)
+	             return;
+	 
+	         var feature = features[0];
+	 
+	         new mapboxgl.Popup()
+	             .setLngLat(feature.geometry.coordinates)
+	             .setHTML(feature.properties.description)
+	             .addTo(map);
+	     });
+	 });
+
+	 map.on('click', function (e) {
+	    map.featuresAt(e.point, {layer: 'markers', radius: 10, includeGeometry: true}, function (err, features) {
+	         if (err || !features.length)
+	             return;
+	 
+	         var feature = features[0];
+	 
+	         new mapboxgl.Popup()
+	             .setLngLat(feature.geometry.coordinates)
+	             .setHTML(feature.properties.description)
+	             .addTo(map);
+	     });
+	 });
+	 
+	// Use the same approach as above to indicate that the symbols are clickable
+	// by changing the cursor style to 'pointer'.
+	map.on('mousemove', function (e) {
+	     map.featuresAt(e.point, {layer: 'markers', radius: 10}, function (err, features) {
+	         map.getCanvas().style.cursor = (!err && features.length) ? 'pointer' : '';
+	     });
+	 });
+
+
+	map.addControl(new mapboxgl.Geolocate({position: 'top-left'})); // position is optional
+
+	
+	map.setLayoutProperty('parks_labels', 'text-field', '{name_' + language + '}');
+
+
+
+
+
+
+
+

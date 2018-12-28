@@ -1,0 +1,46 @@
+//- layout-single--premium.jade
+//- layout page for all of our shopping PREMIUM LISTING
+//- such as Home, events, ferries, food and drink
+//- they are all composed of 
+//- 
+//-  |HTML
+//-  |__head
+//-  |__body
+//- 	|__.wrapper
+//- 	|	|__.c-header--slider
+//- 	|	|__.__c-shopping__content--premium
+//- 	|	|__._c-footer
+//- 	|___c_navigation
+//- 	|__end (where we put all of our javascript before the closing body tag)
+
+//- load the mixins
+include ../mixins/_mixins.jade
+
+
+//- set the doctype
+doctype html
+//- start HTML
+html
+	//- load the head 
+	head
+		//- and the partial with all of the meta
+		include ../partials/_head.jade
+	body(class=bodyClasses)
+
+		
+		article.wrapper
+
+			include ../components/c-header/_c-header--slider.jade
+
+			include ../components/_c-shopping__content--premium.jade
+
+			include ../partials/_c-footer.jade
+
+		include ../components/_c-navigation.jade
+
+		include ../partials/_end.jade
+
+
+//- enable the slider with this layout specific scripts
+//- block end__script
+	|	<script >$(document).ready(function(){$('.c-slider').slick({dots: true,});});</script>

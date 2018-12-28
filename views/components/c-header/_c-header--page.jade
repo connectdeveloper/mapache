@@ -1,0 +1,13 @@
+//- the header component for premium singles
+// bof header c-header--page
+.c-header.c-header--page
+	a.c-logo(href= '#{root_url}')
+		img.c-logo__image(src='/images/holboxeno-logo.svg' alt="Holboxeño Logo")
+	section.c-block
+		.c-block__column
+			.c-page__mast
+				h1.c-page__title 
+					| #{heading}
+
+	.c-header__framer.c-header__framer--page
+		+c-header__heroimage(hero_image)

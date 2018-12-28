@@ -1,0 +1,65 @@
+//- transportation__tabcontent--taxies
+
+//- this is the tab  content inside the tab "transfers 2" in the getting to holbox page
+//- dependencies : getting-to-holbox.jade
+
+
+- transfersID = "6MoT03GkOQOOi06IcOg2IW"
+
+h2.c-linetitle
+	span 
+		if (language=="en")
+			| Other transfer companies
+		else 
+			| Otras compa&ntilde;&iacute;as de traslados
+
+each place in places
+
+
+	if place.belongsToCategory(transfersID) && place.premium && place.plus
+		+c-listing--premium(
+		place.getGalleryImages(language),
+		'#',
+		place.getLanguageUrl(language),
+		place.name,
+		place.cost_low,
+		place.food_types,
+		place.business_subtype
+		 )
+
+	else if place.belongsToCategory(transfersID) && place.premium && !place.plus
+		+c-listing--premium(
+		place.getGalleryImages(language),
+		'#',
+		place.getLanguageUrl(language),
+		place.name,
+		place.cost_low,
+		place.food_types,
+		place.business_subtype
+		 )
+
+- var placesSec			= []
+- var placesPic			= []
+- var placesNoPic		= []
+
+//- load all basic with images
+each place in places
+	if place.belongsToCategory(transfersID) && !place.premium 
+		- placesSec.push(place)
+
+each place in placesSec
+	if place.getGalleryImages(language) && place.getGalleryImages(language).length > 0
+		- placesPic.push(place)
+	else 
+		- placesNoPic.push(place)
+
+.flexorama--row
+	each place in placesPic
+		+c-listing--secondary (place.getLanguageUrl(language),place.name,place.getGalleryImages(language), place.cost_low,place.business_subtype)
+
+	each place in placesNoPic
+		+c-listing--secondary (place.getLanguageUrl(language),place.name,place.getGalleryImages(language), place.cost_low,place.business_subtype)
+
+
+
+

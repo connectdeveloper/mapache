@@ -1,0 +1,171 @@
+// bits for transfer
+
+
+.c-transfer-block {
+	position: relative;
+	// @extend %mediaobject;
+	width: 100%;
+	// min-height: 600px;
+	height: auto;
+	display: block;
+	background: white;
+	padding: $smallpad;
+	border: $ruledark;
+	clear: all;
+	margin-bottom: $pad;
+	@include clearfix;
+	&:after {
+   	clear: both;
+   
+    }
+
+
+	.c-button.c-button--secondary {
+	// display: block;
+	float: left;
+	height: calc($pad*5);
+	width: 35%;
+	font-size: rem-calc(12);
+	// font-size: rem-calc(16);
+		@media #{$medium-up}{
+		font-size: rem-calc(16);
+		}
+	} 
+
+	.c-button.c-button--transfer-booknow {
+	// display: block;
+	float: left;
+	height: calc($pad * 5);
+	width: 60%;
+		@media #{$medium-up}{
+		font-size: rem-calc(16);}
+	}
+
+}
+
+.c-transfer-block__name {
+	display: block;
+	width: 100%;
+	text-align: center;
+	font-size: rem-calc(16);
+	@media #{$small-only}{
+	margin-top: calc(#{$pad} * 1.5);
+	}
+	@media #{$medium-up}{
+		margin-top: none;
+		font-size: rem-calc(28);
+	}
+
+	.name__from {
+		@media #{$small-only} {
+		position: absolute;
+		top:$smallpad;
+		left:$smallpad;
+		}
+		float: left;
+		display: block;
+		font-size: rem-calc(14);
+		text-align: left;
+
+	}
+
+	@extend %rule--bottom;
+}
+
+
+.c-transfer-block__from {
+	font-size: rem-calc(16);
+	
+	display: block;
+	float: left;
+	width:35%;
+	// background: red;
+	// height: inherit;
+	// text-align: right;
+	// line-height: rem-calc(24)
+}
+
+.c-transfer-block__price {
+	display: block;
+	float: left;
+	width: 30%;
+	font-size: rem-calc(18);
+
+	span {
+		font-size: rem-calc(6);
+	}
+	// font-size: rem-calc(16);
+	@media #{$medium-up} {
+		// width: 50%;
+
+		font-size: rem-calc(26);
+
+		span {
+		font-size: rem-calc(10);
+		}
+	}
+	
+
+}
+
+
+.c-transfer-block__full-prices{
+	margin-top: $pad;
+	display: block;
+	background: white;
+	width: 100%;
+	float: left;
+	padding: $pad;
+	border: $ruledark;
+	border-radius: 10px;
+	transition: height .1s ease-out;
+	&.is-closed {
+		@include visuallyhidden;
+	}
+
+	.c-linetitle {
+		span {
+			background: white;
+		}
+	}
+}
+
+
+.prices--kids {
+	text-align: center;
+}
+.c-transfer-block__full-prices {
+
+}
+
+
+.c-full-prices__additional {
+	display: block;
+	margin-left: $smallpad;
+	padding: $smallpad;  
+	background: white;
+	float:left;
+	width: calc(40% - #{$smallpad});
+}
+
+.c-transfer--upsell {
+	background: white;
+	text-align: center;
+		
+}
+
+
+.upsell-box {
+	background: $bright;
+	padding:$pad;
+	margin-top: $pad;
+	p {
+		font-size: rem-cal(16)
+	}
+
+	& > {
+		    -ms-transform: rotate(3deg); /* IE 9 */
+    		-webkit-transform: rotate(3deg); /* Safari */
+    		transform: rotate(3deg); 
+	}
+}

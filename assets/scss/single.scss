@@ -1,0 +1,406 @@
+//* here we style the individual listing pages */
+
+/* the header bits */
+.c-header--slider {
+	& .c-block {
+		position: absolute;
+		bottom:0;
+		z-index: 4;
+		left: 0;
+		right:0;
+	}
+
+	& .c-block__column {
+		@media #{$medium-up}{
+			padding-left: 0.4rem;
+			padding-right: 0.4rem;
+		}
+
+	}
+
+
+}
+
+
+
+/* sliders */
+
+
+
+/* single content */
+
+.c-single__content {
+	@extend %smallpadding-leftright;
+	z-index: 40;
+	position: relative;
+	display: block;
+	background: $light;
+
+	@media #{$medium-up} {
+	background: $lightless;
+	}
+
+	& .c-block__column {
+		padding-top: $pad;
+	}
+
+}
+
+
+.c-single__title {
+	padding-top: $smallpad;
+	margin-top: 0;
+	margin-bottom: 0;
+	// background: red;
+	float:left;
+	background: $highlight;
+	text-align: left;
+	padding: $smallpad;
+	width:auto;
+	display: block;
+	float: left;
+	// @extend %mastTitle--small;
+	display: block;
+	// position: absolute;
+	height:auto;
+	// bottom:0;
+	width: 100%;
+	
+	@media #{$medium-up} {
+		margin-left: 1px;
+		margin-right: 1px;
+	}
+}
+
+/* quicklook
+#two lines of quick info to sink your teth into
+
+*/
+
+.c-single__quicklook {
+	@media #{$small-only} {
+	font-size: rem-calc(13)
+	}
+
+	@extend %smallpadding-bottom;
+	display: block;
+}
+
+
+.c-quicklook__line1 {
+	@extend %single__smalllines;
+	@extend %minipadding-bottom;
+	@extend %rule--bottom;
+}
+
+.c-quicklook__line2 {
+	@extend %single__smalllines;
+	@extend %minipadding-top;
+}
+
+
+/* text  */
+
+
+
+/* recommendation */
+.c-single__recommendations {
+	@extend %smallpadding-topbottom;
+	@extend %smallpadding-leftright;
+	background-color: $lightless;
+	border: 1px solid $bright;
+	// background-color: scale-color($light, $lightness: 60%);		
+	h3, h4, h5 {
+		margin-bottom: 0;
+		padding-bottom: 0;
+		color: scale-color($dark, $lightness: 50%);	
+	}
+
+	h4 {
+		font-size: rem-calc(17);
+		padding-bottom: 0;
+	}
+
+}
+
+
+
+
+/* single details */
+
+.c-single__details {
+	@extend %single__smalllines;
+	@extend %minipadding-topbottom;
+	@media #{$small-only} {
+	font-size: rem-calc(13)
+	}
+	// @extend %rule--bottom;
+}
+
+
+.optional__pipe {
+	@media #{$small-only} {
+		display: none;
+	}
+}
+
+.c-single__card {
+	height: rem-calc(18);
+	width: auto;
+}
+
+.c-single__amenities {
+	@extend .c-single__details;
+	@extend %rule--bottom;
+}
+
+.c-single__hours {
+	@extend .c-single__details;
+	@extend %rule--bottom;
+
+}
+
+.c-single__contactinfo{
+	@extend %flexbox;
+	@include flex-dir(row);
+	@include flex-wrap(wrap);
+	@include justify-content(space-between);
+	width: 100%;
+}
+
+.c-contactinfo__block {
+	width: 50%;
+	display: inline-block; 
+	@extend .c-single__details;
+	@extend %rule--bottom;
+
+	// .c-single__content--common & {
+	// 	width: 100%;
+	// 	border-bottom: none;
+	// }
+	&.c-single__telephone {
+			
+		& .c-label {
+			line-height: rem-calc(10);
+		}
+		
+		a {
+			display: inline;
+			font-size: rem-calc(25);
+		}
+
+		width: 100%;
+
+		.c-single__content--common & {
+			width: 100%;
+			border-bottom: none;
+		}
+	}
+
+	&.c-contactinfo__block--wide  {
+			width: 100%;
+			// border-bottom: none;
+	}
+}
+
+// .c-single__telephone {
+// 	.c-single__content--common & {
+// 		width: 100%;
+// 		border-bottom: none;
+// 	}
+// }
+
+.c-single__social-network {
+	// padding-left:$pad;
+
+
+	&.twitter {
+		&:before {
+			background-image:url(/images/twitter.svg);
+
+		}
+	}
+
+	&.facebook {
+
+		&:before {
+			background-image: url(/images/facebook.svg);
+
+
+		}
+	}
+
+	&.instagram {
+
+		&:before {
+			background-image: url(/images/instagram.svg);
+
+
+		}
+	}
+
+	/* set the icon for each social media section */
+	&:before {
+
+		content:"";
+		width: rem-calc(16);
+		background-repeat: no-repeat;
+		// margin-left:-$pad;
+		display: inline-block;
+		height: rem-calc(16);
+		margin-bottom: rem-calc(-2);
+		// margin: $minipad;
+		@extend %smallpadding-right;
+		background-position: bottom left;
+		// background-color: red;
+	}
+
+
+}
+
+
+
+
+
+.c-single__address {
+	border-bottom:none;
+}
+
+.c-button--map {
+	@include button(
+    // $padding - Used to build padding for buttons Default: $button-med or rem-calc(12)
+    $pad,
+    // Background color. We can set $bg:false for a transparent background. Default: $primary-color.
+    $bg:$moyen,
+    // If true, set to button radius which is $global-radius or explicitly set radius amount in px (ex. $radius:10px). Default:false.
+    $radius:$minipad,
+    // We can set $full-width:true to remove side padding extend width. Default:false
+    $full-width:false,
+    // We can set $disabled:true to create a disabled transparent button. Default:false
+    $disabled:false
+  );
+  // width:100%;
+  // margin-left: $smallpad;
+  // margin-right:$smallpad;
+  margin-top: $smallpad;
+  background: url(/images/map.png) center;
+  font-size:rem-calc(24);
+}
+
+
+
+/* featured box */
+.c-single__featurebox {
+	// width: 100%;
+
+	.c-block__column {
+	    // padding: $pad;
+		background: $featured;
+		color: $light;
+		text-align: center;
+		padding-top: $pad;
+		padding-bottom: $pad;
+		margin-bottom: $pad;
+	}
+
+	blockquote, p , ol, ul{
+		margin-left: $pad;
+		margin-right:$pad;
+		text-align: left;
+		} 
+
+	blockquote p{
+		color:  $lightless;
+		font-size:rem-calc(18);
+		font-weight: 300;
+	}
+}
+
+
+.c-featurebox__title {
+	@extend .c-linetitle;
+
+	span {
+		background: $featured;
+		color:$light;
+	}
+
+	&:before {
+		border-top:1px solid $light;
+	}
+
+}
+
+.c-featurebox__image {
+
+	background: $moyen;
+	@extend %circle;
+	min-height: $pad*10;
+	min-width: $pad*10;
+
+	@extend %smallmargin-bottom;
+}
+
+
+/* single events
+basicaly the same as premium events
+the only thing that we add here is the styling to the box that wraps the reapeatable events
+
+*/
+
+.c-single__events, .c-single__featurebox {
+	.c-block__column{
+		// style nested block columns to remove the media queries that add widths and paddings
+		width: 100%;
+		padding-left: 0;
+		padding-right: 0;
+	}
+}
+
+.c-single__repeatable-events {
+	margin: $smallpad;
+	padding: $minipad;
+	margin-top: $pad*2;
+	border:$ruledark;
+	position: relative;
+	text-align: center;
+
+	& .c-event--premium:last-child{
+		&:after{
+		content: none;
+		}
+	}
+}
+
+.c-single__repeat-event {
+
+}
+
+.c-repeat-event__title {
+	background: $light;
+	margin-top: -$pad*1.75;
+	width: 30%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.c-single__event--basic {
+
+}
+
+/* image blocks for promos
+	should be an image to start
+*/
+
+.c-listing__promo--link {
+	width: 100%;
+	img {
+		width: 100%;
+	}
+	 margin-top: $smallpad;
+ 	@extend %smallpadding-bottom;
+}
+
+/* events singles parts */
+
+

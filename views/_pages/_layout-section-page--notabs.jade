@@ -1,0 +1,44 @@
+//- layout section page--notabs.jade
+//- layout page for all of our SECTION PAGES
+//- such as Home, events, ferries, food and drink
+//- they are all composed of 
+//- 
+//-  |HTML
+//-  |__head
+//-  |__body
+//- 	|__.wrapper
+//- 	|	|__.c-header--heroimage
+//- 	|	|__._c-main-content--gate
+//- 	|	|__._c-tabs
+//- 	|	|__._c-footer
+//- 	|___ _c-navigation
+//- 	|__end (where we put all of our javascript before the closing body tag)
+
+//- load the mixins
+include ../mixins/_mixins.jade
+
+//- set the doctype
+doctype html
+//- start HTML
+html
+	//- load the head 
+	head
+		//- and the partial with all of the meta
+		include ../partials/_head.jade
+	body(class=bodyClasses)
+
+		.wrapper
+
+			include ../components/c-header/_c-header--heroimage.jade
+
+			include ../components/_c-main-content--gate.jade
+
+			include ../components/_c-tabs.jade
+
+			include ../partials/_c-footer.jade
+
+		include ../components/_c-navigation.jade
+
+		include ../partials/_end.jade
+
+		

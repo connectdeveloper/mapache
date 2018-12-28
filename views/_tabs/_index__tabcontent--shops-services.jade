@@ -1,0 +1,74 @@
+//- this is the tab  content inside the tab "shops and services" in the home page
+//- dependencies : index.jade
+//- c-linetitle
+
+
+- var placesShopService = []
+
+//- TODO: ¿limitar el numero de lugares?
+each place in places
+	if place.belongsToCategory(shoppingId)&& place.premium && place.plus
+		- console.log("pushing this into shop and services:"+place.name)
+		- placesShopService.push(place)
+	else if place.belongsToCategory(servicesId)&& place.premium && place.plus
+		- console.log("pushing this into shop and services:"+place.name)
+		- placesShopService.push(place)
+	else if place.belongsToCategory(wedPhotoId)&& place.premium && place.plus
+		- console.log("pushing this into photo and wed:"+place.name)
+		- placesShopService.push(place)
+
+
+
+each place in placesShopService
+	+c-listing--premium(
+	place.getGalleryImages(language),
+	'#',
+	place.getLanguageUrl(language),
+	place.name,
+	place.cost_low,
+	place.food_types,
+	place.business_subtype
+	 )
+
+
+//- each place in places
+//- 	if place.belongsToCategory(foodId) && place.premium && !place.plus
+//- 		+c-listing--premium--food-and-drink  (place.getGalleryImages(language),'#',place.getLanguageUrl(language),place.name,place.business, place._low)
+		
+
+//- //- load the advert mixin
+//- +c-advert('/images/sunrise.svg','an image alt tag','#')
+
+//- // advert component
+//- section.c-block--advert
+//- 	| advertisement
+//- 	a.c-advert(href="#")
+//- 		img.c-advert__creative(src="/images/advertbox.png")
+
+//- start the flexorama row to hold the .c-listing--secondary block
+//- TODO: ¿limitar el número de lugares?
+//- .flexorama--row
+//- 	//- load the c-listing--secondary mixin
+//- 	each place in places
+//- 		if place.belongsToCategory(foodId) && !place.premium
+//- 			+c-listing--secondary (place.getGalleryImages(language),'#',place.getLanguageUrl(language),place.name)
+
+//-todo: 
+//- load the button mixin
+if (language == "en")
+	+c-button--section('/en/shopping-in-holbox/')
+		| See full shopping listing
+else
+	+c-button--section('/es/shopping-en-holbox/')
+		| Ve el listado de shopping completo
+
+br
+
+//- eof todo
+if (language == "en")
+	+c-button--section('/en/services/')
+		| See full services listing
+else
+	+c-button--section('/es/servicios/')
+		| Ve el listado  de servicios completo
+//- eof todo

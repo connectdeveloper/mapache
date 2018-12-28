@@ -1,0 +1,15 @@
+//- this block shows the premium and not so premium food and drink listings inside common food listings
+
+- var categoryId = "5JaTcdyMKs0WKsMqmIyuUU"
+- var thePlaces = contentful.businesses
+
+each place in thePlaces
+	if place.belongsToCategory(categoryId) && place.premium 
+		+c-listing--premium (place.getGalleryImages(language),'#',place.getLanguageUrl(language),place.name)
+			p= place.getDescription(language)
+
+//- .flexorama--row
+//- 	//- load the c-listing--secondary mixin
+//- 	each place in thePlaces
+//- 		if place.belongsToCategory(categoryId) && !place.premium
+//- 			+c-listing--secondary (place.getGalleryImages(language),'#',place.getLanguageUrl(language))

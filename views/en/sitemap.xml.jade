@@ -1,0 +1,124 @@
+include ../mixins/_mixins.jade
+
+- var language          = "en"
+- var website_root      = "https://the.holboxeno.com"
+- var today_events      = contentful.todaysEvents
+- var past_events       = contentful.pastEvents
+- var tomorrow_events   = contentful.tomorrowsEvents
+- var future_events     = contentful.futureEvents
+- var dayThreeEvents    = contentful.dayThreeEvents
+- var dayFourEvents    = contentful.dayFourEvents
+- var repeatEvents      = contentful.repeatEvents
+- var places            = contentful.businesses
+- var pages             = contentful.pages
+- var buildDate         = new Date().toISOString()
+
+//- allEvents = []
+//- allEvents = allEvents.push(contentful.todaysEvents)
+//- allEvents =  allEvents.push(past_events)
+//- allEvents =  allEvents.push(tomorrow_events)
+//- allEvents =  allEvents.push(future_events)
+
+doctype xml
+urlset(
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+    )
+    
+    //- Home page
+    url
+        loc !{website_root}
+        lastmod #{buildDate}
+        changefreq daily
+        priority= 0.8
+
+    //-events
+    url
+        loc !{website_root}/whats-on-in-holbox
+        lastmod #{buildDate}
+        changefreq daily
+        priority= 0.8
+
+    //-events
+    url
+        loc !{website_root}/food-drink-in-holbox
+        lastmod #{buildDate}
+        changefreq weekly
+        priority= 0.8
+
+    //-buses
+    url
+        loc !{website_root}/getting-to-holbox-bus-times-transfers-car-rental-taxis-and-flights
+        lastmod #{buildDate}
+        changefreq weekly
+        priority= 0.8
+
+    //-new ferry times
+    url
+        loc !{website_root}/holbox-island-ferry-times
+        lastmod #{buildDate}
+        changefreq daily
+        priority= 0.8
+
+
+ 
+
+
+
+    //- permanent redirects remove before 6 months
+
+    //-ferry times june 8 2017
+    url
+        loc !{website_root}/getting-to-holbox-transfers-ferries-buses-and-flights
+        lastmod  #{buildDate}
+        changefreq always
+        priority= 1
+
+    //-health beauty june 8 2017
+    url
+        loc !{website_root}/health-beauty-and-holistic-treatments/
+        lastmod  #{buildDate}
+        changefreq always
+        priority= 1
+
+
+
+
+
+    //- page types
+    +sitemap__entry--page-types(contentful.pageTypes,language,'weekly','0.7')
+
+    //- //-section pages 
+    +sitemap__entry--business-types(contentful.businessTypes,language,'weekly','0.7')
+
+    //-pages 
+    +sitemap__entry(contentful.pages,language,'weekly','1')
+
+
+    //-events 
+    +sitemap__entry(contentful.repeatEvents,language,'weekly','1')
+
+    //-events 
+    +sitemap__entry(contentful.todaysEvents,language,'daily','1')
+
+    //-events tomorrow
+    +sitemap__entry(contentful.tomorrowsEvents,language,'daily','1')
+
+    //-events past events
+    +sitemap__entry(contentful.pastEvents,language,'daily','1') 
+
+    //-events day three 
+    +sitemap__entry(contentful.dayThreeEvents,language,'daily','1') 
+
+    //-events day Four 
+    +sitemap__entry(contentful.dayFourEvents,language,'daily','1') 
+
+    //-events future 
+    +sitemap__entry(contentful.futureEvents,language,'daily','1') 
+
+    //- places 
+    +sitemap__entry(places,language,'weekly','0.9') 
+
+
+

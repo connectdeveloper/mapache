@@ -1,0 +1,1219 @@
+
+
+mixin related-list__loop(list, label_en, label_es)
+	if list
+		if language == "en" && label_en
+			span.c-label 
+				=label_en
+				| :&ensp;
+		else if language == "es" && label_es
+			span.c-label
+				=label_es
+				| :&ensp;
+		-i = 0
+			each type in list
+				- i = i + 1
+				if list.length > i
+					if language == "en"
+						| #{type.fields.name_en}&ensp;|&ensp;  
+					else
+						| #{type.fields.name_es}&ensp;|&ensp; 
+				else 
+					if language == "en"
+						| #{type.fields.name_en}  
+					else
+						| #{type.fields.name_es}
+
+mixin business-unit__ammenities-loop(amenities)
+	- creditCards =	[]
+	- amenitiesFiltered = []
+
+	each amenity in amenities
+		if amenity.fields.name_en == "Paypal" || amenity.fields.name_es == "Paypal"
+			- card = "<img class='c-single__card' src='/images/payment/paypal.svg' alt='Paypal' />"
+			- creditCards.push(card)
+		else if amenity.fields.name_en == "Mastercard" || amenity.fields.name_es == "Mastercard"
+			- card = "<img class='c-single__card' src='/images/payment/mastercard.svg' alt='Mastercard' />"
+			- creditCards.push(card)
+		else if amenity.fields.name_en == "Visa" || amenity.fields.name_es == "Visa" 
+			- card = "<img class='c-single__card' src='/images/payment/visa.svg' alt='Visa' />"
+			- creditCards.push(card)
+		else if amenity.fields.name_en == "Diners" || amenity.fields.name_es == "Diners" 
+			- card = "<img class='c-single__card' src='/images/payment/diners.svg' alt='Diners' />"
+			- creditCards.push(card)
+		else if amenity.fields.name_en == "American Express" || amenity.fields.name_es == "American Express"
+			- card = "<img class='c-single__card' src='/images/payment/amex.svg' alt='American Express' />"
+			- creditCards.push(card)
+		else if amenity.fields.name_en == "Discover" || amenity.fields.name_es == "Discover"
+			- card = "<img class='c-single__card' src='/images/payment/discover.svg' alt='Discover' />"
+			- creditCards.push(card)
+		else
+			- amenitiesFiltered.push(amenity)
+
+	if creditCards.length > 0
+		if language == "en"
+			span.c-label 
+				| Credit cards accepted:&nbsp;&nbsp;
+		else
+			span.c-label 
+				| Tarjetas de credito aceptadas:&nbsp;&nbsp;
+		each card in creditCards
+			!=card 
+			| &nbsp;
+		br
+	else 
+		if language == "en"
+			span.c-label 
+				| Payment type:&nbsp;&nbsp;
+			| Cash Only 
+			span.optional__pipe &ensp;|&ensp;
+		else
+			span.c-label 
+				| Tipo de pago:&nbsp;&nbsp;
+			| Sólo efectivo 
+			span.optional__pipe &ensp;|&ensp;
+
+
+	+related-list__loop(amenitiesFiltered, "Amenities", "Amenidades")
+
+
+
+//-used for removing the redundant date on the title althought it is necesary in the cms to not get lost
+mixin event__title--splitter(event_name)
+	//-check if the string has the characters '---'
+		if ot 
+	if (event_name.indexOf('---') > -1)
+		=event_name.split('---')[0]
+	else	
+		=event_name
+
+
+mixin event-map__title--splitter(event_name)
+	//-check if the string has the characters '---'
+		if ot 
+	if (event_name.indexOf('---') > -1)
+		- event_name_map = event_name.split('---')[0]
+	else 
+		- event_name_map = event_name
+
+
+
+//- c-event--common
+
+mixin c-event--common(event_start_time,event_thumbnail,event_url,event_name, event_excerpt)
+	.c-event.c-event--common
+		.c-event__time 
+			=event_start_time
+
+		img.c-event__image.c-event__image--common(src= event_thumbnail, alt= "")
+		.c-event__copy
+			h4.c-event__title
+				//- +event__title--splitter(event_name)
+				a.c-event__link(href= event_url ) 
+					+event__title--splitter(event_name)
+			.c-event__excerpt
+				if event_excerpt	
+					!= marked(event_excerpt)
+
+//- c-event--plain
+mixin c-event--plain(event_start_time,event_url,event_name,event_excerpt)
+	// c-event--plain
+	.c-event.c-event--plain
+		.c-event__time
+			=event_start_time
+		.c-event__copy
+			.flexorama
+				h4.c-event__title
+					a.c-event__link(href=event_url atl="")
+						+event__title--splitter(event_name)
+				.c-event__excerpt
+					if block
+						block
+					else if event_excerpt
+						!= marked(event_excerpt)
+
+//- c-event--premium
+mixin c-event--premium(event_start_time,event_thumbnail,event_url,event_name, event_location, event_excerpt)
+	// c-event--premium
+	.c-event.c-event--premium
+		.c-event__image-and-mast
+			.c-event__time.c-event__time--premium
+				=event_start_time
+			.c-image__frame
+				+c-event__image--premium(event_thumbnail)
+			//- img.c-event__image.c-event__image--premium(src= event_thumbnail,alt= alt)
+		.c-event__copy
+			h4.c-event__title.c-copy__top-half
+				a.c-event__link(href=event_url alt="")
+					+event__title--splitter(event_name)
+			.c-copy__bottom-half
+				.c-event__copy--location
+					| @
+					=event_location
+					|<br>
+				.c-event__excerpt
+					if block
+						block
+					else if event_excerpt	
+						!= marked(event_excerpt)
+//-events- asides loop
+
+mixin event__aside-loop(incomingArray,pushingArray)
+	//- while we have the id of that event_type loop throught all Today events
+	
+	each event in incomingArray
+		//- map the event_type array to a var
+		- externalEventID = event.sys.id
+		- externalEventType = event.event_type
+		//- the events are not the same
+		
+		if (currentEventID == externalEventID)
+			//-console.log("           duplicate events__"+currentEventID+"__  is the same  as__"+externalEventID+"__======= MATCH!!")
+		else if (currentEventID !== externalEventID)
+			//-console.log("           currentEventID =  __"+currentEventID+"__  !==  __"+externalEventID+"__")
+			//- loop through the array
+			if externalEventType
+				each type in externalEventType
+					//- map the sys id to a var
+					- externalID = type.sys.id
+					//- console.log("              this external event type is  "+externalID )
+
+					if tempList.length > 0
+						each temp in tempList
+							//- console.log("                   array tempList contains "+temp)
+						//- console.log("                   *******************************************************  **    ***    ******")
+					else 
+							//- console.log("                   *******************************************************  **    ***    ******")
+							//- console.log("                   array tempList is EMPTY")
+							//- console.log("                   *******************************************************  **    ***    ******")
+
+					//- verify that theTypeID is the same externalID and check that externalID is not in the array we want to push it to
+					if (externalID == theTypeID)
+
+						if (pushingArray.includes(event) == false)
+							- tempList.push(externalID)
+							
+							//- console.log("                  "+externalID+" equals "+theTypeID+" ///////////////////adding to pushingArray")
+							- pushingArray.push(event)
+						
+						else if (pushingArray.includes(event) == true)
+							//-console.log("                    ```````````````````  "+externalID+" this is already in the array just so you know")
+					else 
+						//- console.log("           -no matching event types ")
+					//-console.log("                  ")
+
+
+
+//- dates stuff
+mixin repeatEventTime(eventStart)
+	if eventStart.indexOf('AM') > -1
+		- event_hours = eventStart.split('AM')[0]
+		- event_AMPM  = 'am'
+		- eventStartString  = event_hours + ' ' + event_AMPM
+	if eventStart.indexOf('PM') > -1
+		- event_hours = eventStart.split('PM')[0]
+		- event_AMPM  = 'pm'
+		- eventStartString  = event_hours + ' ' + event_AMPM
+	if eventStart.indexOf('am') > -1
+		- event_hours = eventStart.split('am')[0]
+		- event_AMPM  = 'am'
+		- eventStartString  = event_hours + ' ' + event_AMPM
+	if eventStart.indexOf('pm') > -1
+		- event_hours = eventStart.split('pm')[0]
+		- event_AMPM  = 'pm'
+		- eventStartString  = event_hours + ' ' + event_AMPM
+
+
+	
+
+mixin eventMinutes(event, eventStart)
+	//- this mixin is made to take the time strings of repeatable events or suntimes and calculate the value in minutes 
+	- justTime = eventStart.split(/[a-zA-Z]/)[0]//split the time without the AM PM
+	- hours = parseInt(justTime.split(':')[0])// split in on the colon for the hours
+	- mins = parseInt(justTime.split(':')[1])// split for the minutes
+	//- console.log("the hours should be "+ hours + "the mins should be" + mins)
+	//-if its PM then add 12 to the hours
+	if (eventStart.indexOf('PM') > -1)||(eventStart.indexOf('pm') > -1)
+		- hours = hours + 12
+	- eventMinutes = (hours*60)+mins
+	
+	
+mixin sunTimes(suntimes,day,pushArray)
+	- theTabDay = new Date(today).setHours(day.dayOffset-5,0,0,0)
+	- theTabDayIso = new Date(theTabDay).toISOString()
+	//- console.log("the tab day should now be"+ theTabDayIso)
+		//- let get the sunrise and sunset times
+	each event in suntimes
+		//- first set the date to midnigth so we can match to the tab day
+		- helioDay = new Date(event.date).setHours(-5,00,00,00)
+		- helioDayIso = new Date(helioDay).toISOString()
+		//- console.log(theTabDayIso +"  vs  "+ helioDayIso)
+
+		//-now check if they match
+		if helioDay == theTabDay
+			//- console.log("MATCH!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!--------asdfasdfasdf -asdf-----------------------------------------")
+			+eventMinutes(event, event.sunrise)
+
+			//- now add some variables 
+			- solar					= {};
+			- solar.name_en 		= "Sunrise"
+			- solar.start_time		= event.sunrise
+			- solar.name_es 		= "Amanecer"
+			- solar.eventMinutes 	= eventMinutes
+			- solar.url				= sunriseLink
+			- solar.image			= "/images/sunrise.svg"
+			- solar.excerpt_en		= "Good morning Holbox! Learn how to get the most of the day"
+			- solar.excerpt_es		= "Buenos días Holbox! Conoce como sacarle provecho a tu mañana"
+			- solar.common			= true
+			- solar.premium			= false
+			- solar.eventMode		= "non-repeat"
+
+			//- and push the sunrise to the day array
+			- pushArray.push(solar)
+
+
+			+eventMinutes(event, event.sunset)
+			//- now add some variables 
+			- solar					= {};
+			- solar.name_en 		= "Sunset"
+			- solar.start_time		= event.sunset
+			- solar.name_es 		= "Atardecer"
+			- solar.eventMinutes 	= eventMinutes
+			- solar.url				= sunsetLink
+			- solar.image			= "/images/sunset.svg"
+			- solar.excerpt_en		= "Sunsets in Holbox are not to be missed! Find tips about the best spots to enjoy them"
+			- solar.excerpt_es		= "¡No te pierdas del espectáculo diario! Descublre los mejores lugares para verlos"
+			- solar.common			= true
+			- solar.premium			= false
+			- solar.eventMode		= "non-repeat"
+			//- and push the sunset to the day array
+			- pushArray.push(solar)
+
+
+
+mixin getRepeatEvents(day,pushArray,repeatArray)
+	each event in repeatArray
+		+eventMinutes(event, event.time_start)
+		//- add this var to the event so we can sort it by this value
+		- event.eventMinutes = eventMinutes
+
+		if event.event_days.includes(day.en)
+			- pushArray.push(event)
+
+
+mixin allEvents(day,pushArray,dayArray,repeatArray)
+
+	//-run the repeat events mixin
+	+getRepeatEvents(day,pushArray,repeatArray)
+
+
+	//- push non repeatables into todayList Array
+	if dayArray.length > 0
+		each event in dayArray
+			- pushArray.push(event)
+
+	//- run suntimes mixin 
+	+sunTimes(suntimes,day,pushArray)
+
+	//-sort by value
+	- pushArray.sort(function (a, b) {return a.eventMinutes - b.eventMinutes;})
+
+	//- each event in pushArray
+	//- 	- console.log(event.name_en)
+	//- 	- console.log(event.eventMode)
+	//- 	- console.log(event.eventMinutes)
+
+
+	if pushArray.length > 0
+		- isEmpty= false
+		each event in pushArray
+			+events__loop(event)
+	else
+		- isEmpty = true		
+			
+//- events loop
+//- run this in the index events tab and the events page tabs
+
+mixin events__loop(event)
+	if event.eventMode == "non-repeat"
+		if event.premium==true
+			+c-event--premium(
+			event.getStartTime(),
+			asset(event.getHeroImage(language)),
+			event.getLanguageUrl(language),
+			event.getName(language),
+			event.getLocation(language),
+			event.getExcerpt(language)
+			)
+
+		else if event.common==true
+			if language =="en"
+				- image = event.name_en 
+				- link = event.url.en
+				- name = event.name_en
+				- excerpt = event.excerpt_en
+			else
+				- image = event.name_es 
+				- link = event.url.es
+				- name = event.name_es
+				- excerpt = event.excerpt_es
+			+repeatEventTime(event.start_time)
+			+c-event--common(			 
+			eventStartString,
+			event.image,
+			link,
+			name,
+			excerpt
+			)
+
+		else if (event.premium==false && event.common==false)
+			+c-event--plain(
+				event.getStartTime(),
+				event.getLanguageUrl(language),
+				event.getName(language),
+				event.getExcerpt(language)
+				)
+
+	if event.eventMode == "repeat"		
+		if event.premium==true
+			+repeatEventTime(event.time_start)
+			+c-event--premium(			 
+			eventStartString,
+			asset(event.getHeroImage(language)),
+			event.getLanguageUrl(language),
+			event.getName(language),
+			event.getLocation(language),
+			event.getExcerpt(language)
+			)
+
+		else if (event.premium==false && event.common==false)
+			+c-event--plain(
+				event.time_start,
+				event.getLanguageUrl(language),
+				event.getName(language),
+				event.getExcerpt(language)
+				)
+//- c-single__repeatable-events
+mixin c-single__repeatable-events(days)
+	// c-single__repeatable-events
+	.c-single__repeatable-events
+		h5.c-repeat-event__title 
+			span: +repeatableEventsDays(days)
+		if block
+			block
+		else
+			p No events for =day
+
+
+//- c-single-events
+
+mixin c-single__events
+	- preRepeats = []
+	//- repeat envets
+	- var repeatEvents= contentful.repeatEvents
+
+
+	each event in repeatEvents
+		if event.event_location
+			//- if event.event_location
+			if businessId ==  event.event_location.sys.id
+				//- console.log("MATCH!!!!!!!! !!!!!!!!!    !!!!!!!!!!!!!!!!!!!!   1!!!!!!!!!!!!!!!!!!!!!    !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   the event location sys id  "+ event.event_location.sys.id + " id not the same as this bu id "+ businessId)
+				+eventMinutes(event, event.time_start)
+					//- add this var to the event so we can sort it by this value
+				- event.eventMinutes = eventMinutes
+				- preRepeats.push(event)
+
+	if preRepeats.length!==0 
+		//- if businessId == event.getLocationId() && event.premium
+		//- if event.premium
+		each event in preRepeats
+			- days = event.event_days
+			+c-single__repeatable-events(days)
+				if event.premium==true
+					+c-event--premium(			 
+					event.time_start,
+					asset(event.getHeroImage(language)),
+					event.getLanguageUrl(language),
+					event.getName(language),
+					event.getLocation(language),
+					event.getExcerpt(language)
+					)
+
+				else if (event.premium==false && event.common==false)
+					+c-event--plain(
+						event.time_start,
+						event.getLanguageUrl(language),
+						event.getName(language),
+						event.getExcerpt(language)
+						)
+
+		//- set empty arrrays to hold the events
+	- preToday= []
+	- preTomorrow = []
+	- preDayThree = []
+	- preDayFour = []
+	- preFuture = []
+
+	//- pass the events into the arrays
+	each event in contentful.todaysEvents
+		if businessId == event.getLocationId() && event.common==false
+			- preToday.push(event)
+
+	each event in contentful.tomorrowsEvents
+		if businessId == event.getLocationId() && event.common==false
+			- preDayThree.push(event)
+
+	each event in contentful.dayThreeEvents
+		if businessId == event.getLocationId() && event.common==false
+			- preTomorrow.push(event)
+
+	each event in contentful.dayFourEvents
+		if businessId == event.getLocationId() && event.common==false
+			- preDayFour.push(event)
+
+	each event in contentful.futureEvents
+		if businessId == event.getLocationId() && event.common==false
+			- preFuture.push(event)
+
+	//- Before we say there are events here lets check that at least one is true
+	if preToday.length!==0 || preTomorrow.length!==0 || preFuture.length!==0
+		//- ok now lets add the main title for this block
+		//-c-single__events
+		.c-block.c-single__events
+			.c-block__column
+				h4.c-linetitle
+					span
+						if (language == "en")
+							| Events at #{single_name}<br>
+						else
+							| Eventos en #{single_name}
+
+	//- now lets check if there are events in this array and if so put the title and run the loop
+	if preToday.length!==0
+		//-the title
+		h5.c-linetitle
+			span 
+				if (language =="es")
+					| Hoy
+				else 
+					| Today
+		//- run the loop from the new array
+		each event in preToday
+			//- check if the event is a premium and display
+			if businessId == event.getLocationId() && event.premium
+				+c-event--premium(
+				event.getStartTime(),
+				asset(event.getHeroImage(language)),
+				event.getLanguageUrl(language),
+				event.getName(language),
+				event.getLocation(language),
+				event.getExcerpt(language)
+				)
+			//-or check if it is not a premium or a common so then it muust be a basic/plain
+			if businessId == event.getLocationId() && event.premium==false && event.common==false
+				+c-event--plain(
+				event.getStartTime(),
+				event.getLanguageUrl(language),
+				event.getName(language),
+				event.getExcerpt(language)
+				)
+
+	//- now lets check if there are events in this array and if so put the title and run the loop
+	if preTomorrow.length!==0 
+		//-the title             
+		h5.c-linetitle
+			span 
+				if (language =="es")
+					| Ma&ntilde;ana
+				else 
+					| Tomorrow
+		//- run the loop from the new array
+		each event in preTomorrow
+			//- check if the event is a premium and display
+			if businessId == event.getLocationId() && event.premium
+				+c-event--premium(
+				event.getStartTime(),
+				asset(event.getHeroImage(language)),
+				event.getLanguageUrl(language),
+				event.getName(language),
+				event.getLocation(language),
+				event.getExcerpt(language)
+				)
+			//-or check if it is not a premium or a common so then it muust be a basic/plain
+			if businessId == event.getLocationId() && event.premium==false && event.common==false
+				+c-event--plain(
+					event.getStartTime(),
+					event.getLanguageUrl(language),
+					event.getName(language),
+					event.getExcerpt(language)
+					)
+
+	//- now lets check if there are events in this array and if so put the title and run the loop
+	if preFuture.length!==0
+		- var fecha = null
+		//- run the loop from the new array
+		each event in preFuture
+			//-the title  
+			if fecha != event.date
+				h5.c-linetitle
+					span= dateFormat(event.date, language)
+				- fecha = event.date
+				//- check if the event is a premium and display
+				if businessId == event.getLocationId()&& event.premium
+					+c-event--premium(
+					event.startTime,
+					asset(event.getHeroImage(language)),
+					event.getLanguageUrl(language),
+					event.getName(language),
+					event.getLocation(language),
+					event.getExcerpt(language))
+				//-or check if it is not a premium or a common so then it muust be a basic/plain
+				if businessId == event.getLocationId() && event.premium==false && event.common==false
+					+c-event--plain(
+						event.startTime,
+						event.getLanguageUrl(language),
+						event.getName(language),
+						event.getExcerpt(language)
+						)
+
+
+
+//-listings
+
+
+mixin c-listing--premium(listing_thumbnail,alt,url,title,price,food_types,sub_types)
+	if sub_types
+		each subtype in sub_types
+			if  subtype.fields.name_en=="Hotels"
+				- priceOf = {en:"Rooms from: ",es:"Cuartos desde: "};
+			else if  subtype.fields.name_en=="Hostels & Camping"
+				- priceOf = {en:"Accomodation from: ",es:"Hospedaje desde: "};
+			else if  subtype.fields.name_en=="Vacation Rentals"
+				- priceOf = {en:"Accomodation from: ",es:"Hospedaje desde: "};
+			else if  subtype.fields.name_en=="Spa, Massage & Holistic treatments"
+				- priceOf = {en:"Treatments from: ",es:"Tratamientos desde: "};
+			else
+				- priceOf = {en:"From: ",es:"Desde: "};
+	//- bog c-listing--premium
+	.c-listing.c-listing--premium
+		//-load the image via the mixins
+		+c-listing__image--premium(listing_thumbnail)
+		//- img.c-listing__image.c-listing__image--premium(src= listing_thumbnail,alt= alt)
+		.c-listing__mast.c-listing__mast--premium
+			h4.c-listing__title
+				a.c_listint__link(href= url) 
+					= title
+			if price
+				if (language == "en")
+					span.c-label #{priceOf.en}
+					=price
+				else 
+					span.c-label #{priceOf.es}
+					=price
+			p= text
+		.c-listing__list
+			if food_types
+				+related-list__loop(food_types, "What to expect", "Que encontrarás")
+			if room_types
+				+related-list__loop(room_types, "Room types", "Tipos de habitación")
+
+
+	- sub = null
+//-static tours :ie to list the tours an operatpor has without a link to book or external link
+
+mixin c-listing--tour--static(img,alt,title,text)
+	// bog c-listing--premium
+	.c-listing.c-listing--premium
+		img.c-listing__image.c-listing__image--premium(src= img,alt= alt)
+		.c-listing__mast.c-listing__mast--premium
+			h4= title
+			p= text
+		if block
+			.c-listing__list
+				block
+
+
+//- pages
+
+mixin c-page--premium(listing_thumbnail,url,title,price,excerpt)
+	//- bog c-listing--premium
+	.c-listing.c-listing--premium.c-listing--page
+		//-load the image via the mixins
+		+c-page__image--premium(listing_thumbnail)
+		//- img.c-listing__image.c-listing__image--premium(src= listing_thumbnail,alt= alt)
+		.c-listing__mast.c-listing__mast--page
+			h4.c-listing__title
+				a.c_listint__link(href= url) 
+					= title
+			
+			p= text
+		.c-listing__list
+			!= marked (excerpt)
+
+
+
+//- c-listing--secondary
+
+
+mixin c-listing--secondary(url,title,secondary_listing_thumbnail,price)
+	if sub_types
+		each subtype in sub_types
+			if  subtype.fields.name_en=="Hotels"
+				- priceOf = {en:"Rooms from: ",es:"Cuartos desde: "};
+			else if  subtype.fields.name_en=="Hostels & Camping"
+				- priceOf = {en:"Accomodation from: ",es:"Hospedaje desde: "};
+			else if  subtype.fields.name_en=="Vacation Rentals"
+				- priceOf = {en:"Accomodation from: ",es:"Hospedaje desde: "};
+			else if  subtype.fields.name_en=="Spa, Massage & Holistic treatments"
+				- priceOf = {en:"Treatments from: ",es:"Tratamientos desde: "};
+			else
+				- priceOf = {en:"From: ",es:"Desde: "};
+	//- c-listing--secondary
+	.c-listing.c-listing--secondary
+		+c-listing__placeholder--secondary(secondary_listing_thumbnail)
+		//- img.c-event__image.c-listing__image--secondary(src=asset(listing_thumbnail) alt=)
+		.c-listing__mast
+			h4.c-listing__title
+				a.c_listint__link(href= url) 
+					= title
+			if price
+				if (language == "en")
+					span.c-label #{priceOf.en}
+					=price
+				else 
+					span.c-label #{priceOf.es}
+					=price
+
+
+//-adverts
+//- 
+mixin advert-component(img,alt,url)
+	// c-advert
+	section.c-block--advert
+		| advertisement
+		a.c-advert(href=url)
+			img.c-advert__creative(src=img, alt=alt)
+
+
+//-buttons 
+
+mixin c-button--section(url)
+	a.c-button.c-button--section(href= url)
+		block
+
+//- buses
+- busEn ="/en/getting-to-holbox-bus-times-transfers-car-rental-taxis-and-flights.html"
+- busEs ="/es/como-llegar-a-holbox-horarios-autobuses-traslados-renta-auto-taxis-vuelos.html"
+mixin busButton
+	br
+	if (language=="en")
+		a.c-button--subsection(href="#{busEn}")
+			| View full bus timetable
+	else
+		a.c-button--subsection(href="#{busEs}")
+			| Ver horarios completos de autobus
+
+
+- ferryEn ="/en/holbox-island-ferry-times.html"
+- ferryEs ="/es/horario-ferries-isla-holbox.html"
+
+mixin ferryButton
+	if (language=="en")
+		a.c-button--subsection(href="#{ferryEn}")
+			| View full ferry timetable
+	else
+		a.c-button--subsection(href="#{ferryEs}")
+			| Ver horarios completos de ferries
+
+// transfers
+
+mixin c-button--transfer-booknow(item_id)
+	- checkfront_url = "https://holboxeno.checkfront.com/reserve/?item_id="+item_id
+	- checkfront_url_es = checkfront_url+"&lang_id=es"
+	if (language =="en")
+		a.c-button.c-button--transfer-booknow(href= checkfront_url)
+			| BOOK NOW &amp; MORE INFO
+	else
+		a.c-button.c-button--transfer-booknow(href= checkfront_url_es)
+			| RESERVAR Y + INFO
+
+//- a.c-button.c-button--section(href="food-and-drink-in-holbox.html") See full listing
+
+//-tables
+//- mixin c-button--section(time,)
+
+//- telefone-link
+mixin link--telephone(telephone)
+	.c-contactinfo__block.c-contactinfo__block--wide.c-single__telephone
+		span.c-label TEL: 
+		- phone = "tel:"+telephone
+		a(href=phone)
+			=telephone
+
+mixin link--website(website)
+	a.c-contactinfo__block.c-contactinfo__block--wide.c-single__website(href=website)
+		if (website.indexOf('://') > -1)
+			- website = website.split('://')[1]
+			| #{website}
+
+mixin link--facebook(facebook)
+	a.c-contactinfo__block.c-single__social-network.facebook(href= '#{facebook}') 
+		- facebook = facebook.split('https://www.facebook.com/')[1]
+		| #{facebook}
+
+mixin link--twitter(twitter)
+	a.c-contactinfo__block.c-single__social-network.twitter(href= 'https://www.twitter.com/#{twitter}') 
+		| @#{twitter}
+
+mixin link--email(email)
+	a.c-contactinfo__block.email(href= 'mailto:#{email}') 
+		| #{email}
+
+mixin link--instagram(instagram)
+	a.c-contactinfo__block.c-single__social-network.instagram(href= 'https://www.instagram.com/#{instagram}') 
+		| #{instagram}
+
+mixin link--map(url)
+	a.c-contactinfo__block.c-button--map(href= url) VIEW ON MAP
+
+
+
+mixin c-single__contactinfo
+	.c-single__contactinfo
+		if telephone
+			+link--telephone(telephone)
+
+			//- tel and facebook line
+		if  website
+			+link--website(website)
+
+			//- email and twitter line
+		if email && instagram
+			+link--email(email)
+			+link--instagram(instagram)
+		else if email && instagram == null
+			+link--email(email)
+			.c-contactinfo__block
+				| &nbsp;
+		else if email == null && instagram
+			+link--instagram(instagram)
+			.c-contactinfo__block
+				| &nbsp;
+
+			//- facebook and twitter line
+		if facebook && twitter
+			+link--facebook(facebook)
+			+link--twitter(twitter)
+		else if facebook && twitter == null
+			+link--facebook(facebook)
+			.c-contactinfo__block
+				| &nbsp;
+		else if facebook == null && twitter
+			+link--twitter(twitter)
+			.c-contactinfo__block
+				| &nbsp;
+
+
+
+
+
+
+//-promos
+
+mixin listing__promo--link(img,alt,url)
+	a.c-listing__promo--link(href=url)
+		img(src=img, alt=alt) 
+
+mixin listing__promo--static(img,alt)
+	img.c-listing__promo--link(src=img, alt=alt)
+	
+//- featured content
+mixin c-single__featurebox
+		//-lsiting feature
+		if listing_feature_content && listing_feature_image && listing_feature_title
+			.c-block.c-single__featurebox
+				.c-block__column
+					h3.c-featurebox__title: span
+						| #{listing_feature_title}
+					+c-featurebox__image
+					//- block listing_feature_content
+					if listing_feature_content
+						!= marked(listing_feature_content)
+					// added block for testung
+					if listing_feature_content__style
+						p !#{listing_feature_content__style}
+
+
+//-sitemaps
+
+mixin sitemap__entry(array,language,frequency,priority)
+	each entry in array
+		if entry.common ==true
+
+		else
+			if (entry.getLanguageUrl(language))
+				- langUrl = entry.getLanguageUrl(language)
+				- splitUrl = langUrl.split('/'+language+'/')[1] 
+				- prettyUrl = splitUrl.split('.htm')[0]  
+
+			url
+				loc !{website_root}/!{prettyUrl}
+				lastmod
+					if  entry.sys.updatedatedAt
+						- entryDate = new Date(entry.sys.updatedatedAt)
+						| #{entryDate.toISOString()}
+					else
+						- entryDate = new Date(entry.sys.createdAt)
+						| #{entryDate.toISOString()}
+				changefreq= frequency
+				priority= priority
+
+
+
+mixin sitemap__entry--page-types(array,language,frequency,priority)
+	each entry in array
+
+		- console.log("this URL SHould be "+ entry._url)
+		if language =="en"
+			- slugURL = S(entry.name_en).slugify().s
+		else
+			- slugURL = S(entry.name_es).slugify().s
+			
+		- console.log("slug be "+ slugURL)
+
+		- var typeSectionPage = entry.sectionPage.fields.name
+		- var sectionPage = null
+
+		if entry.sectionPage && contentful.sectionPages
+			each currentSectionPage in contentful.sectionPages
+				if currentSectionPage.name == typeSectionPage
+					- sectionPage = currentSectionPage
+					- console.log("ssssssssssssssssssssssssssssssection page should now be "+ sectionPage.name)    
+
+		url
+			loc !{website_root}/!{slugURL}
+			lastmod
+				if  sectionPage.sys.updatedatedAt
+					- entryDate = new Date(sectionPage.sys.updatedatedAt)
+					| #{entryDate.toISOString()}
+				else
+					- entryDate = new Date(sectionPage.sys.createdAt)
+					| #{entryDate.toISOString()}
+			changefreq= frequency
+			priority= priority
+
+
+
+mixin sitemap__entry--business-types(array,language,frequency,priority)
+	each entry in array
+
+		- console.log("this URL SHould be "+ entry._url)
+		if language =="en"
+			- slugURL = S(entry.name_en).slugify().s
+		else
+			- slugURL = S(entry.name_es).slugify().s
+
+		- console.log("slug be "+ slugURL)
+
+		- var typeSectionPage = entry.sectionPage.fields.name
+		- var sectionPage = null
+
+		if entry.sectionPage && contentful.sectionPages
+			each currentSectionPage in contentful.sectionPages
+				if currentSectionPage.name == typeSectionPage
+					- sectionPage = currentSectionPage
+					- console.log("ssssssssssssssssssssssssssssssection page should now be "+ sectionPage.name)    
+
+		url
+			loc !{website_root}/!{slugURL}
+			lastmod
+				if  sectionPage.sys.updatedatedAt
+					- entryDate = new Date(sectionPage.sys.updatedatedAt)
+					| #{entryDate.toISOString()}
+				else
+					- entryDate = new Date(sectionPage.sys.createdAt)
+					| #{entryDate.toISOString()}
+			changefreq= frequency
+			priority= priority
+
+
+
+
+//- repeatable events days
+mixin repeatableEventsDays(days)
+	//-console.log(event_name +" "+days)
+	//-check to see if all days are in
+	if days.includes("Sunday" && "Monday" && "Tuesday" && "Wednesday" && "Thursday" && "Friday" && "Saturday") && days.length == 7
+		if (language =="en")
+			| Every day
+		else
+			| Todos los días
+	else if days.includes("Monday" && "Tuesday" && "Wednesday" && "Thursday" && "Friday" && "Saturday" ) && days.length == 6
+		if (language =="en")
+			| Monday to Saturday
+		else
+			| Lunes a s&aacute;bado
+	else if days.includes("Monday" && "Tuesday" && "Wednesday" && "Thursday" && "Friday" )  && days.length == 5
+		if (language =="en")
+			| Monday to Friday
+		else
+			| Lunes a viernes
+	else
+		-i = 0
+		each day in days
+			- i = i + 1
+			if (language =="es")
+				if day =="Sunday"
+					- day ="domingo"
+				if day =="Monday"
+					- day ="lunes"
+				if day =="Tuesday"
+					- day ="martes"
+				if day =="Wednesday"
+					- day ="miercoles"
+				if day =="Thursday"
+					- day ="jueves"
+				if day =="Friday"
+					- day ="viernes"
+				if day =="Saturday"
+					- day ="sábados"
+				if days.length == 1
+					| Cada #{day}
+				else if days.length > i
+					| #{day},&nbsp;
+				else
+					| y #{day}
+			else
+				if days.length == 1
+					| #{day}s
+				else if days.length > i
+					| #{day}s,&nbsp;
+				else
+					| &amp; #{day}s			
+
+
+//- repeatable events days
+mixin repeatableEventsDaysVar(days)
+	//-console.log(event_name +" "+days)
+	//-check to see if all days are in
+	if days.includes("Sunday" && "Monday" && "Tuesday" && "Wednesday" && "Thursday" && "Friday" && "Saturday") && days.length == 7
+		if (language =="en")
+			- var daysString = 'Every day'
+		else
+			- var daysString = 'Todos los días'
+	else if days.includes("Monday" && "Tuesday" && "Wednesday" && "Thursday" && "Friday" && "Saturday" ) && days.length == 6
+		if (language =="en")
+			- var daysString = 'Monday to Saturday'
+		else
+			- var daysString = 'Lunes a s&aacute;bado'
+	else if days.includes("Monday" && "Tuesday" && "Wednesday" && "Thursday" && "Friday" )  && days.length == 5
+		if (language =="en")
+			- var daysString = 'Monday to Friday'
+		else
+			- var daysString = 'Lunes a viernes'
+	else
+		-i = 0
+		each day in days
+			- i = i + 1
+			if (language =="es")
+				if day =="Sunday"
+					- day ="domingos"
+				if day =="Monday"
+					- day ="lunes"
+				if day =="Tuesday"
+					- day ="martes"
+				if day =="Wednesday"
+					- day ="miercoles"
+				if day =="Thursday"
+					- day ="jueves"
+				if day =="Friday"
+					- day ="viernes"
+				if day =="Saturday"
+					- day ="sábados"
+				if days.length == 1
+					- var daysString = "Cada" + day
+				else if days.length > i
+					- var daysString = day + ", "
+				else
+					- var daysString = "y " + day
+			else
+				if days.length == 1
+					- var daysString = day+"s"
+				else if days.length > i
+					- var daysString = day + "s, "
+				else
+					- var daysString = "&" + day + "s"			
+	- dayString
+
+
+/// transfers
+
+
+// the block for transfer
+mixin c-transfer-block--door-to-door(klass,from,to,desde,hacia,usd,mxn,item_id,child_price)
+	.c-transfer-block(id=klass)
+		//- console.log("___---_____ this transfer block be:"+klass)
+		h3.c-transfer-block__name
+			if (language =="en")
+				.name__from Door-to-door transfer from:
+				=from  
+				| &nbsp;&#8594; 
+				=to
+			else
+				.name__from Traslado puerta a puerta de
+				=desde 
+				| &#8594;
+				=hacia
+		.c-transfer-block__from
+			if (language =="en")
+				| Up to 2 Adults
+			else
+				| Hasta 2 Adultos
+			
+		.c-transfer-block__price
+			span 
+				if (language =="en")
+					| from:&nbsp;
+				else
+					| desde:&nbsp; 
+			| $
+			=usd
+			span usd
+		.c-transfer-block__price
+			
+			| $
+			=mxn
+			span pesos
+
+		// prices button
+		a.c-button.c-button--secondary
+			if (language =="en")
+				| SEE PRICES
+			else
+				| VER PRECIOS 
+		// book and info button
+		+c-button--transfer-booknow(item_id)
+
+		// prices block
+		.c-transfer-block__full-prices.is-closed
+			h4.c-linetitle
+				if (language =="en")
+					span Prices
+				else
+					span Precios
+
+				// price table
+			table.c-pricetable.c-pricetable--transfer-block(
+						role="grid",
+						summarry=""
+						)
+				thead.c-pricetable__header
+					tr.c-pricetable__header-row
+						td.c-pricetable__pax 
+							if (language=="en")
+								| Persons
+							else
+								| Personas
+						td.c-pricetable__mxn 
+							if (language=="en")
+								| Price MXN
+							else
+								| Precio MXN
+						td.c-pricetable__usd
+							if (language=="en")
+								| Price USD
+							else
+								| Precio USD
+
+				tbody.c-pricetable__transfer
+					//- console.log("|||||| I get to the end and now adding the mixin for the prices")
+					if block
+						block
+
+
+
+// the block for transfer groups
+mixin c-transfer-block--group(klass,from,to,desde,hacia,usd,mxn,item_id,child_price)
+	.c-transfer-block(id=klass)
+		//- console.log("___---_____ this transfer block be:"+klass)
+		h3.c-transfer-block__name
+			if (language =="en")
+				.name__from Transfer from:
+				=from  
+				| &nbsp;&#8594; 
+				=to
+			else
+				.name__from Traslado de
+				=desde 
+				| &#8594;
+				=hacia
+		.c-transfer-block__from
+			if (language =="en")
+				// | Up to 6 persons
+				| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+			else
+				//- | Hasta 6 personas
+				| &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			
+		.c-transfer-block__price
+			span 
+				if (language =="en")
+					| from:&nbsp;
+				else
+					| desde:&nbsp; 
+			| $
+			=usd
+			span usd
+		.c-transfer-block__price
+			
+			| $
+			=mxn
+			span pesos
+
+		// prices button
+		a.c-button.c-button--secondary
+			if (language =="en")
+				| SEE PRICES
+			else
+				| VER PRECIOS 
+		// book and info button
+		+c-button--transfer-booknow(item_id)
+
+		// prices block
+		.c-transfer-block__full-prices.is-closed
+			h4.c-linetitle
+				if (language =="en")
+					span Prices (per group)
+				else
+					span Precios (por grupo)
+
+				// price table
+			table.c-pricetable.c-pricetable--transfer-block(
+						role="grid",
+						summarry=""
+						)
+				thead.c-pricetable__header
+					tr.c-pricetable__header-row
+						td.c-pricetable__pax 
+							if (language=="en")
+								| Persons
+							else
+								| Personas
+						td.c-pricetable__mxn 
+							if (language=="en")
+								| Price MXN
+							else
+								| Precio MXN
+						td.c-pricetable__usd
+							if (language=="en")
+								| Price USD
+							else
+								| Precio USD
+
+				tbody.c-pricetable__transfer
+					//- console.log("|||||| I get to the end and now adding the mixin for the prices")
+					if block
+						block
+
+

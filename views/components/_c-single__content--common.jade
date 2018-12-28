@@ -1,0 +1,54 @@
+//- var loc_meal = [{loc_en:'Meals'},[{loc_es:'Comida'}]]
+//- var loc.more = [{loc_en:'More like this'},[{loc_es:'Mas como este'}]]
+//- var loc.more = [{loc_en:'More like this'},[{loc_es:'Mas como este'}]]
+
+
+
+//- this file builds the content for single--premium pages
+//- single__content
+section.c-block.c-single__content.c-single__content--common
+	.c-block__column
+		h1.c-single__title 
+			| #{single_name}
+		.c-single__quicklook
+			.c-quicklook__line1
+				//-select the type of quickline we want
+				//- if business_type ='food_and_drink'
+				//- 	if language = 'en'
+				//- 		| Meals #{cost_low}-#{cost_high} MXN
+				//- 	else if language = 'es'
+				//- 		| Comidas #{cost_low}-#{cost_high} MXN	
+				if business_type ="business"
+					if language = "en"
+						each val in amenities
+							val 
+
+			//- .c-quicklook__line2
+			//- 	block c-quicklook__line2
+
+		//- the copy
+		.c-main-content__copy
+			block copy
+
+		//- single details
+		.c-single__details
+			//- .c-single__amenities
+			//- 	block c-single__amenities
+			.c-single__hours
+				block c-single__hours
+			.c-single__contactinfo
+				+link--telephone(telephone)
+
+		//-c-single__events
+		.c-block.c-single__events
+			.c-block__column
+				h4.c-linetitle
+					span
+						if language = 'en'
+							| More like this<br>
+						else if language = 'es'
+							| Mas como este
+				//- block c-single__events
+				if business_type ="food_and_drink"
+					include  _c-asides--food-drink.jade
+

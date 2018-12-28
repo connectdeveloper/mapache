@@ -1,0 +1,45 @@
+//- this file builds the content for single--premium pages
+//- single__content
+section.c-block.c-single__content
+	.c-block__column
+		h1.c-single__title
+			block h1
+		.c-single__quicklook
+			.c-quicklook__line1
+				block c-quicklook__line1
+			.c-quicklook__line2
+				block c-quicklook__line2
+
+		//- the copy
+		.c-main-content__copy
+			block copy
+		.c-block.c-single__recommendations
+			h3.c-recomendations__title
+				| We recommend you try
+			block recomendations
+		//- single details
+		.c-single__details
+			.c-single__amenities
+				block c-single__amenities
+			.c-single__hours
+				block c-single__hours
+			.c-single__contactinfo
+				block c-single__contactinfo
+
+		//- c-single__featurebox
+		.c-block.c-single__featurebox
+			.c-block__column
+				h3.c-featurebox__title: span
+					block c-featurebox__title
+				block c-featurebox__image
+				block c-featurebox__copy
+
+		//-c-single__events
+		.c-block.c-single__events
+			.c-block__column
+				h4.c-linetitle
+					span
+						| Events and deals at<br> 
+						block single__name
+
+				block c-single__events

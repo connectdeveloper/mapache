@@ -1,0 +1,33 @@
+
+
+
+//- this is the tab  content inside the tab "today" in the events page
+//- dependencies : index.jade
+
+h3.c-linetitle
+	span 
+		if (language =="es")
+			| Eventos en Holbox Hoy
+		else 
+			| Events in Holbox Today 
+
+
++allEvents(dayOne,dayOneList,todaysEvents, repeatEvents)
+
+
+if isEmpty == true
+	if (language =="en")
+		p Oh oh, it seems there are no events today. 
+		+c-button--section("#tomorrows-events")
+			| Try events for tomorrow
+	else
+		p Oh oh, al parecer no hay eventos hoy. 
+		+c-button--section("#eventos-mañana")
+			| Prueba eventos para mañana
+	
+//- 
+//- // advert component
+//- section.c-block--advert
+//- 	| advertisement
+//- 	a.c-advert(href="#")
+//- 		img.c-advert__creative(src="/images/advertbox.png")

@@ -1,0 +1,106 @@
+# PERMANENT REDIRECTS FOR CHANGED IMPORTANT URLS
+
+
+
+#tours changes to stuff
+
+/tours/on-and-around-holbox/horse-riding-tours https://the.holboxeno.com/en/tours/in-holbox/horse-riding-tours 301
+/tours/en-y-cerca-de-holbox/tour-de-equitacion https://el.holboxeno.com/es/tours/en-holbox/tour-de-equitacion 301
+/tours/on-and-around-holbox/cabo-catoche https://the.holboxeno.com/en/tours/near-holbox/cabo-catoche 301
+/tours/en-y-cerca-de-holbox/cabo-catoche https://el.holboxeno.com/es/tours/cerca-de-holbox/cabo-catoche 301
+/tours/on-and-around-holbox/sailing https://the.holboxeno.com/en/tours/in-holbox/sailing 301
+/tours/en-y-cerca-de-holbox/velear https://el.holboxeno.com/es/tours/en-holbox/velear 301
+/tours/on-and-around-holbox/mexican-cooking-classes https://the.holboxeno.com/en/tours/in-holbox/mexican-cooking-classes 301
+/tours/en-y-cerca-de-holbox/clases-de-cocina-mexicana https://el.holboxeno.com/es/tours/en-holbox/clases-de-cocina-mexicana 301
+/tours/on-and-around-holbox/kayak-tour https://the.holboxeno.com/en/tours/in-holbox/kayak-tour 301
+/tours/en-y-cerca-de-holbox/tour-de-kayak https://el.holboxeno.com/es/tours/en-holbox/tour-de-kayak 301
+/tours/on-and-around-holbox/fishing-tours https://the.holboxeno.com/en/tours/in-holbox/fishing-tours 301
+/tours/en-y-cerca-de-holbox/tour-de-pesca https://el.holboxeno.com/es/tours/en-holbox/tour-de-pesca 301
+/tours/on-and-around-holbox/whale-shark-tour https://the.holboxeno.com/en/tours/near-holbox/whale-shark-tour 301
+/tours/en-y-cerca-de-holbox/tour-de-tiburon-ballena https://el.holboxeno.com/es/tours/deca-de-holbox/tour-de-tiburon-ballena 301
+/tours/on-and-around-holbox/three-island-tour https://the.holboxeno.com/en/tours/in-holbox/three-island-tour 301
+/tours/en-y-cerca-de-holbox/tour-de-las-tres-islas-el-clasico https://el.holboxeno.com/es/tours/en-holbox/tour-de-las-tres-islas-el-clasico 301
+/tours/on-and-around-holbox/el-cuyo https://the.holboxeno.com/en/tours/near-holbox/el-cuyo 301
+/tours/en-y-cerca-de-holbox/el-cuyo  https://el.holboxeno.com/es/tours/cerca-de-holbox/el-cuyo  301
+
+# the sunsets page
+
+/actividades/cosas-que-ver/los-amaneceres https://el.holboxeno.com/actividades/cosas-que-ver/amaneceres-en-holbox  301
+/activities/sight-seeing/sunrise https://the.holboxeno.com/activities/sight-seeing/sunrise-in-holbox 301
+
+/activities/sight-seeing/sunsets https://the.holboxeno.com/activities/sight-seeing/sunsets-in-holbox 301
+/actividades/cosas-que-ver/los-atardeceres https://el.holboxeno.com/actividades/cosas-que-ver/atardeceres-en-holbox 301
+
+# previously changed urls 
+# el sabor de las nubes
+/food-drink-in-holbox/sabor-de-las-nubes  https://the.holboxeno.com/food-drink-in-holbox/el-sabor-de-las-nubes 301
+/comer-y-beber-en-holbox/sabor-de-las-nubes https://el.holboxeno.com/comer-y-beber-en-holbox/el-sabor-de-las-nubes 301
+
+# new ferry page
+/como-llegar-a-holbox-traslados-ferries-autobuses-y-vuelos.html  https://el.holboxeno.com/horario-ferries-isla-holbox 301
+
+/como-llegar-a-holbox-traslados-ferries-autobuses-y-vuelos  https://el.holboxeno.com/horario-ferries-isla-holbox 301
+
+/getting-to-holbox-transfers-ferries-buses-and-flights.html https://the.holboxeno.com/holbox-island-ferry-times 301
+
+/getting-to-holbox-transfers-ferries-buses-and-flights https://the.holboxeno.com/holbox-island-ferry-times 301
+
+
+#new health spa page
+
+/health-beauty-and-holistic-treatments/*  https://the.holboxeno.com/health-beauty-spa-tattoos/:splat 301
+
+/health-beauty-and-holistic-treatments  https://the.holboxeno.com/health-beauty-spa-tattoos 301
+
+/salud-belleza-y-tratamientos-holisticos  https://the.holboxeno.com/salud-belleza-spas-tatuajes 301
+
+
+
+# REDIRECTS
+# as per 
+# https://www.netlify.com/docs/redirects/
+# https://www.netlify.com/docs/geoip-based-redirects/
+
+# ------------------------------------------------
+
+# PRODUCTION SETTINGS
+
+# Redirect users in USA CANADA Uk etc  to the.holboxeno.com 
+https://www.holboxeno.com/  https://the.holboxeno.com   302  302  Country=us,ca,gb,au,de,se,no,BZ,O1,DK,A1,A2,AP
+https://holboxeno.com/  https://the.holboxeno.com   302  Country=us,ca,gb,au,de,se,no,BZ,O1,DK,A1,A2,AP
+
+# Redirect users in MEXICO, ARGENTINA ETC to  https://el.holboxeno.com/
+https://www.holboxeno.com/  https://el.holboxeno.com 302  Country=mx,ar,sp,cl,co,cr,cu,do,ec,br,uy,dm,gt,ni,ve
+https://holboxeno.com/  https://el.holboxeno.com 302  Country=mx,ar,sp,cl,co,cr,cu,do,ec,br,uy,dm,gt,ni,ve
+
+# Redirect users with english language preference the.holboxeno.com 
+https://www.holboxeno.com/  https://the.holboxeno.com/:splat  302  Language=en,fr,de,sv,is,nb
+
+# Redirect users with english language preference the.holboxeno.com 
+https://www.holboxeno.com/  https://el.holboxeno.com/:splat  302  Language=es,it,pt,ca
+  
+# Redirect to the language subdomains    
+/es/* https://el.holboxeno.com/:splat 301!
+/en/* https://the.holboxeno.com/:splat 301!
+
+# Rewrite URLs for domain aliases
+https://el.holboxeno.com/* /es/:splat 200
+https://the.holboxeno.com/* /en/:splat 200
+
+# ------------------------------------------------
+
+# DEVELOPMENT SETTINGS
+
+# Redirect users in USA CANADA Uk etc  to the.holboxeno.com 
+*.netlify.com /en_dev/ 302  Country=us,ca,gb,au,de,se,no,BZ,O1,DK,A1,A2,AP
+
+# Redirect users in MEXICO, ARGENTINA ETC to  https://el.holboxeno.com/ 
+*.netlify.com /es_dev/  302  Country=mx,ar,sp,cl,co,cr,cu,do,ec,br,uy,dm,gt,ni,ve
+
+# Redirect users with english language preference the.holboxeno.com 
+*.netlify.com/  /en_dev/:splat  302  Language=en,fr,de,sv,is,nb
+
+# Redirect users with english language preference the.holboxeno.com 
+*.netlify.com/  /es_dev/:splat  302  Language=es,it,pt,ca
+
+

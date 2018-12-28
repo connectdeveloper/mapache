@@ -1,0 +1,106 @@
+
+- var todaysEvents  	= contentful.todaysEvents
+- var tomorrowsEvents  	= contentful.tomorrowsEvents
+- var dayThreeEvents  	= contentful.dayThreeEvents
+- var dayFourEvents  	= contentful.dayFourEvents
+- var dayFiveEvents  	= contentful.dayFiveEvents
+- var futureEvents  	= contentful.futureEvents
+- var repeatEvents 		= contentful.repeatEvents
+- var suntimes			= records.suntimes.Suntimes
+
+//- console.log(suntimes)
+
+//- sun links
+- sunriseLink = {en:"https://the.holboxeno.com/activities/sight-seeing/sunrise-in-holbox", es:"/es/actividades/cosas-que-ver/amaneceres-en-holbox"};
+- sunsetLink = {en:"/en/activities/sight-seeing/sunsets-in-holbox", es:"/es/actividades/cosas-que-ver/atardeceres-en-holbox"};
+
+- utctime = new Date().toISOString()
+//- console.log("UTC time is                  " + utctime)
+
+- serverTime = new Date()
+- serverTimeIso = new Date(serverTime).toISOString()
+//- console.log( "serverTime is                " + serverTimeIso )
+
+- serverHours = serverTime.getHours()
+//- console.log("server hours =               "+ serverHours)
+
+- hoursLeft= 24-serverHours
+//- console.log("hours left till midnight     " + hoursLeft )
+
+if hoursLeft > 19  
+	- hoursOffset = -(24-hoursLeft) 
+else 
+	- hoursOffset = 0 
+
+- currentTimeZoneOffsetInHours =serverTime.getTimezoneOffset() / 60;
+
+//- now lets change the servertime to cancun time so the build is based on Cancun timezone
+//- serverTime = serverTime.setTime( serverTime.getTime() - hoursOffset*60*1000 )
+- serverTimeIso = new Date(serverTime).toISOString()
+//- console.log("serverTime is after offset   " + serverTimeIso ) 
+
+
+//- as we compare events we need to offset the hours to start at midnight
+- today = serverTime.setHours(-5,0,0,0,0)
+- todayDay = new Date().getDay()
+//- console.log("today in milliseconds" + today)
+//- console.log "Today is      " + today
+- todayIso = new Date(today).toISOString()
+
+//- console.log("Today is                     " + todayIso + todayDay)
+
+//- map it to the string to be able to match
+if todayDay== '0'
+	- dayOne 	= {en:'Sunday', es:'domingo', dayOffset:0};
+	- dayTwo 	= {en:'Monday',es:'lunes', dayOffset:24};
+	- dayThree   = {en:'Tuesday',es:'martes', dayOffset:48};
+	- dayFour 	= {en:'Wednesday',es:'mi&eacute;rcoles', dayOffset:72};
+if todayDay== '1'
+	- dayOne 	= {en:'Monday',es:'lunes', dayOffset:0};
+	- dayTwo 	= {en:'Tuesday',es:'martes', dayOffset:24};
+	- dayThree   = {en:'Wednesday',es:'mi&eacute;rcoles', dayOffset:48};
+	- dayFour 	= {en:'Thursday',es:'jueves', dayOffset:72};
+if todayDay== '2'
+	- dayOne 	= {en:'Tuesday',es:'martes', dayOffset:0};
+	- dayTwo 	= {en:'Wednesday',es:'mi&eacute;rcoles', dayOffset:24};
+	- dayThree   = {en:'Thursday',es:'jueves', dayOffset:48};
+	- dayFour 	= {en:'Friday',es:'viernes', dayOffset:72};
+if todayDay== '3'
+	- dayOne 	= {en:'Wednesday',es:'mi&eacute;rcoles', dayOffset:0};
+	- dayTwo 	= {en:'Thursday',es:'jueves', dayOffset:24};
+	- dayThree   = {en:'Friday',es:'viernes', dayOffset:48};
+	- dayFour 	= {en:'Saturday',es:'s&aacute;bado', dayOffset:72};
+if todayDay== '4'
+	- dayOne 	= {en:'Thursday',es:'jueves', dayOffset:0};
+	- dayTwo 	= {en:'Friday',es:'viernes', dayOffset:24};
+	- dayThree   = {en:'Saturday',es:'s&aacute;bado', dayOffset:48};
+	- dayFour 	= {en:'Sunday',es:'domingo', dayOffset:72};
+if todayDay== '5'
+	- dayOne 	= {en:'Friday',es:'viernes', dayOffset:0};
+	- dayTwo 	= {en:'Saturday',es:'s&aacute;bado', dayOffset:24};
+	- dayThree   = {en:'Sunday',es:'domingo', dayOffset:48};
+	- dayFour 	= {en:'Monday',es:'lunes', dayOffset:72};
+if todayDay== '6'
+	- dayOne 	= {en:'Saturday',es:'s&aacute;bado', dayOffset:0};
+	- dayTwo 	= {en:'Sunday',es:'domingo', dayOffset:24};
+	- dayThree   = {en:'Monday',es:'lunes', dayOffset:48};
+	- dayFour 	= {en:'Tuesday',es:'martes', dayOffset:72};
+
+//-console.log(dayOne)
+
+//- get the value for today from the object
+
+- dayOneList 	= [] // the list for today
+- dayTwoList 	= [] // the list for tomorrow
+- dayThreeList	= [] // day three
+- dayFourList 	= [] // day four
+
+//-if day == dayOne
+//-	- thisDay = {en:'Today',es:'hoy'};
+//-	- nextID = tab2_id
+//-	- nextDay = {en:'tomorrow',es:'ma&ntilde;ana'} ;
+//-if day == dayTwo
+//-	- thisDay = {en:'tomorrow',es:'ma&ntilde;ana'};
+//-	- nextID = tab2_id
+//-	- nextDay = {en:'next'+dayThree.en,es:'ma&ntilde;ana'} 
+

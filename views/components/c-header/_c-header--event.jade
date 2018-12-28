@@ -1,0 +1,62 @@
+//- the header component for events
+// bof header c-header--event
+.c-header.c-header--event
+	a.c-logo(href= '#{root_url}')
+		img.c-logo__image(src='/images/holboxeno-logo.svg' alt="Holboxeño Logo")
+	section.c-block
+		.c-block__column
+			.c-event__mast
+				h1.c-event__title 
+					+event__title--splitter(event_name)
+				.c-single__quicklook
+					.c-quicklook__line1 
+						.c-date
+							if event_date
+								| #{event_date}&ensp;
+							if days
+								| !{daysString}
+								
+						.c-time
+							| #{event_start_time} - #{event_end_time}
+					//- .c-quicklook__line2
+						
+					.c-price
+						if price
+							if (language =="en")
+								span.c-label Price:&nbsp; 
+							else
+								span.c-label Precio:&nbsp; 
+							| #{price}
+						else 
+							if (language =="en")
+								span.c-label Price:&nbsp; 
+								| FREE
+							else
+								span.c-label Precio:&nbsp; 
+								| GRATIS
+						if price_child
+							| &ensp;
+							if (language =="en")
+								span.c-label Children:&nbsp; 
+							else
+								span.c-label Niños:&nbsp; 
+							| #{price_child}
+						if price_local
+							| &ensp;
+							if (language =="en")
+								span.c-label Locals:&nbsp; 
+							else
+								span.c-label Locales:&nbsp; 
+							| #{price_local}
+						if price_local_child
+							| &ensp;
+							if (language =="en")
+								span.c-label Local Children:&nbsp; 
+							else
+								span.c-label Niños Locales:&nbsp; 
+							| #{price_local_child}
+
+
+
+	.c-header__framer
+		+c-header__eventimage(hero_image)

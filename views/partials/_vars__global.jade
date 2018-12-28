@@ -1,0 +1,28 @@
+//- if this is a sectionpage/extra page then replace the values with the sectionPage values
+if sectionPage
+
+	if language =="en"
+		- var language_alt 		="es"
+		- var english_url 		= "https://the.holboxeno.com/"+theUrl.split('en/')[1]
+		- var spanish_url 		= "https://el.holboxeno.com/"+locale.split('es/')[1]
+	else
+		- var language_alt 		= "en"
+		- var english_url 		= "https://the.holboxeno.com/"+locale.split('en/')[1]
+		- var spanish_url 		= "https://el.holboxeno.com/"+theUrl.split('es/')[1]
+else
+	- var language              = entry.getLanguage(entry._url) //-either 'en' or 'es'
+	- var locale                = entry.getAlternateUrl(entry._url) //-the absolute path to the alternate
+	if language =="en"
+		- var language_alt 		="es"
+		- var english_url 		= "https://the.holboxeno.com/"+entry._url.split('en/')[1]
+		- var spanish_url 		= "https://el.holboxeno.com/"+locale.split('es/')[1]
+	else
+		- var language_alt 		= "en"
+		- var english_url 		= "https://the.holboxeno.com/"+locale.split('en/')[1]
+		- var spanish_url 		= "https://el.holboxeno.com/"+entry._url.split('es/')[1]
+
+	- var ID 					= entry.sys.id
+
+
+
+

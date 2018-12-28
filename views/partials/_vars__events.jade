@@ -1,0 +1,212 @@
+- var content_type				= "event"
+- var premium 					= entry.premium
+- var plus						= entry.plus
+- var event_url	 	    		= entry._url;
+
+if entry.date
+	- var event_date     		= dateFormat(entry.date, language)
+
+if entry.startTime
+	- var event_start_time 		= entry.getStartTime()
+
+if entry.endTime
+	- var event_end_time 		= entry.getEndTime()
+
+if entry.time_start
+	- var event_start_time 		= entry.time_start
+if entry.time_end
+	- var event_end_time 		= entry.time_end
+
+if entry.event_days
+	- var days 					= entry.event_days
+
+- dayCount = [ ]
+
+- console.log("|||||||||||||||||||||||||||||||||||||||||||||||"+entry.event_name_en+"|||||||||||||||||||||")
+
+if days
+
+	- console.log("there are" + days.length)
+
+	each day in days
+		//- add key pairs into new array with a position integer and english and spanish strings for each
+		- newDay = {pos:0,dayEn:'',dayEs:''};
+
+		if day =="Sunday"
+			- newDay.pos   = 7
+			- newDay.dayEn = "Sunday"
+			- newDay.dayEs = "domingo"
+			- dayCount.push(newDay)
+		if day =="Monday"
+			- newDay.pos   = 1
+			- newDay.dayEn = "Monday"
+			- newDay.dayEs = "lunes"
+			- dayCount.push(newDay)
+		if day =="Tuesday"
+			- newDay.pos   = 2
+			- newDay.dayEn = "Tuesday"
+			- newDay.dayEs = "martes"
+			- dayCount.push(newDay)
+		if day =="Wednesday"
+			- newDay.pos   = 3
+			- newDay.dayEn = "Wednesday"
+			- newDay.dayEs = "miercoles"
+			- dayCount.push(newDay)
+		if day =="Thursday"
+			- newDay.pos   = 4
+			- newDay.dayEn = "Thursday"
+			- newDay.dayEs = "jueves"
+			- dayCount.push(newDay)
+		if day =="Friday"
+			- newDay.pos   = 5
+			- newDay.dayEn = "Friday"
+			- newDay.dayEs = "viernes"
+			- dayCount.push(newDay)	
+		if day =="Saturday"
+			- newDay.pos   = 6
+			- newDay.dayEn = "Saturday"
+			- newDay.dayEs = "sábado"
+			- dayCount.push(newDay)	
+
+
+
+	- console.log("dayCount is now"+dayCount)
+	//-dayCount.push("hello")
+
+	- daycountLength = dayCount.length
+
+	//- Sort the array by the position
+	- dayCount.sort(function (a, b) {return a.pos - b.pos})
+
+
+	- lastDay = dayCount[dayCount.length - 1]; // 6
+	- firstDay = dayCount[0]; // 6
+
+	-console.log("the  last day is "+lastDay.pos+" "+lastDay.dayEn)
+	-console.log("the  first day is"+firstDay.pos+" "+firstDay.dayEn)
+
+	//- check to see if there is a sequence
+	if lastDay.pos - firstDay.pos == dayCount.length - 1
+		-console.log("we have a sequence")
+		if dayCount.length == 1
+			if language == "en"
+				- daysString = "Every " + lastDay.dayEn
+			else
+				- daysString = "Todos los " + lastDay.dayEn
+		else 
+			if language == "en"
+				- daysString =  firstDay.dayEn + " to " + lastDay.dayEn
+			else
+				- daysString =  firstDay.dayEn + " a " + lastDay.dayEn
+
+		//- if no sequence is available then we need to build the days string
+	else
+		-console.log("dayCount.length"+dayCount)
+		- daysString = null;
+		- i = 0
+		each day in dayCount
+
+			- i = i + 1
+			//- for single days 
+			if (language == "en")
+				- name = day.dayEn
+				- console.log(name)
+			else
+				- name = day.dayEs
+				//- if there is only one day then set the daystring to "every xxxx"
+			if dayCount.length == 1
+				- console.log(name)
+				if (language == "en")
+					- var daysString = "Every "+ name
+				else
+					- var daysString = "Cada "+ name
+				//- if there are just two days and it's the first one then capitalise the first one and then 
+			else if dayCount.length == 2 && i == 1
+				- var daysString = name.toUpperCase() + name.slice(1)
+				-console.log(daysString)
+				//- if there are just 2 and this is the second one then add a srting in between 
+			else if dayCount.length == 2 && i == 2
+				if (language == "en")
+					- var daysString = daysString + " and " + name 
+				else
+					- var daysString = daysString + " y " + name 
+				-console.log(daysString)
+				//- now if the amount of days is bigger than the count and the count is still just 1
+				//- tale capitalise and add a coma at the end of the string
+			else if dayCount.length > i && i == 1
+				- var daysString = name.toUpperCase() + name.slice(1) + ", "
+				-console.log(daysString)
+				//- while the count is past the first but still not the same sizew as the number of days 
+			else if dayCount.length > i && i >= 2 && (dayCount.length-1) !==i
+				- var daysString = daysString + name + ", "
+				-console.log(daysString)
+			else if dayCount.length > i && i >= 2 && (dayCount.length-1) ==i
+				- var daysString = daysString + " " + name 
+				-console.log(daysString)
+			else if dayCount.length == i
+				if (language == "en")
+					- var daysString =  daysString + " and " + name	
+				else
+					- var daysString =  daysString + " y " + name
+				-console.log(daysString)
+			- console.log(daysString)
+			- passvar = daysString
+
+if passvar
+	- daysString = passvar
+
+//- var todayDate 			= new Date().setHours(0,0,0,0,0)
+//- var tomorrowDate 			= new Date().setHours(24,0,0,0,0)
+//- var aftertomorrowDate 	= new Date().setHours(48,0,0,0,0)
+
+- var todayDate 			= today
+- var tomorrowDate 			= tomorrow
+- var aftertomorrowDate 	= future
+
+
+- var thisEventDate 		= new Date(entry.date).setHours(0,0,0,0,0)
+
+
+//- - var tomorrowDate = todayDate
+
+//- console.log("todayDate is:"+todayDate+"-----tomorrow is:"+tomorrowDate+"-- this event is :"+entry.event_start_time+" event year "+eventYear+"    month  "+eventMonth+"     day "+eventDay+"     gives "+thisEventDate)
+
+if thisEventDate == todayDate 
+	if language == "en"
+		- var event_date = "Today"
+	else 	
+		- var event_date = "Hoy"
+
+if thisEventDate == tomorrowDate
+	if language == "en"
+		- var event_date = "Tomorrow"
+	else 	
+		- var event_date = "Mañana"
+
+if thisEventDate < todayDate 
+	- var past_event = true
+
+- var event_location_url 	= entry.getLocationPath(language)
+- var event_location        = entry.event_location
+//- content
+- var event_name	     	= entry.getName(language)
+- var amenities		     	= entry.amenities
+- var location_amenities	= entry.getLocationAmenities(language)
+- var hero_image    		= entry.getHeroImage(language)
+- var telephone				= entry.event_telephone
+- var address				= entry.getAddress(language)
+- var email					= entry.email
+- var capacity				= entry.capacity
+- var event_categories		= entry.getCategories(language)
+- var event_location_name 	= entry.getLocation(language)
+- var price       			= entry.event_price
+- var price_local      		= entry.event_price_local
+- var price_child       	= entry.event_price_child
+- var price_local_child     = entry.event_price_local_child
+- var event_type          	= entry.event_type
+//- var event_type_id         = entry.getEventTypesID
+- var master_event 	      	= [{name:'hero4',alt:'some text'}]//-is this part of a chain or a global event
+- var gallery_images    	= entry.images
+- var geo_location        	= entry.getGeolocation()
+- var copy			        = entry.getCopy(language)
+- var alternateLocation  	= entry.getEventLocationAlternate(language)

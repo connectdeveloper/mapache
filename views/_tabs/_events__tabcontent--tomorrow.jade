@@ -1,0 +1,32 @@
+//- index__events
+
+//- this is the tab  content inside the tab "events" in the home page
+//- dependencies : index.jade
+
+h3.c-linetitle
+	span 
+		if (language =="es")
+			| Eventos en Holbox Ma&ntilde;ana !{dayTwo.es}
+		else 
+			| Events in Holbox Tomorrow !{dayTwo.en}
+
+
+
++allEvents(dayTwo,dayTwoList,tomorrowsEvents,repeatEvents)
+
+
+if isEmpty == true
+	if (language =="en")
+		p Oh oh, it seems there are no events tomorrow. 
+		+c-button--section("#"+tab3_id)
+			| Try our events for !{dayThree.en}
+	else 
+		p Oh oh, al parecer no hay eventos mañana. 
+		+c-button--section("#"+tab3_id)
+			| Prueba eventos para !{dayThree.es}
+
+//- // advert component
+//- section.c-block--advert
+//- 	| advertisement
+//- 	a.c-advert(href="#")
+//- 		img.c-advert__creative(src="/images/advertbox.png")

@@ -1,0 +1,334 @@
+/* Ok so I'm using the tabs module from Foundationa and it's not pretty
+but needs must so we need to hack into this
+
+In the future use something else
+*/
+
+$tabs-tier1height: $pad*4;
+$tabs-tier2height: $pad*3;
+
+.c-block--tabs {
+	position: relative;
+	z-index: 20;
+	// margin-top:-$pad*3;
+
+	@media #{$medium-up} {
+		margin-top:-$pad*5;
+	}
+	@media #{$large-up} {
+			margin-top:-35vh;
+	}
+
+	.error404 {}
+
+	&.is-down {
+		@media #{$medium-up} {
+		margin-top:-$pad*3;
+		}
+		@media #{$large-up} {
+			margin-top:-$pad*3;
+		}
+	}
+
+
+
+	> .content{
+		@extend %smallpadding-leftright;
+	 // p {
+		// @extend %smallpadding-leftright;
+		// }
+		padding-bottom: $smallpad;
+	}
+
+
+}
+
+.tabs__wrapper {
+	display: block;
+	position: relative;
+	z-index: 100;
+	//background: red;
+	height: $pad*5;
+	
+	// make sure the first tabs are the ones that go up
+	.c-block--tabs .c-block__column &:first-child {
+		position: absolute;
+		margin-top: -$pad*5;
+		width: inherit;
+		
+		@media #{$medium-up} {
+			margin-top: -$pad*4;
+		}
+	}
+	
+
+	@media #{$small-only} {
+
+		width: 100vw;
+		&.tabs--four, &.tabs--five, &.tabs--six {
+			// for large number of tabs make it overflow and have a scroolbar at the bottom
+			overflow-y:hidden;
+			overflow-x:scroll;
+		}
+		
+		
+		&.tabs__wrapper--nth{
+			height: $pad*6;
+		}
+	}
+
+	@media #{$medium-up} {
+		width: 100%;
+		// width: 66.6666666667%;
+		height: $tabs-tier1height;
+
+		&.tabs__wrapper--nth{
+			// height: $tabs-tier1height.5;
+		}
+		
+		
+	}
+
+	&::-webkit-scrollbar { 
+    // display: none; 
+	}
+
+	// add some shadow before the secondary tabs
+	&.tabs__wrapper--nth::before {
+	    position: absolute; 
+		content: " ";
+	    bottom:0;
+	    height: #{$pad*5};
+	    left:-$pad;
+	    right: -$pad;
+	    z-index: -10;
+
+
+	    @media #{$small-only} {
+	    	top:-$pad;
+	    	height: #{$pad*5};
+	    }
+
+		background: -webkit-linear-gradient(
+	        rgba($dark, 0) 5%,
+	        rgba($dark, .4) 100%
+	    ); 
+	    background-image: -moz-linear-gradient(
+	        rgba($dark, 0) 5%,
+	        rgba($dark, .4) 100%
+	    );
+	    background-image: -o-linear-gradient(
+	        rgba($dark, 0) 5%,
+	        rgba($dark, .4) 100%
+	    );
+	    background-image: linear-gradient(
+	        rgba($dark, 0) 5%,
+	        rgba($dark, .4) 100%
+	    );
+	    background-image: -ms-linear-gradient(
+	        rgba($dark, 0) 5%,
+	        rgba($dark, .4) 100%
+	    );
+	}
+
+}
+
+.tabs.horizontal {
+	float: left;
+	width: 100%;
+
+
+	.tabs__wrapper--nth & {
+		// pull these down inside the wrapper
+		margin-bottom: -$pad;
+	}
+	
+	
+	.tabs--five & {
+		width: 115vw;
+		@media #{$medium-up} {
+			width: 100%;
+		}
+	}
+
+	.tabs--six & {
+		width: 130vw;
+		@media #{$medium-up} {
+			width: 100%;
+		}
+	}
+
+	// overflow-x:scroll; 
+	height: $tabs-tier1height;
+	// margin-top: -$pad*3;
+
+	@media #{$medium-up} {
+		height: $pad*3;
+		margin-left: calc(#{-$pad} + 1px);
+		.tabs__wrapper--nth & {
+			margin-left: 0;
+
+		}
+		// padding-left: $smallpad;
+		// padding-right: $smallpad;
+	}
+	@media #{$large-up} {
+		// padding-left: $pad;
+		// padding-right: $pad;
+	}
+
+
+}
+
+.tab-title {
+	// height: $tabs-tier1height;
+
+
+	text-align: center;
+	text-transform: uppercase;
+	// height: rem-calc(-60);
+
+	.tabs--two &{
+		width: calc(100%/2);
+	}
+	.tabs--three &{
+		width: calc(100%/3);
+	}
+	.tabs--four &{
+		width: calc(100%/4);
+	}
+	.tabs--five &{
+
+		@media #{$small-only} {
+			width: calc(115vw/5);
+		}
+		@media #{$medium-up} {
+			width: calc(100%/5);
+		}
+
+		// width: calc(100%/4.5);
+		// @media #{$medium-up} {
+		// 	width: calc(100%/5);
+		// }
+	}
+
+	.tabs--six &{
+
+		@media #{$small-only} {
+			width: calc(130vw/6);
+		}
+		@media #{$medium-up} {
+			width: calc(100%/6);
+		}
+
+		// width: calc(100%/4.5);
+		// @media #{$medium-up} {
+		// 	width: calc(100%/5);
+		// }
+	}
+
+}
+
+
+
+.tabs-content .content{
+	min-height: 20vh;
+	> p {
+		@extend %smallpadding-leftright;
+	}
+	padding-bottom: $smallpad;
+}
+
+
+.tabs-content.tabs-content--lone .content {
+	min-height: 50vh;
+}
+
+
+.tabs dd > a, .tabs .tab-title > a {
+	height: $tabs-tier1height;
+	margin-top: $pad;
+	text-transform: uppercase;
+	font-size: rem-calc(9);
+	line-height: rem-calc(11);
+	letter-spacing: -0.05em;
+	padding-left: $minipad;
+	padding-right:$minipad;
+	font-weight: 400;
+	background: none;
+	background: rgba($moyen,0.55);
+	color: white;
+	// border-left:rgba($light,0.5) 1px solid;
+	border-right: rgba($light,0.2) 1px solid;
+
+	@media #{$medium-up} {
+		margin-top: $smallpad;
+		height: $pad*3.5	;
+		font-size: rem-calc(11);
+		line-height: rem-calc(11.5);
+		letter-spacing: -0.014em;
+	}
+
+
+	.tabs__wrapper--nth & {
+		height: $tabs-tier2height;
+		margin-bottom: -$pad;
+
+		@media #{$medium-up} {
+			height: $pad*3.5;
+		}
+	}
+
+	&:hover {
+		color: white;
+		background:$moyen;
+		// background:scale-color($moyen, $lightness: 13%);
+	}
+
+}
+
+.tabs dd.active > a, .tabs .tab-title.active > a {
+	background: $light;
+	// color: $bright;
+	height: $pad*5;
+	
+	@media #{$medium-up} {
+		height: $tabs-tier1height;
+		}
+	margin-top: 0;
+	// margin-top: -$pad*1;
+	// border-top: $smallpad $featured solid;
+	border:0;
+
+	&:hover {
+		color: $dark;
+		background: $light;
+		// background:scale-color($moyen, $lightness: 13%);
+	}
+
+	.tabs__wrapper--nth & {
+		height: $pad*4;
+	}
+}
+
+.contain-to-grid.fixed, .fixed {
+
+	margin-left: auto;
+	margin-right:auto;
+	left:0;
+	right:0;
+
+	@media #{$medium-up} {
+		width: 66.6667%;
+	}
+}
+
+
+.tabs-content{
+	padding-top: $smallpad;
+
+	@media #{$medium-up} {
+		padding-top: $pad;
+	}
+
+}

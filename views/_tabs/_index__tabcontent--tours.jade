@@ -1,0 +1,27 @@
+//- this is the tab  content inside the tab "food and drink" in the home page
+//- dependencies : index.jade
+
+//- c-linetitle
+h3.c-linetitle
+	span Tours
+
+//- TODO: ¿limitar el numero de lugares?
+each page in pages
+
+	if page.page_category.sys.id == toursPageId && page.featured == true
+
+		+c-page--premium (
+		page.getHeroImage(language),
+		page.getLanguageUrl(language),
+		page.getHeading(language),
+		'page.price',
+		page.getExcerpt(language)
+		)
+
+
+if (language == "en")
+	+c-button--section('/en/tours/')
+		| See all available tours in Holbox
+else
+	+c-button--section('/es/tours/')
+		| Descubre el listado completo de tours en Holbox

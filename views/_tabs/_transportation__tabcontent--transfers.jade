@@ -1,0 +1,56 @@
+//- transportation__tabcontent--taxies
+
+//- this is the tab  content inside the tab "taxis" in the getting to holbox page
+//- dependencies : getting-to-holbox.jade
+
+
+- transfersID = "6MoT03GkOQOOi06IcOg2IW"
+- flightsID = "43K6fi0Bg4OmCeGOewYc0C"
+
+
+h2.c-linetitle
+	span 
+		if (language=="en")
+			| Transfers to and from Holbox 
+		else 
+			| Traslados desde y a Holbox
+
+
+
+if (language=="en")
+	p Do the bus times or shuttles not work for your itinerary? Or would you just prefer to travel by yourself or with your group in the comfort of a private transfer service? Let our selected partner, #[strong Transfer Holbox],  take you in style to your destination of choice in their modern 6, 10 or 16 seater air-conditioned vans. Just choose your journey from the options below and book with our secure reservation system.
+	p You can view our #[a(href="#c-booking-policy-en") terms and conditions below].
+
+else
+	p Si los horarios de autobus o collectivos no te funcionan o simplemente prefieres viajar solo o con tu grupo en el confort de un traslado privado deja que nuestro operador selecto #[strong Transfer Holbox] te lleve en en sus vehículos de 6, 10 o 16 pasajeros con aire acondicionado. Seleciona el trayecto que buscas en las opciones abajo y reserva con la seguridad de nuestro sistema de reserva.
+
+	p Puedes enterarte de nuestros  #[a(href="#c-booking-policy-es") terminos y condiciones debajo]. 
+
+if thisPageId  == "2VH1QGIsmIC6AAk4k0S86Y"
+	if (language=="en")
+		- thisBusUrl  ="#buses-shuttles"
+	else 
+		- thisBusUrl  ="#autobuses-colectivos"
+
+else
+	if (language=="en")
+		- thisBusUrl  ="/en/getting-to-holbox-bus-times-transfers-car-rental-taxis-and-flights"
+	else 
+		- thisBusUrl  ="/es/como-llegar-a-holbox-horarios-autobuses-traslados-renta-auto-taxis-vuelos"
+	
+
+if (language=="en")
+	p Looking for bustimes? Click here:
+	+c-button--section(thisBusUrl)
+		| Bus and Shuttle departure timetable
+	- var a = "";
+else
+	p Buscando los horarios de autobuses? Pulsa aqu&iacute; 
+	+c-button--section(thisBusUrl)
+		| Horario salidas AUTOBUSES y Colectivos
+ 
+
+
++all-transfer-blocks
+
++booking-policy--duo

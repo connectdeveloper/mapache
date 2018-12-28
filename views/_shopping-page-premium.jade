@@ -1,0 +1,13 @@
+//-bof variables
+block metas
+  include partials/_business-unit__vars.jade
+
+extends _pages/_layout-shopping-page--premium.jade
+
+//block for related events in the business unit
+block c-single__events
+  +c-single__events 
+
+//- remove // if it is premium plus
+//- block listin_feature_content
+//-  p= listingFeatureContent

@@ -1,0 +1,155 @@
+
+- allPointMarkers = ""
+
+
+//- run a loop with all of the places
+each place in places
+		//- check that we have geolocation
+		if place.geo_location.lon !== "undefined"
+			- console.log(place.name)
+			//- get the excerpt
+			if language == "en"
+				if place.excerpt_en
+					- excerpt = place.excerpt_en
+			else
+				if place.excerpt_es
+					- excerpt = place.excerpt_es
+			
+			- subtypes = place.business_subtype
+
+			//- find the subtypes to determine what the icon will be
+			each subtype in subtypes
+				- console.log("the subtypes are"+subtype.fields.name_en)
+				if subtype.fields.name_en == "Bars"
+					- marker = "bar-pin"
+				else if subtype.fields.name_en == "Restaurants"
+					- marker = "restaurant-pin"
+				else if subtype.fields.name_en == "Cafés"
+					- marker = "cafe-pin"
+				else if subtype.fields.name_en == "Street Food"
+					- marker = "streetfood-pin"
+				else if subtype.fields.name_en == "Hotels"||"Hostels & Camping"||"Vacation Rentals"
+					- marker = "hotel-pin"
+				else 
+					- marker = "h-marker-mid"
+
+			//- set the strings 
+			- var line1 =	"{\"type\": \"Feature\","
+			- var line2 =		"\"geometry\": {"
+			- var line3 =			"\"type\": \"Point\","
+			- var line4 =			"\"coordinates\": ["+place.geo_location.lon+","+place.geo_location.lat+"]},"
+			- var line5 =  	"\"properties\": {"
+			- var line6 =	"\"title\": \""+place.name+"\","
+			- var line7 =	"\"business_type\": \""+place.business_type.fields_en+"\","
+			- var line8 =	"\"description\": \""+excerpt+"\","
+			- var line9 =	"\"title\": \""+place.name+"\","
+			- var line10 =	"\"url\": \"<a href='"+place.getLanguageUrl(language)+"' class='.c-popup__title'>"+place.name+"</a>\","
+			- var line11=   "\"icon\": \""+marker+"\"}}"
+			//- add them all to a string
+			- var point = 	line1+line2+line3+line4+line5+line6+line7+line8+line9+line10+line11
+			
+			- var theLength = places.length 
+
+			//- no lets check that it's the first one and add it to the empty var for all pf the markers
+			//- and if it is not empty just add this string to the end of what we already have
+			if allPointMarkers.length == 0
+				- allPointMarkers = point
+			else
+				- allPointMarkers = allPointMarkers +", "+point
+		else 
+			- console.log(place.name+" has no geolocation")
+
+#c-map--full
+
+//- p !{allPointMarkers}
+
+
+
+
+script.
+	//- autenticate
+	mapboxgl.accessToken = 'pk.eyJ1IjoiY2FuaWNhY3VhZHJhZGEiLCJhIjoiUGZxWkRHRSJ9.f4IDZr9XFGFeEHie7rcCCA';
+	var map = new mapboxgl.Map({
+	container: 'c-map--full',
+	style: 'mapbox://styles/canicacuadrada/ciixbebgt00m18tm0yp0jq3pb',
+	center: [-87.378002,21.523036],
+	zoom: 14,
+	maxBounds: bounds // Sets bounds as max
+	});
+
+
+	//- Set the bounds to stay within the 
+	var bounds = [ [-87.029318, 21.607033 ], // Southwest coordinates
+	 [-87.511000, 21.375750]  // Northeast coordinates
+		];
+	
+	map.on('load', function () {
+
+		map.addLayer({
+			"id": "businessUnits",
+			"type": "symbol",
+			"source": {
+				"type": "geojson",
+				"data": {
+					"type": "FeatureCollection",
+					"features": [!{allPointMarkers}]
+				}
+			},
+
+			"layout": {
+				"icon-image": "{icon}",
+				"text-field": "{title}",
+				"text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+				"text-offset": [0, 0.6],
+				"text-anchor": "top"
+	        }
+	    });
+	});
+
+	// disable map zoom when using scroll
+	//- map.scrollZoom.disable();
+	
+	
+
+
+
+
+
+
+
+	// When a click event occurs near a place, open a popup at the location of
+	// the feature, with description HTML from its properties.
+	map.on('click', function (e) {
+	    var features = map.queryRenderedFeatures(e.point, { layers: ['businessUnits'] });
+
+	    if (!features.length) {
+	        return;
+	    }
+
+	    var feature = features[0];
+
+	    // Populate the popup and set its coordinates
+	    // based on the feature found.
+	    var popup = new mapboxgl.Popup()
+	        .setLngLat(feature.geometry.coordinates)
+	        .setHTML(feature.properties.url)
+	        .addTo(map);
+	});
+
+	//- // Use the same approach as above to indicate that the symbols are clickable
+	//- // by changing the cursor style to 'pointer'.
+	//- map.on('mousemove', function (e) {
+	//-     var features = map.queryRenderedFeatures(e.point, { layers: ['points'] });
+	//-     map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+	//- });
+
+
+
+
+
+
+	// Add zoom and rotation controls to the map.
+	map.addControl(new mapboxgl.NavigationControl('bottom-left'));
+
+	
+

@@ -1,0 +1,58 @@
+//-bof sectionNav
+section.c-block.c-block--tabs.is-up
+	.c-block__column
+		//- .sticky.contain-to-grid
+		.tabs__wrapper&attributes({'class':tab_number})
+			ul.tabs.horizontal(role="navigation",data-tab,data-options="deep_linking:true; scroll_to_content:false;")
+				li.tab-title.active(role="presentational")
+					a(href="#"+tab1_id) 
+						block tab1
+				if tab2_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab2_id) 
+							block tab2
+				if tab3_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab3_id) 
+							block tab3
+				if tab4_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab4_id) 
+							block tab4		
+				if tab5_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab5_id) 
+							block tab5			
+				if tab6_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab6_id) 
+							block tab6			
+
+		.tabs-content.tabs-content--lone
+			if tab1_id
+				.content.active&attributes({id:tab1_id})
+					block tab1Content
+			if tab2_id
+				.content&attributes({id:tab2_id})
+					block tab2Content
+			if tab3_id
+				.content&attributes({id:tab3_id})
+					block tab3Content
+			if tab4_id
+				.content&attributes({id:tab4_id})
+					block tab4Content
+			if tab5_id
+				.content&attributes({id:tab5_id})
+					block tab5Content
+			if tab6_id
+				.content&attributes({id:tab6_id})
+					block tab6Content
+
+
+- tab1_id = null
+- tab2_id = null
+- tab3_id = null
+- tab4_id = null
+- tab5_id = null
+- tab6_id = null
+

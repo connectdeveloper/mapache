@@ -1,0 +1,120 @@
+
+//- vars for section pages
+- var categoryId    = entry.sys.id
+- var subtype1      = entry.getSubtype(0)
+- var subtype2      = entry.getSubtype(1)
+- var subtype3      = entry.getSubtype(2)
+- var subtype4      = entry.getSubtype(3)
+- var subtype5      = entry.getSubtype(4)
+- var subtype6      = entry.getSubtype(5)
+
+- var places        = contentful.businesses
+- var pages         = contentful.pages
+- var whatToShow    = entry.whatToShow
+
+- var language      = entry.getLanguage(entry._url) //-either 'en' or 'es'
+- var theUrl        = entry._url
+- var locale        = entry.getAlternateUrl(entry._url) //-the absolute path to the alternate
+
+//- check if this business type has a section page assigned to it
+if entry.sectionPage
+	//- console.log(entry.sectionPage)
+	- console.log(entry.name_en)
+	//- assign var
+	- var typeSectionPage = entry.sectionPage.fields.name
+
+//- null the var in case you have a previous value	
+- var sectionPage = null
+//- find the section page
+if entry.sectionPage && contentful.sectionPages
+	each currentSectionPage in contentful.sectionPages
+		if currentSectionPage.name == typeSectionPage
+			- sectionPage = currentSectionPage
+			- console.log("ssssssssssssssssssssssssssssssection page should now be "+ sectionPage.name)    
+			-  bodyClasses = sectionPage.bodyClass
+			//-  console.log("the body class is +++++ " + sectionPage.bodyClass) 
+
+
+//- slugify the subtype strings to get the id and #deeplink
+//- - tabIDs = [subtype1,subtype2,subtype3,subtype4]
+//- - numbers = ['one','two','three','four']
+//- - tabNumberID = [tab1_id,tab2_id,tab3_id,tab4_id]
+//- - i = 0
+//- each subtab in tabIDs
+//- 	- i = i + 1
+//- 	if subtab !== null
+//- 		- tab_number = "tabs--"+numbers[i]
+//- 		if (language=="en")
+//- 				- tabNumberID[i] = S(subtab.fields.name_en).slugify().s
+//- 				- console.log('habemus subtype'+tabNumberID[i])
+//- 		else
+//- 				- tabNumberID[i]= S(subtab.fields.name_es).slugify().s
+//- 				- console.log('habemus subtype'+tabNumberID[i])
+
+//- check how many tabs we need
+
+if subtype1 && subtype2 && subtype3 && subtype4 && subtype5 && subtype6
+	- tab_number = "tabs--six"
+	if (language=="en")
+		- tab1_id = S(subtype1.fields.name_en).slugify().s
+		- tab2_id = S(subtype2.fields.name_en).slugify().s
+		- tab3_id = S(subtype3.fields.name_en).slugify().s
+		- tab4_id = S(subtype4.fields.name_en).slugify().s
+		- tab5_id = S(subtype5.fields.name_en).slugify().s
+		- tab6_id = S(subtype6.fields.name_en).slugify().s
+	else
+		- tab1_id = S(subtype1.fields.name_es).slugify().s
+		- tab2_id = S(subtype2.fields.name_es).slugify().s
+		- tab3_id = S(subtype3.fields.name_es).slugify().s
+		- tab4_id = S(subtype4.fields.name_es).slugify().s
+		- tab5_id = S(subtype5.fields.name_es).slugify().s
+		- tab6_id = S(subtype6.fields.name_es).slugify().s
+
+else if subtype1 && subtype2 && subtype3 && subtype4 && subtype5
+	- tab_number = "tabs--five"
+	if (language=="en")
+		- tab1_id = S(subtype1.fields.name_en).slugify().s
+		- tab2_id = S(subtype2.fields.name_en).slugify().s
+		- tab3_id = S(subtype3.fields.name_en).slugify().s
+		- tab4_id = S(subtype4.fields.name_en).slugify().s
+		- tab5_id = S(subtype5.fields.name_en).slugify().s
+	else
+		- tab1_id = S(subtype1.fields.name_es).slugify().s
+		- tab2_id = S(subtype2.fields.name_es).slugify().s
+		- tab3_id = S(subtype3.fields.name_es).slugify().s
+		- tab4_id = S(subtype4.fields.name_es).slugify().s
+		- tab5_id = S(subtype5.fields.name_es).slugify().s
+
+
+else if subtype1 && subtype2 && subtype3 && subtype4
+	- tab_number = "tabs--four"
+	if (language=="en")
+		- tab1_id = S(subtype1.fields.name_en).slugify().s
+		- tab2_id = S(subtype2.fields.name_en).slugify().s
+		- tab3_id = S(subtype3.fields.name_en).slugify().s
+		- tab4_id = S(subtype4.fields.name_en).slugify().s
+	else
+		- tab1_id = S(subtype1.fields.name_es).slugify().s
+		- tab2_id = S(subtype2.fields.name_es).slugify().s
+		- tab3_id = S(subtype3.fields.name_es).slugify().s
+		- tab4_id = S(subtype4.fields.name_es).slugify().s
+
+else if subtype1 && subtype2 && subtype3
+	- tab_number = "tabs--three"
+	if (language=="en")
+		- tab1_id = S(subtype1.fields.name_en).slugify().s
+		- tab2_id = S(subtype2.fields.name_en).slugify().s
+		- tab3_id = S(subtype3.fields.name_en).slugify().s
+	else
+		- tab1_id = S(subtype1.fields.name_es).slugify().s
+		- tab2_id = S(subtype2.fields.name_es).slugify().s
+		- tab3_id = S(subtype3.fields.name_es).slugify().s
+
+else if subtype1 && subtype2
+	- tab_number = "tabs--two"
+	if (language=="en")
+		- tab1_id = S(subtype1.fields.name_en).slugify().s
+		- tab2_id = S(subtype2.fields.name_en).slugify().s
+	else
+		- tab1_id = S(subtype1.fields.name_es).slugify().s
+		- tab2_id = S(subtype2.fields.name_es).slugify().s

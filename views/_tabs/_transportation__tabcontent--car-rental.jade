@@ -1,0 +1,65 @@
+//- transportation__tabcontent--taxies
+
+//- this is the tab  content inside the tab "taxis" in the getting to holbox page
+//- dependencies : getting-to-holbox.jade
+
+
+
+
+
+- carRentalID = "44vNKuH092GSSick8o8Ku6"
+
+h2.c-linetitle
+	span 
+		if (language=="en")
+			| Car Rental Chiquila
+		else 
+			| Renta de carro en Chiquilá
+
+
+each place in places
+
+	if place.belongsToCategory(carRentalID) && place.premium && place.plus
+		+c-listing--premium(
+		place.getGalleryImages(language),
+		'#',
+		place.getLanguageUrl(language),
+		place.name,
+		place.cost_low,
+		place.food_types,
+		place.business_subtype
+		 )
+
+	else if place.belongsToCategory(carRentalID) && place.premium && !place.plus
+		+c-listing--premium(
+		place.getGalleryImages(language),
+		'#',
+		place.getLanguageUrl(language),
+		place.name,
+		place.cost_low,
+		place.food_types,
+		place.business_subtype
+		 )
+
+- var placesSec 	= []
+- var placesPic 	= []
+- var placesNoPic 	= []
+
+//- load all basic with images
+each place in places
+	if place.belongsToCategory(carRentalID) && !place.premium 
+		- placesSec.push(place)
+
+each place in placesSec
+	if place.getGalleryImages(language) && place.getGalleryImages(language).length > 0
+		- placesPic.push(place)
+	else 
+		- placesNoPic.push(place)
+
+.flexorama--row
+	each place in placesPic
+		+c-listing--secondary (place.getLanguageUrl(language),place.name,place.getGalleryImages(language), place.cost_low,place.business_subtype)
+
+	each place in placesNoPic
+		+c-listing--secondary (place.getLanguageUrl(language),place.name,place.getGalleryImages(language), place.cost_low,place.business_subtype)
+

@@ -1,0 +1,320 @@
+//- transportation__tabcontent--holbox-chiquila
+
+//- this is the tab  content inside the tab "holbox-chiquila" in the getting to holbox page
+//- dependencies : getting-to-holbox.jade
+
+- var today = new Date();
+- var dd = today.getDate();
+
+- xp ="hxpress"
+- nh ='9hmnos'
+
+
+
+- updatedFerries = "19/12/18"
+if (language=="en")
+	p
+		spam.small UPDATED #{updatedFerries}
+else
+	p
+		spam.small ACTUALIZADO #{updatedFerries}
+
+h3.c-linetitle
+	span 
+		if (language=="en")
+			| Holbox to Chiquil&aacute;<br> Ferry Times
+		else 
+			| Holbox a Chiquil&aacute;<br> Horarios de Ferry
+
+a.c-button--subsection(href="#prices1")
+	if (language=="en")
+		| View ferry prices
+	else
+		| Ver precios de ferry
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| &nbsp;Service&nbsp;
+				else
+					| &nbsp;Servicio&nbsp;
+			td.c-timetable__connections
+				if (language=="en")
+					| Connections
+				else
+					| Conexiones
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3)
+				
+				
+	tbody.c-timetable__body
+		+c-timetable__departure('05:00','am',nh)
+			| Noreste
+			br
+			| 05:30am &gt; Cancun
+			br
+			| Noreste
+			br
+			| 05:30am &gt; Tizim&iacute;n &gt; Valladolid &gt; Merida
+			br
+			+busButton
+		+c-timetable__departure('06:30','am',xp)
+
+		+c-timetable__departure('07:00','am',nh)
+			| Oriente
+			br
+			| 07:45am &gt; Cancun
+			br
+			| Shuttle 
+			br
+			| 07:30am &gt; Cancun
+			br
+			| Shuttle 
+			br
+			| 07:30am &gt; Playa del Carmen
+			br
+			| Noreste 
+			br
+			| 07:30am &gt; Tizim&iacute;n			
+			br
+			| Transfer Holbox - Airport Shuttle 
+			br
+			| 07:30am &gt; Cancun Int Airport
+			+busButton
+		+c-timetable__departure('07:30','am',xp)
+			| Shuttle 
+			br
+			| 07:00am &gt; Playa del Carmen
+			+busButton
+		+c-timetable__departure('08:00','am',nh)
+		+c-timetable__departure('08:30','am',xp)
+			+busButton
+		+c-timetable__departure('09:00','am',nh)
+		+c-timetable__departure('09:30','am',xp)
+			| Transfer Holbox - Airport Shuttle 
+			br
+			| 10:30am &gt; Cancun Int Airport	
+			brs
+			+busButton
+		+c-timetable__departure('10:00','am',nh)
+
+		+c-timetable__departure('10:30','am',xp)
+			| Noreste 
+			br
+			| 11:00am &gt; Tizim&iacute;n
+			br
+		+c-timetable__departure('11:00','am',nh)
+			| Shuttle 
+			br
+			| 12:30pm &gt; Playa del Carmen
+			br
+
+		+c-timetable__departure('11:30','am',xp)
+			
+			
+			| Transfer Holbox - Airport Shuttle 
+			br
+			| 01:30am &gt; Cancun Int Airport	
+			br
+			+busButton
+		+c-timetable__departure('12:00','pm',nh)
+
+		+c-timetable__departure('12:30','pm',xp)
+			| Shuttle 
+			br
+			| 01:15pm &gt; Cancun
+			br
+			+busButton
+		+c-timetable__departure('01:00','pm',nh)
+			| ADO &gt; Aeropuerto &gt;Cancun
+			br
+			| 01:45pm &gt; Cancun
+
+			br
+			| Noreste 
+			br
+			| 01:30pm &gt; Tizim&iacute;n
+			br
+			+busButton
+		
+		+c-timetable__departure('01:30','pm',xp)
+			| Mayab
+			br
+			| 02:15pm &gt; Cancun 
+			br
+			+busButton
+			
+		+c-timetable__departure('02:00','pm',nh)
+			| Shuttle 
+			br
+			| 2:30pm &gt; Playa del Carmen
+			br
+
+			| ADO
+			br
+			| 02:45pm &gt; Playa del Carmen
+			br
+
+			+busButton
+		+c-timetable__departure('02:30','pm',xp)
+			| Mayab
+			br
+			| 03:15pm &gt;Cancun 
+			br
+			+busButton
+		+c-timetable__departure('03:00','pm',nh)
+			| Shuttle 
+			br
+			| 3:30pm &gt; Playa del Carmen
+			br
+			| Noreste
+			br
+			| 03:30pm &gt; Tizim&iacute;n
+			br
+			+busButton
+
+		+c-timetable__departure('03:30','pm',xp)
+			| ADO
+			br
+			| 04:15pm &gt; Playa del Carmen
+			br
+			+busButton
+		+c-timetable__departure('04:00','pm',nh)
+			| Noreste
+			br
+			| 04:30pm &gt; Tizim&iacute;n &gt; Valladolid &gt; Merida
+			| ADO
+			br
+			| 04:45pm &gt; Valladolid &gt; Merida
+			br
+			| 04:45pm &gt; Merida Fiesta Americana
+			br
+			+busButton
+		+c-timetable__departure('04:30','pm',xp)
+			| ADO
+			br
+			| 05:00pm &gt; Playa del Carmen
+		+c-timetable__departure('05:00','pm',nh)
+		+c-timetable__departure('05:30','pm',xp)
+			| Noreste
+			br
+			| 06:00pm &gt; Tizim&iacute;n
+			br
+			+busButton
+		+c-timetable__departure('06:00','pm',nh)
+			| Shuttle 
+			br
+			| 06:30pm &gt; Playa del Carmen
+			br
+		+c-timetable__departure('06:30','pm',xp)
+			| Shuttle 
+			br
+			| 07:00pm &gt; Playa del Carmen
+			br
+
+		+c-timetable__departure('07:00','pm',nh)
+
+		+c-timetable__departure('07:40','pm',xp)
+		//- +c-timetable__departure('08:00','pm',nh)
+		+c-timetable__departure('08:40','pm',xp)
+
+br
+
+br
+
+if (language=="en")
+	h4#prices1 Ferry Prices
+
+	p All prices are one-way 
+	p Tickets cannot be purchased in advance or reserved
+else
+	h4#prices1 Precios Ferries
+
+	p Todos los precios son solo la ida
+	p No hay venta con antelacíon ni reservas
+
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__user 
+				if (language=="en")
+					| Passenger type	
+				else
+					| Tipo de pasajero
+			td.c-timetable__prices
+				if (language=="en")
+					| Price 
+				else
+					| Precio
+
+		+c-timetable__prices('$150 pesos')
+			if (language=="en")
+					| Adults and Children over 120cm tall
+			else
+					| Adultos y niños más altos de 120cm
+
+		+c-timetable__prices('$100 pesos')
+			if (language=="en")
+					| Minors (up to 120cm tall)
+			else
+					| Menores (Hasta 120cm de altura)
+		+c-timetable__prices('$100 pesos')
+			if (language=="en")
+					| Elderly Tourists INAMAMP
+			else
+					| Turista Adulto Mayor INAMAMP
+		+c-timetable__prices('$80 pesos')
+			if (language=="en")
+					| Local Adult (with minicipal ID)
+			else
+					| Local Adulto (con credencial municipal)
+		+c-timetable__prices('$30 pesos')
+			if (language=="en")
+					| Local Minor
+			else
+					| Local Menor
+		//- +c-timetable__prices('$40 pesos')
+		//- 	if (language=="en")
+		//- 			| Local Elderly Adult(INAMAP)
+		//- 	else
+		//- 			| Local Adulto Mayor(INAMAP)
+		+c-timetable__prices('$30 pesos')
+			if (language=="en")
+					| Daily commuters:
+					br
+					| Students, Teachers &amp; labourers
+			else
+					| Viajes diarios:
+					br
+					| Estudiantes, Maestros y trabajadores
+		+c-timetable__prices('GRATIS/FREE')
+			if (language=="en")
+					| Infants: 0-2 year olds
+					
+			else
+					| Infantes: 0-2 años
+
+
+if (language=="en")
+	br
+	p All departure times are subject to change due to weather conditions
+
+else
+	br
+	p Todas las salidas sujetas a cambios por clima. 
+	

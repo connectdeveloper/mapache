@@ -1,0 +1,114 @@
+/* listings */
+
+.c-tabs__panel--listings {
+	// @extend .flexorama ;
+	// @extend %smallpadding-leftright;
+}
+
+.c-listing {
+	position: relative;
+
+	// display: block;
+	text-align: center;
+	@extend %smallpadding-topbottom;
+	@extend %media__copy;
+
+	&.c-listing--premium {
+		@extend %mediaobject;
+	}
+
+	&.c-listing--secondary {
+		width: calc(50% - #{$smallpad});
+
+		 @media #{$medium-up} {
+			width: calc(33.333% - #{$smallpad});
+		}
+		// background: red;
+		// @include flex-grow(4);
+
+	}
+
+}
+
+
+
+.c-listing__image {
+	display: block;
+	// width: calc(100% - $pad);
+	width: 100%;
+	height: auto;
+
+	&.c-listing__image--premium {
+	// height: 44.28341%;
+	 @extend %smallpadding-leftright;
+	}
+
+	&.c-listing__image--secondary {
+
+	}
+
+}
+
+.c-listing__mast {
+	/*sizing mast the premium box
+	we'll try to bforce it to the left*/
+	background: $highlight;
+	text-align: left;
+	padding: $minipad;
+	width:auto;
+		a {
+			@extend %mastTitle;
+		}
+
+	position: absolute;
+	height:auto;
+	@media #{$small-only} {
+	top:33.33%;
+	}
+	@media #{$medium-up} {
+		bottom:33.33%;
+		}
+
+	padding: $smallpad;
+
+	&.c-listing__mast--premium {
+		left: $smallpad;
+	}
+
+	&.c-listing__mast--page {
+		height: $pad*3;
+		margin-left: $smallpad;
+		margin-right: $smallpad; 
+		position: relative;
+		margin-top: -$pad*3;
+			a {
+				@extend %mastTitle--large;
+			}
+
+		// top:50%;
+		// bottom:70%;
+
+		@media #{$medium-up} {
+			// top:50%;
+			// bottom:70%;
+		}
+	}
+
+	&.c-listing__mast--secondary{
+		a {
+			@extend %mastTitle--small;
+		}
+	}
+
+
+
+}
+
+.c-listing__list {
+	text-align: left;
+	@extend %smallpadding-leftright;
+	padding-top: $minipad;
+	font-size: rem-calc(13);
+}
+
+

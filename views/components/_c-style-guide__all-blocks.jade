@@ -1,0 +1,165 @@
+
+
+
+//- this file builds the content for food-and-drink--common pages
+//- single__content
+
+//- 
+	1		c-single__content--premium block
+
+section.c-block.c-single__content.c-single__content--style
+	.c-block__column
+		h5.styleguide__block c-single__content--premium block
+
+		h1.c-single__title
+			block h1
+		.c-single__quicklook
+			.c-quicklook__line1
+				block c-quicklook__line1
+
+			.c-quicklook__line2
+				block c-quicklook__line2
+		.c-main-content__copy
+			block copy
+
+		//-recomendations
+		.c-single__recommendations
+			h3.c-recomendations__title
+				| We recommend you try
+			block recomendations
+
+		//- single details
+		.c-single__details
+			.c-single__amenities
+				block c-single__amenities
+			.c-single__hours
+				block c-single__hours
+			.c-single__contactinfo
+				block c-single__contactinfo
+				
+			#map
+			include _c-map--listing.jade
+			
+			h5.styleguide__block listing_feature_content
+			//-feature box mixin
+			+c-single__featurebox
+				block listing_feature_content
+
+
+section.c-block.c-single__content.c-single__content--style
+	.c-block__column
+		
+		h5.styleguide__block h1.c-single__title listing title
+		h1.c-single__title
+			block h1
+		br
+		h5.styleguide__block c-quicklook block
+		.c-single__quicklook
+			.c-quicklook__line1
+				block c-quicklook__line1
+			.c-quicklook__line2
+				block c-quicklook__line2
+		br
+		h5.styleguide__block c-main-content__copy
+		.c-main-content__copy
+			block copy
+		br
+		h5.styleguide__block blockquote
+		blockquote Tousled hoodie four dollar toast tattooed hashtag wolf fixie Wes Anderson, organic master cleanse health goth pop-up.  Farm-to-table
+		h5.styleguide__block c-single__details	
+		//- single details
+		.c-single__details
+			.c-single__amenities
+				block c-single__amenities
+			.c-single__hours
+				block c-single__hours
+			.c-single__contactinfo
+				block c-single__contactinfo
+
+section.c-block.c-single__content.c-single__content--style
+	.c-block__column
+		h2.styleguide__block event mixins
+		h5.styleguide__block plain 
+		+c-event--plain(
+			'9:35 AM',
+			'#',
+			'Zumba! lessons')
+				| Shake what ya mama gave you
+		+c-event--plain(
+			'10:00 AM',
+			'#',
+			'Run Club')
+				| Run accross the island and make friends
+		+c-event--plain(
+			'11:30 AM',
+			'#',
+			'choir practice')
+				| meet the people who sing
+
+		br
+		h5.styleguide__block premium 
+		+c-event--premium(
+			'11:30 AM',
+			'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+			'#',
+			'Salsa Night',
+			'Bar Tribu'
+			)
+			| Learn to dance with the pros. Let Cesar show you some moves
+			
+		+c-event--premium(
+			'11:30 AM',
+			'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+			'#',
+			'Salsa Night',
+			'Bar Tribu'
+			)
+			| Learn to dance with the pros. Let Cesar show you some moves
+		br 
+		br
+		h2.styleguide__block BU mixins
+		h5.styleguide__block premium
+		+c-listing--premium--food-and-drink(
+			'https://images.contentful.com/5pyzqupsur8u/23QHo0RIG4K608aomACOSm/0f10f9dc21820c0f748d8bfb3f91e019/IMG_3702.JPG',
+			'alt',
+			'#',
+			'Villas Flamingos',
+			'230',
+			['fine dining','italian','grill']
+			)
+
+		+c-listing--premium--food-and-drink(
+			'https://images.contentful.com/5pyzqupsur8u/23QHo0RIG4K608aomACOSm/0f10f9dc21820c0f748d8bfb3f91e019/IMG_3702.JPG',
+			'alt',
+			'#',
+			'Villas Flamingos',
+			'230',
+			['fine dining','italian','grill']
+			)
+
+		h5.styleguide__block basic
+		.flexorama--row
+			+c-listing--secondary--no-image(
+				'alt',
+				'url',
+				'La Sirenita',
+				'category')
+
+			+c-listing--secondary--no-image(
+				'alt',
+				'url',
+				'Taco Rey',
+				'category')
+
+			+c-listing--secondary--no-image(
+				'alt',
+				'url',
+				'Pescaditas',
+				'category')
+
+		h5.styleguide__block section Button
+		+c-button--section('#')
+			| See full listing
+			
+		h5.styleguide__block link style
+		a(href='#') this is a link

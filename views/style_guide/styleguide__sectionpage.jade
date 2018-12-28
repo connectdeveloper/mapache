@@ -1,0 +1,256 @@
+//-bof variables
+//-bof variables
+block metas
+	//-meta and universal values  
+	- var language      = "en"  
+	- var id 			= 'e-01'//-the universal id for this object asd
+	- var title			= 'Que hacer en Holbox, eventos en la isla' //-the title should be less than 70 characters
+	- var description 	= 'Aprovecha tu tiempo en Holbox. Nuestra guía de eventos está al día para que no te pierdas de nada. Tenemos el pulso de Isla Holbox' //- keep to bellow 155 characters add call to action
+	- var og_title		= 'Im click bait' //-95 characters make this enticing to facebook users
+	- var og_image 		= "eventos-en-holbox"//-not sure what to pu here yet
+	- var og_url        = "/en/whats-on-in-holbox.html"//-the relative path of this page
+	- var og_description = "Aprovecha tu tiempo en Holbox. Nuestra guía de eventos está al día para que no te pierdas de nada. Tenemos el pulso de Isla Holbox. Podras ver eventos deportivos, promociones en restaurants hasta la hora perfecta para ir a ver el atardecer"//-you have 297 characters to work with
+	- var twitter_card	= 'summary' //-summary, photo or player
+	- var twitter_url   = "que-hacer-en-holbox"//-relative path to root
+	- var twitter_title	= "Que hacer en Holbox. Desde la ma&ntilde hasta que cierra la disco"//-70 characters 
+	- var twitter_description = "Aprovecha tu tiempo en Holbox. Nuestra guía de eventos está al día para que no te pierdas de nada. Tenemos el pulso de Isla Holbox" //-200 characters
+	- var twitter_image = "Que hacer en Holbox, eventos en la isla"//-must be bigger thatn 60x60
+	- var locale		= "/es/que-hacer-en-holbox.html"//-the absolute path to the alternate language version
+	- var hero_image    = "https://images.contentful.com/5pyzqupsur8u/1kjsIfBOmMEI6KGQ0AE6Gi/ad8547f52992af1d3e975886de7d594a/hero5.jpg"
+	- var hero_image_alt = "this is some alt text zcasdf"
+
+//- set up the meta tags
+
+
+//- make sure you put the urls correctly
+extends ../_pages/_layout-section-page--index.jade  
+
+//- set up the meta tags
+
+//-the main copy that for this page
+block copy
+	h1.c-header__title
+		span The Holboxeño, the definitive guide to Holbox
+	.c-main-content__copy
+		h2 What’s in a name?
+		p A ‘Holboxeño’ is a born and bred local of Holbox, a unique paradisiacal island hidden away in the far corner of the Yucatan Peninsula on the Mayan Riviera. Holbox translates directly into Spanish from Yucatec Maya as Hoyo Negro – Black Hole – and its name is thought to have derived from the shallow lagoon, which in the past was considered to be a fountain of youth.
+		h2 Why this paradise?
+		p The long stretches of untouched, white, sandy beaches; the bright turquoise-green sea; the colourful village with its streets made of sand; and the absence of city traffic– this very special island offers you a perfect holidaying destination whether travelling on a budget or looking for a luxury get-away.
+		h2 What can I do while I’m here?
+		p Holbox encompasses everything you could want in a paradise island – relaxation, beauty, colour – without sacrificing the luxury or comforts of larger towns and cities. There is plenty going on for you to explore, day and night. Check our events page daily to find out what’s on while you are on the island, and take advantage of those special discount deals.
+		h2 Food and drink for everyone?
+		p Albeit compact and quaint, there is an abundance of food options available to you on the island. Whatever your budget, whatever your tastes, you won’t be disappointed with the range of tasty national and international dishes on offer. Don’t miss out on the delicious hidden eateries around the island; they’re all listed here for your perusal – just check out our food and drinks page and our complete Holbox map for more information.
+		h2 More information?
+		p Have a look at our events and business pages for more information on what’s hot on Holbox while you’re here.
+
+
+			
+//-name the tabs in the subnav
+block tab1
+	if (language=="en")
+		| What's on Today
+	else
+		| Hoy
+
+block tab2
+	if (language=="en")
+		| Food &amp; Drink
+	else
+		| Comida y Bebida
+
+//- 
+//- block tab3
+//- 	if (language=="en")
+//- 		| Upcoming events
+//- 	else
+//- 		| Pr&oacute;ximos eventos
+
+//- insert the content in the tab content blocks
+//- tab1 content
+block tab1Content
+	h3.c-linetitle
+		span Today's Events
+	+c-event--plain(
+		'9:35 AM',
+		'#',
+		'Zumba! lessons')
+			| Shake what ya mama gave you
+
+	+c-event--plain(
+		'9:35 AM',
+		'#',
+		'Zumba! lessons')
+			| Shake what ya mama gave you
+	+c-event--plain(
+		'10:00 AM',
+		'#',
+		'Run Club')
+			| Run accross the island and make friends
+	+c-event--plain(
+		'10:00 AM',
+		'#',
+		'yada ydada')
+			| Run accross the island and make friends
+	+c-event--premium(
+		'11:30 AM',
+		'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+		'#',
+		'Breakfast ',
+		'la chaya'
+		)
+		| Nice nice breakfast
+	+c-event--premium(
+		'11:30 AM',
+		'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+		'#',
+		'Breakfast ',
+		'la chaya'
+		)
+		| Nice nice breakfast
+	+c-event--premium(
+		'11:30 AM',
+		'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+		'#',
+		'Breakfast ',
+		'la chaya'
+		)
+		| Nice nice breakfast
+	+c-event--premium(
+		'11:30 AM',
+		'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+		'#',
+		'Breakfast ',
+		'la chaya'
+		)
+		| Nice nice breakfast
+	+c-event--premium(
+		'11:30 AM',
+		'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+		'#',
+		'Breakfast ',
+		'la chaya'
+		)
+		| Nice nice breakfast
+	+c-event--premium(
+		'11:30 AM',
+		'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+		'#',
+		'Breakfast ',
+		'la chaya'
+		)
+		| Nice nice breakfast
+
+	+c-event--plain(
+		'11:30 AM',
+		'#',
+		'choir practice')
+			| meet the people who sing
+	+c-event--premium(
+		'11:30 AM',
+		'https://images.contentful.com/5pyzqupsur8u/1zaVTkviOk2skmquusSYwu/8aacc487bbadcf7c0379fba80ce1fcad/eventos-en-holbox.jpg',
+		'#',
+		'Salsa Night',
+		'Bar Tribu'
+		)
+		| Learn to dance with the pros. Let Cesar show you some moves
+
+//- tab3 content
+block tab2Content
+	h3.c-linetitle 
+		span Discover Bars and Restaurants in Holbox
+	+c-listing--premium--food-and-drink(
+		'https://images.contentful.com/5pyzqupsur8u/23QHo0RIG4K608aomACOSm/0f10f9dc21820c0f748d8bfb3f91e019/IMG_3702.JPG',
+		'alt',
+		'#',
+		'Villas Flamingos',
+		'230',
+		['fine dining','italian','grill']
+		)
+
+	+c-listing--premium--food-and-drink(
+		'https://images.contentful.com/5pyzqupsur8u/23QHo0RIG4K608aomACOSm/0f10f9dc21820c0f748d8bfb3f91e019/IMG_3702.JPG',
+		'alt',
+		'#',
+		'Villas Flamingos',
+		'230',
+		['fine dining','italian','grill']
+		)
+	+c-listing--premium--food-and-drink(
+		'https://images.contentful.com/5pyzqupsur8u/23QHo0RIG4K608aomACOSm/0f10f9dc21820c0f748d8bfb3f91e019/IMG_3702.JPG',
+		'alt',
+		'#',
+		'Villas Flamingos',
+		'230',
+		['fine dining','italian','grill']
+		)
+
+	+c-listing--premium--food-and-drink(
+		'https://images.contentful.com/5pyzqupsur8u/23QHo0RIG4K608aomACOSm/0f10f9dc21820c0f748d8bfb3f91e019/IMG_3702.JPG',
+		'alt',
+		'#',
+		'Villas Flamingos',
+		'230',
+		['fine dining','italian','grill']
+		)
+	+c-listing--premium--food-and-drink(
+		'https://images.contentful.com/5pyzqupsur8u/23QHo0RIG4K608aomACOSm/0f10f9dc21820c0f748d8bfb3f91e019/IMG_3702.JPG',
+		'alt',
+		'#',
+		'Villas Flamingos',
+		'230',
+		['fine dining','italian','grill']
+		)
+
+	+c-listing--premium--food-and-drink(
+		'https://images.contentful.com/5pyzqupsur8u/23QHo0RIG4K608aomACOSm/0f10f9dc21820c0f748d8bfb3f91e019/IMG_3702.JPG',
+		'alt',
+		'#',
+		'Villas Flamingos',
+		'230',
+		['fine dining','italian','grill']
+		)
+		
+	.flexorama--row
+		+c-listing--secondary--no-image(
+			'alt',
+			'url',
+			'La Sirenita',
+			'category')
+			
+		+c-listing--secondary--no-image(
+			'alt',
+			'url',
+			'La Sirenita',
+			'category')
+
+		+c-listing--secondary--no-image(
+			'alt',
+			'url',
+			'Taco Rey',
+			'category')
+
+		+c-listing--secondary--no-image(
+			'alt',
+			'url',
+			'Pescaditas',
+			'category')
+			
+		+c-listing--secondary--no-image(
+			'alt',
+			'url',
+			'Taco Rey',
+			'category')
+
+		+c-listing--secondary--no-image(
+			'alt',
+			'url',
+			'Pescaditas',
+			'category')
+
+	h5.styleguide__block section Button
+	+c-button--section('#')
+			| See full listing
+
+//- //- tab13 content
+//- block tab3Content
+//- 	include ../_tabs/_events__tabcontent--future.jade

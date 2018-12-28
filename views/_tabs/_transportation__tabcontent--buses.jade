@@ -1,0 +1,1530 @@
+//- transportation__tabcontent--buses
+- updatedBuses = "19/12/18"
+
+//- this is the tab  content inside the tab "buses" in the getting to holbox page
+
+if (language =="en")
+	p 
+		| Do these times not fit your schedule? 
+		br
+		| Or would you prefer a private transfer at the time of your choosing?
+	+c-button--section("#book-transfer")
+		| See our available transfers
+else
+	p 
+		| ¿No te sirven estos horarios para tu itinerario?
+		br
+		| ¿O prefieres viajar en un traslado privado a la hora que te conviene a tí?
+	+c-button--section("#reserva-traslado")
+		| Descubre nuestros traslados
+
+
+
+//- keeping it DRY
+mixin transfer--upsell
+	tr.c-timetable__departure
+		td.c-transfer--upsell(colspan=3)
+			.upsell-box
+				if (language =="en")
+					p 
+						| Do these times not fit your schedule? 
+						br
+						| Or would you prefer a private transfer at the time of your choosing?
+					+c-button--section("#book-transfer")
+						| See our available transfers
+				else
+					p 
+						| ¿No te sirven estos horarios para tu itinerario?
+						br
+						| ¿O prefieres viajar en un traslado privado a la hora que te conviene a tí?
+					+c-button--section("#reserva-traslado")
+						| Descubre nuestros traslados
+
+mixin transferHolbox--airport(price)
+	if (language=="en")
+		| Transfer Holbox
+		br
+		| &nbsp; per person:
+		= price 
+		br
+		| Reservation only
+		br
+		| *must be reserved before 6pm on the previous day
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=3")
+			| Book Now
+	else
+		| Transfer Holbox
+		br
+		= price
+		br
+		| &nbsp; por persona
+		br
+		| Solo por reservaci&oacute;n:. 
+		br
+		| *se debe reservar antes de las 6pm del d&iacute;a anterior
+		
+		
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=3&lang_id=es")
+			| Reserva Ahora
+
+//- keeping it DRY
+mixin transferHolbox--chiquila(price)
+	if (language=="en")
+		| Transfer Holbox
+		br
+		= price 
+		br
+		| &nbsp; per person
+		br
+		| Reservation only:
+		br
+		| *must be reserved before 6pm on the previous day
+
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=4")
+			| Book Now
+	else
+		| Transfer Holbox
+		br
+		= price 
+		br
+		| &nbsp; por persona
+		br
+		| Solo por reservaci&oacute;n: 
+		br
+		| *se debe reservar antes de las 6pm del d&iacute;a anterior
+
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=4&lang_id=es")
+			| Reserva Ahora
+
+
+
+mixin cancunShuttle--cancun(price)
+
+	if (language=="en")
+		| Cancun Shuttle
+		br
+		= price 
+		br
+		| &nbsp; per person
+		br
+		| Reservation only - Limited availability:
+		//- br
+		//- | *must be reserved before 6pm on the previous day
+
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=34") Book Now
+		br
+		| Pick up from 
+		br
+		a(href="https://www.google.com/maps/place/21°09'51.1%22N+86°49'31.5%22W/@21.164192,-86.8276127,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d21.164192!4d-86.825424") Soriana supermarket&nbsp;
+		| taxi rank in Central Cancun. A two minute walk from the ADO.
+
+
+	else
+		| Cancún Shuttle
+		br
+		= price 
+		br
+		| &nbsp; por persona
+		br
+		| Solo por reservaci&oacute;n - cupo limitado: 
+		// br
+		// | *se debe reservar antes de las 6pm del d&iacute;a anterior
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=34&lang_id=es") Reserva Ahora
+		br
+		| Punto de partida: 
+		br
+		| Sitio de taxis de
+		a(href="https://www.google.com/maps/place/21°09'51.1%22N+86°49'31.5%22W/@21.164192,-86.8276127,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d21.164192!4d-86.825424") Soriana
+		|  en el centro de Cancún. A 3 minutos a pié del ADO		
+
+
+mixin cancunShuttle--chiquila(price)
+
+	if (language=="en")
+		| Cancun Shuttle
+		br
+		= price 
+		br
+		| &nbsp; per person
+		br
+		| Reservation only - limited availability:
+		// br
+		// | *must be reserved before 6pm on the previous day
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=37") Book Now
+		br
+		
+		| Drop off next to the taxi rank outside of 
+		a(href="https://www.google.com/maps/place/21°09'51.1%22N+86°49'31.5%22W/@21.164192,-86.8276127,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d21.164192!4d-86.825424") Soriana supermarket
+		| in Central Cancun. A two minute walk from the ADO.
+
+	else
+		| Cancún Shuttle
+		br
+		= price 
+		br
+		| &nbsp; por persona
+		br
+		| Solo por reservaci&oacute;n - cupo limitado: 
+		// br
+		// | *se debe reservar antes de las 6pm del d&iacute;a anterior
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=37&lang_id=es") Reserva Ahora
+		br
+		| LLegando al lado del sitio de taxis afuera de 
+		a(href="https://www.google.com/maps/place/21°09'51.1%22N+86°49'31.5%22W/@21.164192,-86.8276127,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d21.164192!4d-86.825424") Soriana
+		| en el centro de Cancún. A dos minutos a pie del ADO.			
+
+
+mixin playaShuttle--playa(price)
+
+	if (language=="en")
+		| Playa del Carmen Shuttle
+		br
+		= price 
+		br
+		| &nbsp; per person
+		br
+		| Reservation only:
+		// br
+		// | *must be reserved before 6pm on the previous day
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=36") Book Now
+		br
+		| Pick up from 
+		br
+		a(href="https://www.google.com.mx/maps/place/Paradero/@20.6248128,-87.0771281,20z/data=!4m5!3m4!1s0x0:0xaeb158d6d2193b43!8m2!3d20.6249862!4d-87.0770728")
+			| av 20 calle 2 norte in front of telecom
+
+	else
+		| Collectivo Playa del Carmen
+		br
+		= price 
+		br
+		| &nbsp; por persona
+		br
+		| Solo por reservaci&oacute;n: 
+		// br
+		// | *se debe reservar antes de las 6pm del d&iacute;a anterior
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=36&lang_id=es") Reserva Ahora
+		br
+		| Punto de partida 
+		br
+		a(href="https://www.google.com.mx/maps/place/Paradero/@20.6248128,-87.0771281,20z/data=!4m5!3m4!1s0x0:0xaeb158d6d2193b43!8m2!3d20.6249862!4d-87.0770728")
+			| av 20 calle 2 norte en frente de telecom  	
+
+
+
+
+mixin playaShuttle--chiquila(price)
+
+	if (language=="en")
+		| Playa del Carmen Shuttle
+		br
+		= price 
+		br
+		| &nbsp; per person
+		br
+		| Reservation only:
+		br
+		| *must be reserved before 6pm on the previous day
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=35") Book Now
+		br
+		| Drop off
+		br
+		a(href="https://www.google.com.mx/maps/place/Paradero/@20.6248128,-87.0771281,20z/data=!4m5!3m4!1s0x0:0xaeb158d6d2193b43!8m2!3d20.6249862!4d-87.0770728")
+			| av 20 calle 2 norte in front of telecom
+
+	else
+		| Collectivo Playa del Carmen
+		br
+		= price 
+		br
+		| &nbsp; por persona
+		br
+		| Solo por reservaci&oacute;n: 
+		br
+		| *se debe reservar antes de las 6pm del d&iacute;a anterior
+		br
+		a.c-button--subsection(href="http://holboxeno.checkfront.com/reserve/?item_id=35&lang_id=es") Reserva Ahora
+		br
+		| Llegando a:
+		br
+		a(href="https://www.google.com.mx/maps/place/Paradero/@20.6248128,-87.0771281,20z/data=!4m5!3m4!1s0x0:0xaeb158d6d2193b43!8m2!3d20.6249862!4d-87.0770728")
+			| av 20 calle 2 norte en frente de telecom  	
+
+
+
+//- dependencies : getting-to-holbox.jade
+if (language=="en")
+	- arrival ='Arrives'
+else
+	- arrival = 'Llega'
+
+
+
+if (language=="en")
+	spam.small: stromg: | UPDATED #{updatedBuses}
+else
+	spam.small: stromg: | ACTUALIZADO #{updatedBuses}
+
+br
+//- the quick links
+
+if (language=="en")
+	| Arriving in Chiquil&aacute;: 
+	br
+
+else
+	| Llegando a Chiquil&aacute;: 
+	br
+		
+a.c-button--subsection(href="#cancun-chiquila")
+	if (language=="en")
+		| From Canc&uacute;n
+	else
+		| Desde Canc&uacute;n
+
+a.c-button--subsection(href="#airport-chiquila")
+	if (language=="en")
+		| From Canc&uacute;n Int Airport
+	else
+		| Desde Aeropuerto Int Canc&uacute;n
+
+a.c-button--subsection(href="#playa-chiquila")
+	if (language=="en")
+		| From Playa del Carmen
+	else
+		| Desde Playa del Carmen
+
+a.c-button--subsection(href="#tulum-chiquila")
+	if (language=="en")
+		| From Tul&uacute;m
+	else
+		| Desde Tul&uacute;m
+
+a.c-button--subsection(href="#merida-chiquila")
+	if (language=="en")
+		| From M&eacute;rida
+	else
+		| Desde M&eacute;rida
+
+a.c-button--subsection(href="#valladolid-chiquila")
+	if (language=="en")
+		| From Valladolid
+	else
+		| Desde Valladolid
+
+a.c-button--subsection(href="#tizimin-chiquila")
+	if (language=="en")
+		| From Tizim&iacute;n
+	else
+		| Desde Tizim&iacute;n
+
+br
+
+if (language=="en")
+	| Leaving Chiquil&aacute;: 
+	br
+
+else
+	| Saliendo desde Chiquil&aacute;: 
+	br
+		
+a.c-button--subsection(href="#chiquila-cancun")
+	if (language=="en")
+		| To Canc&uacute;n
+	else
+		| A Canc&uacute;n
+
+a.c-button--subsection(href="#chiquila-airport")
+	if (language=="en")
+		| To Canc&uacute;n Int Airport
+	else
+		| A Aeropuerto Internacional Canc&uacute;n
+
+a.c-button--subsection(href="#chiquila-playa")
+	if (language=="en")
+		| To Playa del Carmen
+	else
+		| A Playa del Carmen
+
+a.c-button--subsection(href="#chiquila-tulum")
+	if (language=="en")
+		| To Tulum
+	else
+		| A Tul&uacute;m
+
+a.c-button--subsection(href="#chiquila-merida")
+	if (language=="en")
+		| To M&eacute;rida
+	else
+		| A M&eacute;rida
+
+a.c-button--subsection(href="#chiquila-valladolid")
+	if (language=="en")
+		| To Valladolid
+	else
+		| A Valladolid
+
+a.c-button--subsection(href="#chiquila-tizimin")
+	if (language=="en")
+		| To Tizim&iacute;n
+	else
+		| A Tizim&iacute;n
+
+
+	
+
+
+br
+h2#from-chiquila
+	if (language=="en")
+		| Buses &amp; shuttles to Chiquila
+	else
+		| Autobuses y collectivos a Chiquil&aacute;
+
+
+ 
+h3#cancun-chiquila.c-linetitle
+	span 
+		if (language=="en")
+			| From Cancun
+		else
+			| Desde Canc&uacute;n
+
+if (language=="en")
+	p 
+		| Buses depart from 
+		a(href="https://www.google.com.mx/maps/place/ADO+bus+station/@20.6987763,-87.4238086,10z/data=!4m8!1m2!2m1!1sado+cancun!3m4!1s0x8f4c2c014930e8ed:0xb5f41f7f32d5f39c!8m2!3d21.1641516!4d-86.8265838") ADO bus station. 
+		| Calle Pino, SM23, MZ56, Lt 1 y 2, Centro, 23.
+
+	p 	For the shuttles it's necesary to book with our system to reserve your place.
+
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Los autobues a Chiquil&aacute; salen de la
+		a(href="https://www.google.com.mx/maps/place/ADO+bus+station/@20.6987763,-87.4238086,10z/data=!4m8!1m2!2m1!1sado+cancun!3m4!1s0x8f4c2c014930e8ed:0xb5f41f7f32d5f39c!8m2!3d21.1641516!4d-86.8265838") Estacíon de Autobuses ADO. 
+		| Calle Pino, SM23, MZ56, Lt 1 y 2, Centro, 23,
+	p Para los colectivos necesitas reservar con nuestro sistema en linea.
+
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+
+	tbody.c-timetable__body
+
+		+c-timetable__departure('7:50','am','Mayab')
+			| $180 pesos
+			br
+			|  #{arrival} &gt;10:30am
+			br
+			| Ferry &gt; 11:00am 
+
+		+c-timetable__departure('9:40','am','Mayab')
+			| $180 pesos
+			br
+			|  #{arrival} &gt; 12:50pm
+			br
+			| Ferry &gt; 1:00pm 
+		+c-timetable__departure('10:00','am','Cancun Shuttle')
+			+cancunShuttle--cancun("$380 pesos")
+			
+			br
+			|  #{arrival} &gt; 12:15pm
+			br
+			| Ferry &gt; 12:30pm 
+
+		+c-timetable__departure('10:30','am','ADO Primera')
+			| $254 pesos
+			br
+			| #{arrival} &gt; 2:00pm 
+			br
+			|  Ferry &gt;02:00pm
+		
+		+c-timetable__departure('12:50','pm','Oriente')
+			| $125 pesos
+			br
+			| #{arrival} 
+			br
+			| Ferry &gt;4:30pm
+
+		+c-timetable__departure('1:45','pm','Noreste')
+			| $125 pesos
+			br
+			| #{arrival} 
+			br
+			| Ferry &gt;4:30pm
+
+
+		+c-timetable__departure('04:30','pm','Cancun Shuttle')
+			+cancunShuttle--cancun("$380 pesos")
+			br
+			|  #{arrival} &gt; 06:45pm
+			br
+			| Ferry &gt; 07:00pm 
+
+		
+		+transfer--upsell
+
+
+br
+
+
+h3#airport-chiquila.c-linetitle
+	span 
+		if (language=="en")
+			| From Cancun International Airport
+		else
+			| Desde Aeropuerto Internacional de Canc&uacute;n
+
+if (language=="en")
+	p For the shuttle it's recommended you contact them directly to reserve your place.
+
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p Para el colectivo se recomienda que los contactes directamente para reservar tu lugar.
+
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+
+		+c-timetable__departure('12:30','pm','Airport Shuttle')
+			+transferHolbox--airport("$40 USD")
+			br
+			|  #{arrival} &gt; 2:30pm
+			br
+			| Ferry &gt; 3:00pm 
+
+
+		+c-timetable__departure('3:30','pm','Airport Shuttle')
+			+transferHolbox--airport("$40 USD")
+			br
+			|  #{arrival} &gt; 5:30pm
+			br
+			| Ferry &gt; 6:00pm 
+
+
+		+c-timetable__departure('6:30','pm','Airport Shuttle')
+			+transferHolbox--airport("$40 USD")
+			br
+			|  #{arrival} &gt; 8:30pm
+			br
+			| Ferry &gt; 8:30pm 
+
+
+
+		
+		+transfer--upsell
+
+
+
+
+
+
+h3#playa-chiquila.c-linetitle
+	span 
+		if (language=="en")
+			| From Playa del Carmen
+		else
+			| Desde Playa del Carmen
+
+if (language=="en")
+	p 
+		| For the shuttle it's recommended you contact them directly to reserve your place.  ADO buses depart from 
+		a(href="https://goo.gl/maps/12SqMcvogpJ2") Terminal Turistica Playa Del Carme, 5ta Avenida y Avenida Benito Juarez. 
+		| Shuttles leave from av 20 calle 2 norte in front of telecom.
+		
+
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para el colectivo se recomienda que los contactes directamente para reservar tu lugar. Los autobuses ADO salen desde la 
+		a(href="https://goo.gl/maps/12SqMcvogpJ2") Terminal Turistica Playa Del Carmen, 5ta Avenida y Avenida Benito Juarez. 
+		| Los colectivos salen desde la av 20 calle 2 norte en frente de telecom.
+
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		+c-timetable__departure('08:00','am','Playa Shuttle')
+			+playaShuttle--playa("$380 pesos")		
+			
+			br
+			|  #{arrival} &gt; 10:00pm
+			br
+			| Ferry &gt; 10:00pm 	
+		+c-timetable__departure('8:30','am','ADO')
+			| $270 pesos
+			br
+			| #{arrival} &gt; 10:30am 
+			br
+			| Ferry &gt; 11:00am 
+		+c-timetable__departure('8:40','am','ADO')
+			| $270 pesos
+			br
+			| #{arrival} &gt; 10:40am 
+			br
+			| Ferry &gt; 11:00am 
+
+		+c-timetable__departure('9:25','am','ADO')
+			| $270 pesos
+			br
+			| #{arrival} &gt; 11:30am 
+			br
+			| Ferry &gt; 12:00pm 
+
+		+c-timetable__departure('10:00','am','ADO')
+			| $270 pesos
+			br
+			| #{arrival} &gt; 12:00am 
+			br
+			| Ferry &gt; 12:30pm 
+
+		+c-timetable__departure('10:10','am','ADO')
+			| $270 pesos
+			br
+			| #{arrival} &gt; 12:10am 
+			br
+			| Ferry &gt; 12:30pm 
+
+
+		+c-timetable__departure('10:30','am','Playa Shuttle')
+			+playaShuttle--playa("$380 pesos")		
+			
+			br
+			|  #{arrival} &gt; 12:30pm
+			br
+			| Ferry &gt; 12:30pm
+
+		+c-timetable__departure('11:30','am','Playa Shuttle')
+			+playaShuttle--playa("$380 pesos")		
+			
+			br
+			|  #{arrival} &gt; 01:30pm
+			br
+			| Ferry &gt; 01:30pm 
+
+		+c-timetable__departure('06:00','pm','Playa Shuttle')
+			+playaShuttle--playa("$380 pesos")
+			br
+			|  #{arrival} &gt; 08:00pm
+			br
+			| Ferry &gt; 08:00pm 
+
+		+c-timetable__departure('06:30','pm','Playa Shuttle')
+			+playaShuttle--playa("$380 pesos")
+			br
+			|  #{arrival} &gt; 08:30pm
+			br
+			| Ferry &gt; 08:40pm 	
+		
+		+transfer--upsell
+
+br
+h3#tulum-chiquila.c-linetitle
+	span 
+		if (language=="en")
+			| From Tulúm
+		else
+			| Desde Tulúm
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		+c-timetable__departure('8:10','am','ADO')
+			| $344 pesos
+			br
+			| #{arrival} &gt; 11:30am 
+			br
+			| Ferry &gt; 12:00pm 
+br
+	
+h3#merida-chiquila.c-linetitle
+	span 
+		if (language=="en")
+			| From Merida
+		else
+			| Desde Merida
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+
+
+
+		+c-timetable__departure('6:45','am','ADO')
+			| $400 pesos
+			br
+			if (language=="en")
+				| Departs from Merida CAME bus station
+			else
+				| Saliendo de estaci&oacute;n CAME Merida
+			br
+			| #{arrival}  &gt; 11:55am
+			br
+			| Ferry &gt; 12:30am 
+
+		+c-timetable__departure('7:15','am','ADO')
+			| $415 pesos
+			br
+			if (language=="en")
+				| Departs from Merida Fiesta Americana
+			else
+				| Saliendo de estaci&oacute;n Merida Fiesta Americana
+			br
+			| #{arrival}  &gt; 11:55am
+			br
+			| Ferry &gt; 12:30am 
+
+		+c-timetable__departure('7:45','am','Noreste')
+			| $225 pesos
+			br
+			if (language=="en")
+				| Departs from #[a(href="https://goo.gl/maps/VqgdfmDDysG2") Terminal Noreste station] Calle 50 531A, Centro, 97000 Mérida, Yuc.
+			else
+				| Saliendo de #[a(href="https://goo.gl/maps/VqgdfmDDysG2") Terminal Noreste] Calle 50 531A, Centro, 97000 Mérida, Yuc.
+			br
+			| #{arrival}  &gt; 1:45pm
+			br
+			| Ferry &gt; 2:00pm 
+
+
+
+
+		+c-timetable__departure('10:15','am','Noreste')
+			| $225 pesos
+			br
+			if (language=="en")
+				| Departs from #[a(href="https://goo.gl/maps/VqgdfmDDysG2") Terminal Noreste station] Calle 50 531A, Centro, 97000 Mérida, Yuc.
+			else
+				| Saliendo de #[a(href="https://goo.gl/maps/VqgdfmDDysG2") Terminal Noreste] Calle 50 531A, Centro, 97000 Mérida, Yuc.
+			br
+			| #{arrival}  &gt; 6:15pm
+			br
+			| Ferry &gt; 6:30pm 				
+
+		+c-timetable__departure('10:30','pm','Oriente')
+			| $280 pesos
+			br
+			if (language=="en")
+				| Departs from Merida TAME bus station
+			else
+				| Saliendo de estaci&oacute;n TAME Merida
+			br
+			| #{arrival}  &gt; 4:30am
+			br
+			| Ferry &gt; 6:00am 
+		
+		+transfer--upsell
+br
+	
+
+
+h3#valladolid-chiquila.c-linetitle
+	span 
+		if (language=="en")
+			| From Valladolid
+		else
+			| Desde Valladolid
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+
+		+c-timetable__departure('2:06','am','Oriente')
+			| $182 pesos
+			br
+			| #{arrival}  &gt; 5:00am
+			br
+			| Ferry &gt; 6:00am 
+
+		+c-timetable__departure('9:55','am','ADO')
+			| $190 pesos
+			br
+			| #{arrival}  &gt; 11:55am
+			br
+			| Ferry &gt; 12:30am 
+	
+
+h3#tizimin-chiquila.c-linetitle
+	span 
+		if (language=="en")
+			| From Tizim&iacute;n
+		else
+			| Desde Tizim&iacute;n
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		+c-timetable__departure('2:06','am','Oriente')
+			| $125 pesos
+		+c-timetable__departure('4:30','am','Noreste')
+			| $100 pesos
+			
+		+c-timetable__departure('8:15','am','Noreste')
+			| $100 pesos
+		+c-timetable__departure('9:55','am','ADO')
+			| $190 pesos
+			
+		+c-timetable__departure('11:00','am','Noreste')
+			| $100 pesos
+
+		+c-timetable__departure('11:30','am','Oriente')
+			| $125 pesos
+	
+		+c-timetable__departure('1:00','pm','Noreste')
+			| $100 pesos
+
+		+c-timetable__departure('2:10','pm','Noreste')
+			| $100 pesos
+		+c-timetable__departure('3:00','pm','Noreste')
+			| $100 pesos
+		+c-timetable__departure('4:45','am','Oriente')
+			| $125 pesos
+		+transfer--upsell
+
+
+br
+h2#from-chiquila
+	if (language=="en")
+		| Buses &amp; shuttles from Chiquila
+	else
+		| Autobuses y collectivos desde Chiquil&aacute;
+
+h3#chiquila-cancun.c-linetitle
+	span 
+		if (language=="en")
+			| To Cancun
+		else
+			| A Canc&uacute;n
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr 
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		//- +c-timetable__departure('05:30','am','Oriente')
+		//- 	| $125 pesos
+		//- 	br
+		//- 	| 5:00am Ferry
+
+
+		+c-timetable__departure('05:30','am','Noreste')
+			| $125 pesos
+			br
+			| 5:00am Ferry
+
+		+c-timetable__departure('07:30','am','Cancun Shuttle')
+			+cancunShuttle--chiquila("$380 pesos")
+			br
+			| 6:30am Ferry 
+
+
+		+c-timetable__departure('07:45','am','Oriente')
+			| $160 pesos
+			br
+			| 5:00am Ferry			
+
+		+c-timetable__departure('1:15','pm','Cancun Shuttle')
+			+cancunShuttle--chiquila("$380 pesos")
+			br
+			| 12:30am Ferry  
+
+		+c-timetable__departure('01:45','pm','ADO primera')
+			| $336 pesos
+			br
+			if (language=="en")
+				| Direct to airport then Cancun central
+			else
+				| Directo a aeropuerto luego a central Canc&uacute;n
+			br
+			| 1:00pm Ferry			
+		+c-timetable__departure('02:15','pm','Mayab')
+			| $190 pesos
+			br
+			| 1:30pm Ferry		
+		+c-timetable__departure('03:15','pm','Mayab')
+			| $190 pesos
+			br
+			| 2:30pm Ferry								
+		+transfer--upsell
+br
+h3#chiquila-airport.c-linetitle
+	span 
+		if (language=="en")
+			| To Cancun International Airport
+		else
+			| A Aeropuerto Internacional Canc&uacute;n
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr 
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		+c-timetable__departure('7:30','am','Airport Shutttle')
+			+transferHolbox--chiquila("$350 pesos")
+			br
+			| 	7:00am Ferry
+
+
+
+		//- +c-timetable__departure('9:30','am','Holbox Adventure - Airport Shutttle')
+		//- 	+holboxAdventure
+		//- 	br
+		//- 	| 	9:00am Ferry
+			
+
+
+		+c-timetable__departure('10:30','am','Airport Shutttle')
+			+transferHolbox--chiquila("$350 pesos")
+			br
+			| 	10:00am Ferry
+
+		+c-timetable__departure('1:30','pm','Airport Shutttle')
+			+transferHolbox--chiquila("$350 pesos")
+			br
+			| 	1:00pm Ferry
+
+
+		+c-timetable__departure('01:45','pm','ADO primera')
+			| $336 pesos
+			br
+			if (language=="en")
+				| Direct to airport then Cancun central
+			else
+				| Directo a aeropuerto luego a central Canc&uacute;n
+			br
+			| 1:00pm Ferry			
+
+		//- +c-timetable__departure('3:30','pm','Holbox Adventure - Airport Shutttle')
+		//- 	+holboxAdventure
+		//- 	br
+		//- 	| 	3:00pm Ferry
+
+br
+h3#chiquila-playa.c-linetitle
+	span
+		if (language=="en")
+			| To Playa del Carmen
+		else
+			| A Playa del Carmen
+
+p 
+	if (language=="en")
+		| FOR TUL&Uacute;M you must take a connecting bus in Playa del Carmen. 
+	else
+		| PARA TUL&Uacute;M debes tomar un autobus de conexi&oacute;n desde Playa del Carmen. 
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		+c-timetable__departure('07:30','am','Playa Shuttle')
+			+playaShuttle--chiquila("$380 pesos")
+			br
+			| 07:00am Ferry 
+
+		+c-timetable__departure('08:00','am','Playa Shuttle')
+			+playaShuttle--chiquila("$380 pesos")
+			br
+			| 07:30am Ferry 
+
+		+c-timetable__departure('11:30','am','Playa Shuttle')
+			+playaShuttle--chiquila("$380 pesos")
+			br
+			| 11:00am Ferry  
+
+		+c-timetable__departure('02:30','pm','Playa Shuttle')
+			+playaShuttle--chiquila("$380 pesos")
+			br
+			| 2:00pm Ferry  
+
+		+c-timetable__departure('02:45','pm','ADO')
+			| $270 pesos
+			br
+			| 2:00pm Ferry
+
+		+c-timetable__departure('3:30','pm','Playa Shuttle')
+			+playaShuttle--chiquila("$380 pesos")
+			br
+			| 03:00pm Ferry  	
+		+c-timetable__departure('04:15','pm','ADO')
+			| $270 pesos
+			br
+			| 3:30pm Ferry
+		+c-timetable__departure('05:00','pm','ADO')
+			| $270 pesos
+			br
+			| 4:30pm Ferry
+		+c-timetable__departure('6:30','pm','Playa Shuttle')
+			+playaShuttle--chiquila("$380 pesos")
+			br
+			| 03:00pm Ferry  
+		+transfer--upsell
+
+br
+h3#chiquila-tulum.c-linetitle
+	span
+		if (language=="en")
+			| To Tulum
+		else
+			| A Tulum
+p 
+	if (language=="en")
+		| FOR TUL&Uacute;M  take the 
+		a(href="#chiquila-playa") Playa del Carmen bus 
+		| and take a connecting bus there. Buses leave Playa del Carmen aproximately every 25 minutes or you can take a collectivo.
+	else
+		| PARA TUL&Uacute;M debes tomar el 
+		a(href="#chiquila-playa") bus a Playa del Carmen 
+		| y tomar una conexi&oacute;n ahí. Salen de Playa del Carmen aproximadamente cada 25 minutos o puedes tomar el collectivo.	
+
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+
+br
+h3#chiquila-merida.c-linetitle
+	span 
+		if (language=="en")
+			| To Merida
+		else
+			| Hacia Merida
+
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+	
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		//- +c-timetable__departure('05:30','am','Oriente')
+		//- 	| $280 pesos
+		//- 	br
+		//- 	| 5:00am Ferry
+		+c-timetable__departure('05:30','am','Noreste')
+			| $225 pesos
+			br
+			| 5:00am Ferry
+		+c-timetable__departure('04:30','pm','Noreste')
+			| $252 pesos
+			br
+			| 4:00am Ferry
+		+c-timetable__departure('04:45','pm','ADO')
+			| $400 pesos
+			br
+			if (language=="en")
+				| Arrives Merida CAME bus station
+			else
+				| Llega a estaci&oacute;n CAME M&eacute;rida				
+			br
+			| 4:00pm Ferry	
+
+		+c-timetable__departure('04:45','pm','ADO')
+			| $415 pesos
+			br
+			if (language=="en")
+				| Arrives ADO Fiesta Americana Merida
+			else
+				| Llega a ADO Fiesta Americana M&eacute;rida				
+			br
+			| 4:00pm Ferry
+
+		+transfer--upsell
+
+
+br
+h3#chiquila-valladolid.c-linetitle
+	span 
+		if (language=="en")
+			| To Valladolid
+		else
+			| Hacia Valladolid
+
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+	
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Price &amp; Ferry Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		+c-timetable__departure('05:30','am','Oriente')
+			| $125 pesos
+			br
+			| 5:00am Ferry
+		+c-timetable__departure('06:45','am','Oriente')
+			| $125 pesos
+			br
+			| 5:00am Ferry
+		+c-timetable__departure('04:45','pm','ADO')
+			| $190 pesos
+			br
+			if (language=="en")
+				| Board bus to Merida CAME bus station
+			else
+				| Abordar autobus con destino estaci&oacute;n CAME M&eacute;rida				
+			br
+			| 4:00pm Ferry	
+		+c-timetable__departure('05:15','pm','Oriente')
+			| $125 pesos
+			br
+			| 4:30am Ferry
+		+transfer--upsell
+
+br
+h3#chiquila-tizimin.c-linetitle
+	span 
+		if (language=="en")
+			| To Tizim&iacute;n
+		else
+			| Hacia Tizim&iacute;n
+
+if (language=="en")
+	p 
+		| For connecting ferries 
+		+ferryButton
+else
+	p 
+		| Para conexiones con ferries 
+		+ferryButton
+
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| Service
+				else
+					| Servicio
+			td.c-timetable__connections
+				if (language=="en")
+					| Connections
+				else
+					| Precio y Conexiones Ferry
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		+c-timetable__departure('5:30','am','Oriente')
+			| $100 pesos	
+			br
+			| 5:00am Ferry	
+		+c-timetable__departure('7:30','am','Noreste')
+			| $100 pesos	
+			br
+			| 7:00am Ferry
+		+c-timetable__departure('11:00','am','Noreste')
+			| $100 pesos	
+			br
+			| 10:30pm Ferry		
+		+c-timetable__departure('1:30','pm','Noreste')
+			| $100 pesos	
+			br
+			| 1:00pm Ferry		
+		+c-timetable__departure('3:30','pm','Noreste')
+			| $100 pesos	
+			br
+			| 3:00am Ferry
+		+c-timetable__departure('18:00','pm','Noreste')
+			| $100 pesos	
+			br
+			| 5:30pm Ferry		
+		+transfer--upsell
+
+br

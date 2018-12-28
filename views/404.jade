@@ -1,0 +1,54 @@
+//- index.jade
+
+//-bof variables
+block metas
+	//- section page vars set these manually
+	- var bodyClasses 		= "error404"
+	- var language			= "en"//-either 'en' or 'es' 
+	- var theUrl			= "/404.html" 
+	- var locale			= "" 
+	- var thisPageId		= "BjLPd63PRQ66c8o02myuU" // the contentful page id
+	//- var page_events   	= contentful.todaysEvents
+	//- var places        	= contentful.businesses
+	//- var pages         	= contentful.pages
+	//- var foodId        	= "2uMGbEfB7uoYAQMkAS6IIu"
+	//- var thingsToDoId  	= "6KZiwvHEqsaSewQGUEYAig"
+	//- var toursId       	= "2I8IujX52EAy8uqauEkcm8"
+	//- var tab1_id 			= "todays-featured-events"
+	//- var tab2_id 			= "featured-food-and-drink"
+
+	//- Find the section page based on thisPageId
+	- var sectionPage = null
+	if contentful.sectionPages
+		each currentSectionPage in contentful.sectionPages
+			if currentSectionPage.sys.id == thisPageId
+				- sectionPage = currentSectionPage
+
+	include partials/_page__vars.jade
+
+	- var robots 			= "noindex"
+
+
+//- make sure you put the urls correctly
+extends _pages/_layout-section-page--404-bilingual.jade 
+
+//-the main copy that for this page
+block copy 
+	h1.c-header__title
+		span 404 ERROR
+	.c-main-content__copy
+		!= marked(sectionPage.copy_en)
+		
+		ul(class="c-button-group c-button-group--404")
+			li: a(href="/en/" class="c-button--grouped") HOME
+			li: a(href="/en/holbox-island-ferry-times.html" class="c-button--grouped") FERRY TIMES
+			li: a(href="/en/whats-on-in-holbox.html" class="c-button--grouped") EVENTS
+			li: a(href="/en/food-drink-in-holbox/" class="c-button--grouped") FOOD AND DRINK
+		lr
+		!= marked(sectionPage.copy_es)
+		a.c-mininav__button.c-mininav__button--language.language__spanish(href="#{locale}")
+		ul(class="c-button-group c-button-group--404")
+			li: a(href="/es/" class="c-button--grouped") INICIO
+			li: a(href="/es/horario-ferries-isla-holbox.html" class="c-button--grouped") HORARIOS DE FERRY
+			li: a(href="/es/es/que-hacer-en-holbox.html" class="c-button--grouped") EVENTOS
+			li: a(href="/es/comer-y-beber-en-holbox/" class="c-button--grouped") COMIDA Y BEBIDA

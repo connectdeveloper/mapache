@@ -1,0 +1,177 @@
+//- ASIDE EVENT
+//- displays other related events to non premium events
+
+//- var categoryId = "2uMGbEfB7uoYAQMkAS6IIu"
+//- var thePlaces = contentful.businesses
+
+- var todaysEvents		= contentful.todaysEvents
+- var tomorrowsEvents		= contentful.tomorrowsEvents
+- var futureEvents		= contentful.futureEvents
+- var fortnightEvents		= contentful.fortnightEvents
+
+
+//- set empty arrrays to hold the events
+- preRelatedToday	= []
+- preRelatedTomorrow = []
+- preRelatedFortnight = []
+
+
+//- pass the events to the array
+
+if event_type
+	//- loop throught each one in the array
+	- tempList = []
+	each theType in event_type
+		//- get the id number and map to var
+		- theTypeID = theType.sys.id
+		- currentEventID = ID
+		//- console.log("++++++++++++++++++++++++++++++++++                    start               :::::::::::::::::::::::::::::::::::")
+		//- console.log(event_name+"    has the sys ID  "+currentEventID+">>>>>>>>>>>>>>>>>>>>>")
+		
+		//- console.log("    !!!!!!!!!!!!!!!!! todaysEvents")
+		+event__aside-loop(todaysEvents,preRelatedToday)
+		
+		//- console.log("    !!!!!!!!!!!!!!!!! tomorrowsEvents")
+		+event__aside-loop(tomorrowsEvents,preRelatedTomorrow)
+
+		//- console.log("    !!!!!!!!!!!!!!!!! FutureEvents")
+		+event__aside-loop(fortnightEvents,preRelatedFortnight)
+
+		//- console.log("..........................................                    end               ....................................")
+
+
+//- Before we say there are events here lets check that at least one is true
+if preRelatedToday.length!==0 || preRelatedTomorrow.length!==0 || preRelatedFortnight.length!==0
+//- ok now lets add the main title for this block
+//-c-single__events
+.c-block.c-single__events
+	.c-block__column
+		h3.c-linetitle
+			span
+				if (language == "en")
+					| Other events like this<br>
+				else 
+					| Otros eventos como este
+
+
+
+//- now lets check if there are events in this array and if so put the title and run the loop
+if preRelatedToday.length!==0
+	//-the title
+	h5.c-linetitle
+		span 
+			if (language =="es")
+				| Hoy
+			else 
+				| Today
+	//- run the loop from the new array
+	each event in preRelatedToday
+		//- check if the event is a premium and display
+		if event.premium == true
+			+c-event--premium(
+				event.getStartTime(),
+				asset(event.getHeroImage(language)),
+				event.getLanguageUrl(language),
+				event.getName(language),
+				event.getLocation(language),
+				event.getExcerpt(language))
+		//-or check if it is not a premium or a common so then it muust be a basic/plain
+		if  event.premium==false && event.common==false
+			+c-event--plain(
+				event.getStartTime(),
+				event.getLanguageUrl(language),
+				event.getName(language),
+				event.getExcerpt(language)
+						)
+
+//- now lets check if there are events in this array and if so put the title and run the loop
+if preRelatedTomorrow.length!==0 
+	//-the title						 
+	h5.c-linetitle
+		span 
+			if (language =="es")
+				| Ma&ntilde;ana
+			else 
+				| Tomorrow
+	//- run the loop from the new array
+	each event in preRelatedTomorrow
+		//- check if the event is a premium and display
+		if event.premium == true
+			+c-event--premium(
+			 event.getStartTime(),
+			 asset(event.getHeroImage(language)),
+			 event.getLanguageUrl(language),
+			 event.getName(language),
+			 event.getLocation(language),
+			 event.getExcerpt(language))
+		//-or check if it is not a premium or a common so then it muust be a basic/plain
+		if event.premium==false && event.common==false
+			+c-event--plain(
+				event.getStartTime(),
+				event.getLanguageUrl(language),
+				event.getName(language),
+				event.getExcerpt(language)
+				)
+
+//- now lets check if there are events in this array and if so put the title and run the loop
+if preRelatedFortnight.length!==0						
+- var fecha = null
+	//- run the loop from the new array
+	each event in preRelatedFortnight
+			//-the title
+			//- check if we are already working on this date	
+			if fecha !== event.date
+				//- if not then start placing the title
+
+				h5.c-linetitle
+					span= dateFormat(event.date, language)
+				- fecha = event.date
+				//- check if the event is a premium and display
+				if event.premium == true
+					+c-event--premium(
+					 event.getStartTime(),
+					 asset(event.getHeroImage(language)),
+					 event.getLanguageUrl(language),
+					 event.getName(language),
+					 event.getLocation(language),
+					 event.getExcerpt(language))
+				//-or check if it is not a premium or a common so then it muust be a basic/plain
+				if event.premium==false && event.common==false
+					+c-event--plain(
+						event.getStartTime(),
+						event.getLanguageUrl(language),
+						event.getName(language),
+						event.getExcerpt(language)
+						)
+				//- if this event has the same date as the previous then just run the loop
+			else if fecha == event.date
+				//- check if the event is a premium and display
+				if event.premium == true
+					+c-event--premium(
+					 event.getStartTime(),
+					 asset(event.getHeroImage(language)),
+					 event.getLanguageUrl(language),
+					 event.getName(language),
+					 event.getLocation(language),
+					 event.getExcerpt(language))
+				//-or check if it is not a premium or a common so then it muust be a basic/plain
+				if event.premium==false && event.common==false
+					+c-event--plain(
+						event.getStartTime(),
+						event.getLanguageUrl(language),
+						event.getName(language),
+						event.getExcerpt(language)
+						)
+br 
+
+if (language == "en")
+	+c-button--section("/en/whats-on-in-holbox.html")
+		| See all events
+else 
+	+c-button--section("/es/que-hacer-en-holbox.html")
+		| Ve todos los eventos
+
+//- Empty the arrays 
+- preRelatedToday	= []
+- preRelatedTomorrow = []
+- preRelatedFortnight = []

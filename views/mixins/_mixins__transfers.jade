@@ -1,0 +1,1080 @@
+//- mixin late-transfers
+mixin c-pricetable__pets
+	tr.c-pricetable__row
+		td.prices--kids(colspan=3) 
+			if language == "en"
+				h4.c-linetitle 
+					span Pets
+				| Pets may be transported as long as they remain in their cage.
+			else
+				h4.c-linetitle 
+					span Mascotas
+				| Las m&aacute;scotas pueden viajar siempre y cuando se mantengan adentro de su jaula.
+	+c-pricetable__row--kids('Per cage','1ero','700 mxn' ,'38 usd')
+
+// prices chichen
+mixin prices--chichen
+	+c-pricetable__row('1-2'	,'3,420 mxn'	,'185 usd')
+	+c-pricetable__row('3'		,'4,070 mxn'	,'220 usd')
+	+c-pricetable__row('4'		,'4,990 mxn'	,'270 usd')
+	+c-pricetable__row('5'		,'5,270 mxn'	,'285 usd')
+	+c-pricetable__row('6'		,'5,550 mxn'	,'300 usd')
+	+c-pricetable__row('7'		,'6,200 mxn'	,'335 usd')
+	+c-pricetable__row('8'		,'6,660 mxn'	,'360 usd')
+	+c-pricetable__row('9'		,'7,210 mxn'	,'390 usd')
+	+c-pricetable__row('10'		,'7,860 mxn'	,'425 usd')
+	+c-pricetable__row('11'		,'8,320 mxn'	,'450 usd')
+	+c-pricetable__row('12'		,'8,880 mxn'	,'480 usd')
+	+c-pricetable__row('13'		,'9,430 mxn'	,'510 usd')
+	+c-pricetable__row('14'		,'9,990 mxn'	,'540 usd')
+	+c-pricetable__row('15'		,'10,450 mxn' 	,'565 usd')
+	+c-pricetable__row('16'		,'11,000 mxn' 	,'595 usd')
+
+	tr.c-pricetable__row
+		td.prices--kids(colspan=3) 
+			if language == "en"
+				h4.c-linetitle 
+					span Child prices
+				| Under 9 years old. §
+			else
+				h4.c-linetitle 
+					span Precios niños 
+				| Menores de 9 años de edad
+	if language == "en"
+		+c-pricetable__row--kids('1st','1ero','Free' ,'Free')
+	else
+		+c-pricetable__row--kids('1st','1ero','Gratis' ,'Gratis')
+
+	+c-pricetable__row--kids('2nd','2do','680 mxn' ,'36 usd')
+	+c-pricetable__row--kids('3rd','3ro','520 mxn' ,'28 usd')
+	+c-pricetable__row--kids('4th','4to','520 mxn' ,'28 usd')
+	+c-pricetable__row--kids('5th to 15th','5to a 15avo','430 mxn' ,'23 usd')
+
+
+// prices valladolid
+mixin prices--valladolid
+	+c-pricetable__row('1-2'	,'3,330 mxn'	,'180 usd')
+	+c-pricetable__row('3'		,'3,600 mxn'	,'195 usd')
+	+c-pricetable__row('4'		,'4,620 mxn'	,'250 usd')
+	+c-pricetable__row('5'		,'4,990 mxn'	,'270 usd')
+	+c-pricetable__row('6'		,'5,180 mxn'	,'280 usd')
+	+c-pricetable__row('7'		,'5,830 mxn'	,'315 usd')
+	+c-pricetable__row('8'		,'6,290 mxn'	,'340 usd')
+	+c-pricetable__row('9'		,'6,840 mxn'	,'370 usd')
+	+c-pricetable__row('10'		,'7,490 mxn'	,'405 usd')
+	+c-pricetable__row('11'		,'7,950 mxn'	,'430 usd')
+	+c-pricetable__row('12'		,'8,510 mxn'	,'460 usd')
+	+c-pricetable__row('13'		,'9,060 mxn'	,'490 usd')
+	+c-pricetable__row('14'		,'9,620 mxn'	,'520 usd')
+	+c-pricetable__row('15'		,'10,170 mxn' 	,'550 usd')
+	+c-pricetable__row('16'		,'10,700 mxn' 	,'580 usd')
+
+	tr.c-pricetable__row
+		td.prices--kids(colspan=3) 
+			if language == "en"
+				h4.c-linetitle 
+					span Child prices
+				| Under 9 years old. 
+			else
+				h4.c-linetitle 
+					span Precios niños 
+				| Menores de 9 años de edad
+	if language == "en"
+		+c-pricetable__row--kids('1st','1ero','Free' ,'Free')
+	else
+		+c-pricetable__row--kids('1st','1ero','Gratis' ,'Gratis')
+
+	+c-pricetable__row--kids('2nd','2do','600 mxn' ,'32 usd')
+	+c-pricetable__row--kids('3rd','3ro','500 mxn' ,'27 usd')
+	+c-pricetable__row--kids('4th','4to','500 mxn' ,'27 usd')
+	+c-pricetable__row--kids('5th to 15th','5to a 15avo','415 mxn' ,'22 usd')
+	+c-pricetable__pets
+
+// prices merida
+
+
+mixin prices--merida
+	+c-pricetable__row('1-2'	,'6,570 mxn'	,'355 usd')
+	+c-pricetable__row('3'		,'7,030 mxn'	,'380 usd')
+	+c-pricetable__row('4'		,'8,140 mxn'	,'440 usd')
+	+c-pricetable__row('5'		,'8,600 mxn'	,'465 usd')
+	+c-pricetable__row('6'		,'9,060 mxn'	,'490 usd')
+	+c-pricetable__row('7'		,'9,250 mxn'	,'500 usd')
+	+c-pricetable__row('8'		,'9,710 mxn'	,'525 usd')
+	+c-pricetable__row('9'		,'10,080 mxn'	,'545 usd')
+	+c-pricetable__row('10'		,'10,360 mxn'	,'560 usd')
+	+c-pricetable__row('11'		,'11,100 mxn'	,'600 usd')
+	+c-pricetable__row('12'		,'11,670 mxn'	,'631 usd')
+	+c-pricetable__row('13'		,'12,020 mxn'	,'650 usd')
+	+c-pricetable__row('14'		,'12,400 mxn'	,'670 usd')
+	+c-pricetable__row('15'		,'12,800 mxn'	,'695 usd')
+	+c-pricetable__row('16'		,'13,230 mxn'	,'720 usd')
+
+	tr.c-pricetable__row
+		td.prices--kids(colspan=3) 
+			if language == "en"
+				h4.c-linetitle 
+					span Child prices
+				| Under 9 years old. 
+			else
+				h4.c-linetitle 
+					span Precios niños 
+				| Menores de 9 años de edad
+	if language == "en"
+		+c-pricetable__row--kids('1st','1ero','Free' ,'Free')
+	else
+		+c-pricetable__row--kids('1st','1ero','Gratis' ,'Gratis')
+
+	+c-pricetable__row--kids('2nd','2do','1170 mxn' ,'63 usd')
+	+c-pricetable__row--kids('3rd','3ro','860 mxn' ,'46 usd')
+	+c-pricetable__row--kids('4th','4to','860 mxn' ,'46 usd')
+	+c-pricetable__row--kids('5th to 15th','5to a 15avo','660 mxn' ,'35 usd')
+	+c-pricetable__pets
+// prices riviera maya
+
+
+mixin prices--tulum-riviera-maya
+	+c-pricetable__row('1'		,'3,100 mxn' ,'160 usd')  
+	+c-pricetable__row('2'		,'3,250 mxn' ,'168 usd')  
+	+c-pricetable__row('3'		,'3,480 mxn' ,'180 usd')  
+	+c-pricetable__row('4'		,'3,850 mxn' ,'199 usd')  
+	+c-pricetable__row('5'		,'4,120 mxn' ,'213 usd')  
+	+c-pricetable__row('6'		,'4,360 mxn' ,'225 usd')  
+	+c-pricetable__row('7'		,'4,860 mxn' ,'251 usd')  
+	+c-pricetable__row('8'		,'5,100 mxn' ,'264 usd')  
+	+c-pricetable__row('9'		,'5,340 mxn' ,'276 usd')  
+	+c-pricetable__row('10'		,'5,590 mxn' ,'288 usd')  
+	+c-pricetable__row('11'		,'6,490 mxn' ,'335 usd')  
+	+c-pricetable__row('12'		,'6,720 mxn' ,'347 usd')  
+	+c-pricetable__row('13'		,'6,970 mxn' ,'360 usd')  
+	+c-pricetable__row('14'		,'7,200 mxn' ,'372 usd')  
+	+c-pricetable__row('15'		,'7,700 mxn' ,'398 usd')  
+	+c-pricetable__row('16'		,'8,070 mxn' ,'417 usd')  
+	tr.c-pricetable__row
+		td.prices--kids(colspan=3) 
+			if language == "en"
+				h4.c-linetitle 
+					span Child prices
+				| Under 9 years old. 
+			else
+				h4.c-linetitle 
+					span Precios niños 
+				| Menores de 9 años de edad
+	if language == "en"
+		+c-pricetable__row--kids('1st','1ero','Free' ,'Free')
+	else
+		+c-pricetable__row--kids('1st','1ero','Gratis' ,'Gratis')
+
+	+c-pricetable__row--kids('2nd','2do','740 mxn' ,'40 usd')
+	+c-pricetable__row--kids('3rd','3ro','520 mxn' ,'28 usd')
+	+c-pricetable__row--kids('4th','4to','520 mxn' ,'28 usd')
+	+c-pricetable__row--kids('5th to 15th','5to a 15avo','420 mxn' ,'23 usd')
+	+c-pricetable__pets
+// prices cancun -pdc pt morelos
+ 
+
+mixin prices--cancun-pdc-pmorelos
+	- console.log("|||||| this is now the pricelist for cancun pdc morelos")
+	+c-pricetable__row('1'		,'2,530 mxn' ,'130 usd')
+	+c-pricetable__row('2'		,'2,560 mxn' ,'132 usd')
+	+c-pricetable__row('3'		,'2,800 mxn' ,'145 usd')
+	+c-pricetable__row('4'		,'3,350 mxn' ,'173 usd')
+	+c-pricetable__row('5'		,'3,590 mxn' ,'185 usd')
+	+c-pricetable__row('6'		,'3,830 mxn' ,'198 usd')
+	+c-pricetable__row('7'		,'4,330 mxn' ,'236 usd')
+	+c-pricetable__row('8'		,'4,570 mxn' ,'251 usd')
+	+c-pricetable__row('9'		,'4,860 mxn' ,'261 usd')
+	+c-pricetable__row('10'		,'5,050 mxn' ,'308 usd')
+	+c-pricetable__row('11'		,'5,960 mxn' ,'308 usd')
+	+c-pricetable__row('12'		,'6,200 mxn' ,'350 usd')
+	+c-pricetable__row('13'		,'6,440 mxn' ,'333 usd')
+	+c-pricetable__row('14'		,'6,680 mxn' ,'345 usd')
+	+c-pricetable__row('15'		,'6,920 mxn' ,'358 usd')
+	+c-pricetable__row('16'		,'7,160 mxn' ,'370 usd')
+	tr.c-pricetable__row
+		td.prices--kids(colspan=3) 
+			if language == "en"
+				h4.c-linetitle 
+					span Child prices
+				| Under 9 years old. 
+			else
+				h4.c-linetitle 
+					span Precios niños 
+				| Menores de 9 años de edad
+	if language == "en"
+		+c-pricetable__row--kids('1st','1ero','Free' ,'Free')
+	else
+		+c-pricetable__row--kids('1st','1ero','Gratis' ,'Gratis')
+	+c-pricetable__row--kids('2nd','2do','550 mxn' ,'28 usd')
+	+c-pricetable__row--kids('3rd','3ro','460	mxn' ,'24 usd')
+	+c-pricetable__row--kids('4th','4to','460 mxn' ,'24 usd')
+	+c-pricetable__row--kids('5th to 15th','5to a 15avo','375 mxn' ,'19 usd')
+	+c-pricetable__pets
+
+
+
+// prices cancun -pdc pt morelos
+mixin prices--cancun-pdc-pmorelos-group
+	- console.log("|||||| this is now the pricelist for cancun pdc morelos ------groups")
+	+c-pricetable__row('1-2'	,'2,200 mxn' ,'114 usd')
+	+c-pricetable__row('3'		,'2,300 mxn' ,'119 usd')
+	+c-pricetable__row('4-6'	,'2,400 mxn' ,'124 usd')
+	+c-pricetable__row('7-10'	,'2,800 mxn' ,'145 usd')
+	+c-pricetable__row('11-15'	,'3,500 mxn' ,'181 usd')
+	+c-pricetable__pets
+
+br
+//- the quick links
+
+// prices cancun -pdc pt morelos
+mixin prices--riviera-maya-group
+	+c-pricetable__row('1-2'	,'2,700 mxn' ,'140 usd')   	  
+	+c-pricetable__row('3'		,'2,850 mxn' ,'147 usd')   	  
+	+c-pricetable__row('4-6'	,'2,960 mxn' ,'153 usd')   	  
+	+c-pricetable__row('7-10'	,'3,330 mxn' ,'172 usd')   	  
+	+c-pricetable__row('11-15'	,'3,980 mxn' ,'205 usd')   	 
+	+c-pricetable__pets
+
+
+br
+//- the quick links
+
+
+
+
+///// full combo
+
+mixin all-transfer-blocks
+	h2#to-chiquila
+		if (language=="en")
+			| Private Transfers to Chiquilá
+		else
+			| Traslados privado a Chiquilá 
+
+
+	//- cancun airport > holbox
+	+c-transfer-block--group(
+	"cancunint-chi-group",
+	"Cancun International Airport",
+	"Chiquilá",
+	"Aeropuerto Internacional Cancún",
+	"Chiquilá",
+	"113",
+	"2,200",
+	"23"
+	)
+		+prices--cancun-pdc-pmorelos-group
+
+	//- cancun  > holbox
+	+c-transfer-block--group(
+	"cancun-chi-group",
+	"Cancun",
+	"Chiquilá",
+	"Cancún",
+	"Chiquilá",
+	"113",
+	"2,200",
+	"24"
+	)
+		+prices--cancun-pdc-pmorelos-group
+
+
+	//- playa  > holbox
+	+c-transfer-block--group(
+	"playa-chi-group",
+	"Playa del Carmen",
+	"Chiquilá",
+	"Playa del Carmen",
+	"Chiquilá",
+	"113",
+	"2,200",
+	"28"
+	)
+		+prices--cancun-pdc-pmorelos-group
+
+	
+	//- puerto Morelos  > holbox
+	+c-transfer-block--group(
+	"ptmorelos-chi-group",
+	"Puerto Morelos",
+	"Chiquilá",
+	"Puerto Morelos",
+	"Chiquilá",
+	"113",
+	"2,200",
+	"26"
+	)
+		+prices--cancun-pdc-pmorelos-group
+
+
+	//- RIVIERA MAYA   > holbox
+	+c-transfer-block--group(
+	"rivieramaya-chi-group",
+	"Tulúm, Akumal, Puerto Ventura",
+	"Chiquilá",
+	"Tulúm, Akumal, Puerto Ventura",
+	"Chiquilá",
+	"140",
+	"2,700",
+	"31"
+	)
+		+prices--riviera-maya-group
+
+
+
+
+	h2#from-chiquila
+		if (language=="en")
+			| Private Transfers from Chiquilá
+		else
+			| Traslados a privados a Chiquilá 
+
+
+	//- cancun airport > holbox
+	+c-transfer-block--group(
+	"chi-cancunint-group",
+	"Chiquilá",
+	"Cancun International Airport",
+	"Chiquilá",
+	"Aeropuerto Internacional Cancún",
+	"113",
+	"2,400",
+	"22"
+	)
+		+prices--cancun-pdc-pmorelos-group
+
+	//- cancun  > holbox
+	+c-transfer-block--group(
+	"chi-cancun-group",
+	"Chiquilá",
+	"Cancun",
+	"Chiquilá",
+	"Cancún",
+	"113",
+	"2,400",
+	"25"
+	)
+		+prices--cancun-pdc-pmorelos-group
+
+
+	//- playa  > holbox
+	+c-transfer-block--group(
+	"chi-playa-group",
+	"Chiquilá",
+	"Playa del Carmen",
+	"Chiquilá",
+	"Playa del Carmen",
+	"113",
+	"2,400",
+	"29"
+	)
+		+prices--cancun-pdc-pmorelos-group
+
+	
+	//- puerto Morelos  > holbox
+	+c-transfer-block--group(
+	"chi-ptmorelos-group",
+	"Chiquilá",
+	"Puerto Morelos",
+	"Chiquilá",
+	"Puerto Morelos",
+	"113",
+	"2,400",
+	"27"
+	)
+		+prices--cancun-pdc-pmorelos-group
+
+
+	//- RIVIERA MAYA   > holbox
+	+c-transfer-block--group(
+	"trivieramaya-chi-group",
+	"Chiquilá",
+	"Tulúm, Akumal, Puerto Ventura",
+	"Chiquilá",
+	"Tulúm, Akumal, Puerto Ventura",
+	"140",
+	"2,700",
+	"30"
+	)
+		+prices--riviera-maya-group
+
+
+
+
+
+
+	br
+	h2#to-holbox
+		if (language=="en")
+			| Door-to-door Transfers to Holbox
+		else
+			| Traslados a puerta a puerta a Holbox
+
+	if (language=="en")
+		| Arriving to Holbox: 
+		br
+
+	else
+		| Llegando a Holbox: 
+		br
+			
+	a.c-button--subsection(href="#cancunint-hol")
+		if (language=="en")
+			| From Canc&uacute;n Int Airport
+		else
+			| Desde Aeropuerto Int Canc&uacute;n
+
+	a.c-button--subsection(href="#cancun-hol")
+		if (language=="en")
+			| From Canc&uacute;n 
+		else
+			| Desde Canc&uacute;n
+
+	a.c-button--subsection(href="#playa-hol")
+		if (language=="en")
+			| From Playa del Carmen
+		else
+			| Desde Playa del Carmen
+
+	a.c-button--subsection(href="#ptomorelos-hol")
+		if (language=="en")
+			| From Puerto Morelos
+		else
+			| Desde Puerto Morelos
+
+	a.c-button--subsection(href="#tulum-hol")
+		if (language=="en")
+			| From Tulum or Riviera Maya
+		else
+			| Desde Tulum o Riviera Maya
+
+	a.c-button--subsection(href="#merida-hol")
+		if (language=="en")
+			| From M&eacute;rida
+		else
+			| Desde M&eacute;rida
+
+	a.c-button--subsection(href="#valladolid-hol")
+		if (language=="en")
+			| From Valladolid
+		else
+			| Desde Valladolid
+
+	a.c-button--subsection(href="#chichen-hol")
+		if (language=="en")
+			| From Chichen Itza
+		else
+			| Desde Chichen Itza
+
+
+
+
+
+
+	//- cancun airport > holbox
+	+c-transfer-block--door-to-door(
+	"cancunint-hol",
+	"Cancun International Airport",
+	"Isla Holbox",
+	"Aeropuerto Internacional Cancún",
+	"Isla Holbox",
+	"130",
+	"2,530",
+	"17"
+
+	)
+		+prices--cancun-pdc-pmorelos
+
+	//- Cancun > Holbox
+	+c-transfer-block--door-to-door(
+	"cancun-hol",
+	"Cancun",
+	"Isla Holbox",
+	"Cancun",
+	"Isla Holbox",
+	"130",
+	"2,590",
+	"8")
+		+prices--cancun-pdc-pmorelos
+
+
+	//- playa > holbox
+	+c-transfer-block--door-to-door(
+	"playa-hol",
+	"Playa del Carmen",
+	"Isla Holbox",
+	"Playa delCarmen",
+	"Isla Holbox",
+	"130",
+	"2,530",
+	"10"
+	)
+		+prices--cancun-pdc-pmorelos
+
+	//- ptmorelos > holbox
+	+c-transfer-block--door-to-door(
+	"ptomorelos-hol",
+	"Puerto Morelos",
+	"Isla Holbox",
+	"Puerto Morelos",
+	"Isla Holbox",
+	"130",
+	"2,530",
+	"11"
+	)
+		+prices--cancun-pdc-pmorelos
+
+	//- tulum > holbox
+	+c-transfer-block--door-to-door(
+	"tulum-hol",
+	"Tulum",
+	"Isla Holbox",
+	"Tulum",
+	"Isla Holbox",
+	"160",
+	"3,100",
+	"20"
+	)
+		+prices--tulum-riviera-maya
+
+	//- merida > holbox
+	+c-transfer-block--door-to-door(
+	"merida-hol",
+	"Merida",
+	"Isla Holbox",
+	"Merida",
+	"Isla Holbox",
+	"180",
+	"6,570",
+	"15"
+	)
+		+prices--merida
+
+
+	//- chichen > holbox
+	+c-transfer-block--door-to-door(
+	"chichen-hol",
+	"Chichen Itza",
+	"Isla Holbox",
+	"Chichen Itza",
+	"Isla Holbox",
+	"185",
+	"3,420",
+	"13"
+	)
+		+prices--chichen
+
+	//- chichen > holbox
+	+c-transfer-block--door-to-door(
+	"valladolid-hol",
+	"Valladolid",
+	"Isla Holbox",
+	"Valladolid",
+	"Isla Holbox",
+	"180",
+	"3,330",
+	"13"
+	)
+		+prices--valladolid
+
+
+
+	br
+	h2#from-holbox
+		if (language=="en")
+			| Transfers from Holbox
+		else
+			| Traslados desde Holbox
+
+
+	br
+
+	if (language=="en")
+		| Leaving Holbox: 
+		br
+
+	else
+		| Saliendo desde Holbox: 
+		br
+			
+	a.c-button--subsection(href="#hol-cancunint")
+		if (language=="en")
+			| To Canc&uacute;n Int Airport
+		else
+			| A Aeropuerto Int Canc&uacute;n
+
+	a.c-button--subsection(href="#hol-cancun")
+		if (language=="en")
+			| To Canc&uacute;n 
+		else
+			| A Aeropuerto
+
+	a.c-button--subsection(href="#hol-playa")
+		if (language=="en")
+			| To Playa del Carmen
+		else
+			| A Playa del Carmen
+
+	a.c-button--subsection(href="#hol-ptomorelos")
+		if (language=="en")
+			| To Puerto Morelos
+		else
+			| A Tul&uacute;m
+
+	a.c-button--subsection(href="#hol-tulum")
+		if (language=="en")
+			| To Tulum or Riviera Maya
+		else
+			| A Tulum o Riviera Maya
+
+	a.c-button--subsection(href="#hol-merida")
+		if (language=="en")
+			| To M&eacute;rida
+		else
+			| A M&eacute;rida
+
+	a.c-button--subsection(href="#hol-valladolid")
+		if (language=="en")
+			| To Valladolid
+		else
+			| A Valladolid
+
+	a.c-button--subsection(href="#hol-chichen")
+		if (language=="en")
+			| To Chichen Itza
+		else
+			| A Chichen Itza
+
+
+
+	//- cancun airport > holbox
+	+c-transfer-block--door-to-door(
+	"hol-cancunint",
+	"Isla Holbox",
+	"Cancun International Airport",
+	"Isla Holbox",
+	"Aeropuerto Internacional Cancún",
+	"130",
+	"2,530",
+	"2"
+
+	)
+		+prices--cancun-pdc-pmorelos
+
+	//- Cancun > Holbox
+	+c-transfer-block--door-to-door(
+	"hol-cancun",
+	"Isla Holbox",
+	"Cancun",
+	"Isla Holbox",
+	"Cancun",
+	"130",
+	"2,530",
+	"7")
+		+prices--cancun-pdc-pmorelos
+
+
+	//- playa > holbox
+	+c-transfer-block--door-to-door(
+	"hol-playa",
+	"Isla Holbox",
+	"Playa del Carmen",
+	"Isla Holbox",
+	"Playa del Carmen",
+	"130",
+	"2,530",
+	"9"
+	)
+		+prices--cancun-pdc-pmorelos
+
+	//- ptmorelos > holbox
+	+c-transfer-block--door-to-door(
+	"hol-ptmorelos",
+	"Isla Holbox",
+	"Puerto Morelos",
+	"Isla Holbox",
+	"Puerto Morelos",
+	"130",
+	"2,530",
+	"6"
+	)
+		+prices--cancun-pdc-pmorelos
+
+	//- tulum > holbox
+	+c-transfer-block--door-to-door(
+	"hol-tulum",
+	"Isla Holbox",
+	"Tulum",
+	"Isla Holbox",
+	"Tulum",
+	"180",
+	"3,330",
+	"20"
+	)
+		+prices--tulum-riviera-maya
+
+	//- merida > holbox
+	+c-transfer-block--door-to-door(
+	"hol-merida",
+	"Isla Holbox",
+	"Merida",
+	"Isla Holbox",
+	"Merida",
+	"355",
+	"6,570",
+	"16"
+	)
+		+prices--merida
+
+
+	//- chichen > holbox
+	+c-transfer-block--door-to-door(
+	"hol-chichen",
+	"Isla Holbox",
+	"Chichen Itza",
+	"Isla Holbox",
+	"Chichen Itza",
+	"185",
+	"3,420",
+	"12"
+	)
+		+prices--chichen
+
+
+	//- chichen > holbox
+	+c-transfer-block--door-to-door(
+	"hol-valladolid",
+	"Isla Holbox",
+	"Valladolid",
+	"Isla Holbox",
+	"Valladolid",
+	"180",
+	"3,330",
+	"12"
+	)
+		+prices--valladolid
+
+
+
+mixin terms-combo-en
+	h3 Terms and conditions/Cancellation policy
+	ul 
+		li This service is organised and run by our selected operators.
+		li The Holboxe&ntilde;o operates the website which acts as an interface between the customer and the service supplier (in this case, #[strong Transfer Holbox]). 
+		li The Holboxe&ntilde;o website takes no responsibility for services provided by the supplier. All complaints or comments should be directed to #[a(href="mailto:booking@holboxeno.com") booking@holboxeno.com].
+		//- li If you do not receive a confirmation email within 24 hours of reserving, please contact us directly on #[a(href="mailto:booking@holboxeno.com") booking@holboxeno.com].
+		li #[h4 Cancelations:]
+			p All cancellations should be directed to The Holboxe&ntilde;o website via email.
+			p The cancellation policy is as follows:
+			ul
+				li Up to 48 hours before: full refund.
+				li 48-24 hours before: 50% refund
+				li 24-0 hours before: non-refundable.
+
+		li #[h4 For Airport Shuttles:]
+			ul
+				li Walk-ins for this service are not permitted. #[strong Please understand, you will not be allowed to board without an online reservation].
+				li For the shuttle to run, there needs to be a #[strong minimum of 2 people]. If you only reserve one place and there are no other passengers booked on the shuttle, you will be informed via email of the cancellation by 9pm Cancun time the day before the departure and reimbursed in full. In the case of cancellation, we can offer you to book a private transfer to/from Holbox.
+
+mixin terms-combo-es
+	h3 Términos y condiciones/póliza de cancelaciones
+	ul 
+		li Este servicio está operado por nuestros transportadores selectos.
+		li #[strong El Holboxe&ntilde;o] opera la p&aacute;gina web la cual actúa como un intermediario entre el cliente y el operador del servicio.
+		li La p&aacute;gina web #[strong El Holboxe&ntilde;o] no toma ninguna responsabilidad por servicios proveído por el operador. Todas las quejas o comentarios se deben dirigir  a #[a(href="mailto:info@transferholbox.com") info@transferholbox.com].
+		//- li Si no recibes un correo electrónico con tu reserva dentro de 24 horas, por favor, contáctanos directamente en #[a(href:mailto:reservas@holboxeno.com) reservas@holboxeno.com].
+
+		li #[h4 Cancelaciones:]
+			p Todas las cancelaciones se deben realizar directamente #[strong El Holboxe&ntilde;o] por correo electrónico. 
+			p La póliza de cancelaci&oacute;n es la siguiente:
+			ul
+				li Hasta 48 horas antes: una reembolsa completa .
+				li 48-24 horas antes: 50% reembolsado
+				li 24-0 horas antes: no reembolsable
+
+		li #[strong Para los Colectivos del Aeropuerto]
+			ul
+				li No se aceptan pasajeros sin reserva en línea. #[strong No se permitirá abordar el vehículo sin una reservación previa]. 
+				li El colectivo requiere un #[strongmínimo de dos personas para que salga]. Si solamente reservas un lugar y no hay más pasajeros en el colectivo, te contactarán directamente por correo electrónico para avisarte de la cancelaci&oacute;n a partir de las 9pm del día de la salida y se te reembolsará por el monto completo. En el caso de una cancelaci&oacute;n, te podremos ofrecer que reserves un traslado privado desde/hacia Holbox.
+
+//- booking policy
+
+mixin booking-policy-en
+	#c-booking-policy-en.c-booking-policy
+ 
+		h3 Booking Policy: the.holboxeno.com
+
+
+		p Our transfer services are managed and operated by our selected providers.
+
+
+		h3 In the case of cancellation or changes to your booking
+		p Please contact the Holboxeno directly at:
+		ol 
+			li #[a(href="mailto:booking@holboxeno.com") booking@holboxeno.com] 
+			li or WhatsApp on #[a(href="https://wa.me/521984114374") +52-1-984-116-43-74] with all alterations. 
+
+		p Please read the terms and conditions of your reservations below.
+
+		+terms-combo-en
+
+
+mixin booking-policy-es
+	#c-booking-policy-es.c-booking-policy
+
+		h3 Pol&iacute;tica de reserva de el.holboxeno.com
+
+		p Este servicio está operado por nuestra transportadores selectos.
+			
+
+		h3  En el caso de un cancelación o cambios a tu reserva
+		p Por favor, contacta al Holboxe&ntilde;o directamente:
+		ul 
+			li #[a(href="mailto:booking@holboxeno.com") booking@holboxeno.com] 
+			li o por WhatsApp #[a(href="https://wa.me/521984114374") +52-1-984-116-43-74] con cualquier cambio. 
+
+		p Por favor, lee los términos y condiciones de tu reserva abajo.
+
+		+terms-combo-es
+
+//- combine the booking policies
+mixin booking-policy--duo
+	if language == "en"
+		#c-booking-policy-en.c-booking-policy
+			h1 Booking Policy: the.holboxeno.com
+			p
+				| Our transfer services are managed and operated by our selected providers.
+			hr
+			hr
+			h1
+				| PICK UP LOCATIONS IN CHIQUILA
+				br
+			h4 PRIVATE TRANSFERS AND DOOR TO DOOR SERVICES
+			p
+				| A representative will greet you at the ferry dock with a sign bearing your name and assist you to the vehicle.
+
+			h4 CANCUN AIRPORT SHUTTLE
+			p
+				| A 3 minute walk. Exit the port and turn right. By the taxi rank to the right of the port. The GREEN DOT  on this 
+				a(href='https://www.google.com/maps/d/viewer?mid=1T0FvqzEZlGuSmYhjCP4zpvAON_E-f2CM&hl=en&usp=sharing') map
+				| .
+			h4 CANCUN CENTER AND PLAYA CENTER SHUTTLE
+			p
+				| A 3 minute walk. Exit the port, cross the road and go along the roundabout. Across the street from the police station. The YELLOW and ORANGE DOTS on this 
+				a(href='https://www.google.com/maps/d/viewer?mid=1T0FvqzEZlGuSmYhjCP4zpvAON_E-f2CM&hl=en&usp=sharing') map.
+			hr
+			h2 PICK UP LOCATION AT THE AIRPORT
+			p Please bear in mind that because of Mexican Federal Laws the transfer must provide a manifest of the quantity of people being picked up. Only the number of people on your reservation will be allowed to board. #[strong Under no circumstance will additional passengers be allowed to board]. The fine is $2000 USD.
+
+			h4 PRIVATE TRANSFERS AND DOOR TO DOOR SERVICES
+			p
+				| The operator will pick you up at your arrival terminal with a sign bearing your name.
+			h4 SHARED SHUTTLE SERVICE
+			p
+				| The pick up point for the shuttle is the 
+				strong Guacamole Restaurant
+				| 	in TERMINAL 2. You can use the airport's free internal bus to change
+				| terminals. Please keep in mind that the shuttle will only wait 15
+				| minutes past the scheduled departure time.
+			hr
+			h2 PICK UP LOCATION CANCUN CENTER - SHUTTLE 
+			p
+				| Pick up from  	#[a(href="https://www.google.com/maps/place/21%C2%B009'51.1%22N+86%C2%B049'31.5%22W/@21.164192,-86.8276127,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d21.164192!4d-86.825424") Soriana supermarket taxi rank]
+				|  in Central Cancun. A two minute walk from the ADO.
+			h2 PICK UP LOCATION PLAYA CENTER - SHUTTLE 
+			p Pick up from #[a(href="https://www.google.com.mx/maps/place/Paradero/@20.6248128,-87.0771281,20z/data=!4m5!3m4!1s0x0:0xaeb158d6d2193b43!8m2!3d20.6249862!4d-87.0770728") av 20 calle 2 norte] in front of telecom.
+			hr
+
+			h2 Terms and conditions/Cancellation policy
+			ul
+				li
+					| This service is organised and run by our selected operators:
+					ul
+						li Transfer Holbox for Airport shuttles and transfers
+						li Sindicato de Taxis Chiquilá for shuttles to and from Cancún
+						li Playa Shuttle for shuttles to and from Playa del Carmen 	li
+					| The Holboxeño operates the website which acts as an interface between the customer and the service supplier.
+				li
+					| The Holboxeño website takes no responsibility for services
+					| provided by the supplier. All complaints or comments should be directed
+					| to booking@holboxeno.com.
+
+			h2 Late arrivals, no-shows or last minute modifications
+			ul 
+				li #[h4 For private transfers and door to door services.]
+					ul
+						li #[h5 From the airport]	
+							ul
+								li Delayed flight: The transfer service will wait for you at no additional cost. 
+								li Canceled flight: The service is considered a no-show. A later service can be reprogammed with a cost of 90% of the original price. You will be required to show proof from the airline that the flight was canceled.
+								li Missed flight: The service is considered a no-show. A later service can be reprogammed with a cost of 100% of the original price.
+						li #[h5 Other pickup points]
+							ul
+								li In case of last minute cancelation: it is considered a no-show and there will be no refund.
+								li Missed ferry from Holbox: Yo will have to hire a private boat service at your own cost reach Chiquilá at the appointed time. ast 15 minutes the service is considered a no-show. A later service can be reprogammed with a cost of 100% of the original price.
+								li Late arrivals: Past 15 minutes the service is considered a no-show. A later service can be reprogammed with a cost of 100% of the original price.
+								li No-show: there will be no refund
+				li #[h4 For the Airport Shuttle]
+					ul
+						li The service will wait 15 minutes past the scheduled time. If you miss the service it is considered a no-show and there will be no refund.
+						li Canceled flight: the service it is considered a no-show and there will be no refund.
+						li Missed flight: the service it is considered a no-show and there will be no refund.
+
+				li #[h6 Collectivos Cancún Centro y Playa del Carmen Centro]
+					ul 
+						li  The service will wait 15 minutes past the scheduled time. If you miss the service it is considered a no-show and there will be no refund.
+						li No-Show: no refund.
+						li If you miss the ferry you may board the next scheduled service on the same day with a 50%. Subject to availability.
+
+			h2 Cancelations: 
+				| The cancellation policy is as follows:
+			ul
+				li
+					| AIRPORT SHUTTLE, PRIVATE TRANSFERS and DOOR TO DOOR
+					ul
+						li Up to 48 hours before: full refund.
+						li 48-24 hours before: 50% refund
+						li 24-0 hours before: non-refundable.
+				li
+					| CANCUN SHUTTLE &amp; PLAYA SHUTTLE
+					ul
+						li Up to 4 hours before: full refund.
+						li
+							| If you miss your ferry you can board the next shuttle service for 50% off the cost. This must be on the same day.
+			h3 For the shared Shuttles:
+			ul
+				li  Walk-ins for this service are not permitted. Please understand, you will not be allowed to board without an online reservation.
+
+				li For the AIRPORT shuttle to run, there needs to be a minimum of 2 people. If you only reserve one place and there are no other
+				li passengers booked on the shuttle, you will be informed via email of the cancellation by 9pm Cancun time the day before the departure and reimbursed in full. In the case of cancellation, we can offer you to book a private transfer to/from Holbox.
+
+	else
+		#c-booking-policy-es.c-booking-policy
+			h1 Política de reserva de el.holboxeno.com
+			p
+				| Este servicio está operado por nuestra transportadores selecto.
+			hr
+			hr
+			h2
+			h2 PUNTOS DE SALIDA EN CHIQUILÁ
+			h4 TRASLADO PRIVADO Y PUERTA A PUERTA
+			p
+				| El chofer te recogerá en el ferry con una pizarra con tu nombre y te asistirá al vehículo.
+			h4
+				| COLECTIVO AEROPUERTO 
+				br
+			p
+				| A tres minutos a pie. Saliendo del puerto dobla a la derecha. Al lado de los taxis. El PUNTO VERDE de este 
+				a(href='https://www.google.com/maps/d/viewer?mid=1T0FvqzEZlGuSmYhjCP4zpvAON_E-f2CM&hl=en&usp=sharing') mapa
+
+			h4 COLECTIVO CANCUN CENTRO Y PLAYA CENTRO
+			p
+				| A tres minutos a pie. Saliendo del puerto cruza la calle y sigue por la rotonda. Del otro lado de la calle de la estacíon de policias. El punto 
+				| amarillo en este  
+				a(href='https://www.google.com/maps/d/viewer?mid=1T0FvqzEZlGuSmYhjCP4zpvAON_E-f2CM&hl=en&usp=sharing') mapa
+				| .
+			hr
+			h2 DONDE ENCONTRAR TU SERVICIO EN EL AEROPUERTO
+
+			p Por favor tener en mente de que por disposición de autoridares Federales cada traslado tiene que declarar cuantos pasajeros recogerá. Solo la cantidad de personas declaradas en su reserva serán permitidas abordar. Por favor acerciorarse de que la cantidad de pasajeros es correcta. #[strong bajo ningúna circunstancia se permitirán abordar a pasajeros adicionales]. La multa federal es de $2000 USD.
+
+			h3 TRASLADOS PRIVADOS Y PUERTA A PUERTA
+			p
+				| El chofer te recogerá en la terminal de la llegada de tu vuelo con una pizarra con tu nombre.
+			h3 PARA SERVICIO COLECTIVO
+			p
+				| El punto de reunión para el colectivo es el restaurante GUACAMOLE en
+				| la TERMINAL 2. Puedes tomar el autobus gratuito del aeropuerto que va de
+				| terminal a terminal. El colectivo solo esperará 15 minutos después de
+				| la hora programada de salida.
+			h2
+				| PUNTO DE PARTIDA CANCUN CENTRO - COLECTIVO
+				br
+			p
+				| Desde  
+				a(href="https://www.google.com/maps/place/21%C2%B009'51.1%22N+86%C2%B049'31.5%22W/@21.164192,-86.8276127,17z/data=!3m1!4b1!4m5!3m4!1s0x0:0x0!8m2!3d21.164192!4d-86.825424") estacionamiento de  taxi Soriana
+				|  en Cancún centro. Dos minutos a pie del ADO.
+			h2
+				| PUNTO DE PARTIDA PLAYA DEL CARMEN CENTRO - COLECTIVO
+				br
+			p
+				| Saliendo desde 
+				a(href='https://www.google.com.mx/maps/place/Paradero/@20.6248128,-87.0771281,20z/data=!4m5!3m4!1s0x0:0xaeb158d6d2193b43!8m2!3d20.6249862!4d-87.0770728') av 20 calle 2 norte
+				|  en frente de telecom.
+			hr
+			h3 EN EL CASO DE UNA CANCELACIÓN O CAMBIOS A TU RESERVA
+			p
+				| las cancelaciones se deben realizar directamente con El Holboxeño por correo electrónico:   
+				a(href='http://el.lan:5757/booking@holboxeno.com') booking@holboxeno.com.
+			p
+				| favor, lee los términos y condiciones de tu reserva abajo.
+
+			h2 Términos y condiciones/póliza de cancelaciones
+			ul
+				li
+					| Este servicio está operado por nuestra transportadora selecta, Transfer Holbox.
+					ul
+						li Transfer Holbox para collectivo al aeropuerto y traslados
+						li Sindicato de Taxis Chiquilá para collectivos hacia y desde Cancún
+						li Playa Shuttle para collectivos hacia y desde Playa del Carmen 	
+					li
+						| La página web El Holboxeño no toma ninguna responsabilidad por 
+						| servicios proveído por el operador. Todas las quejas o comentarios se 
+						| deben dirigir al Holboxeño: 
+						a(href='http://el.lan:5757/booking@holboxeno.com') booking@holboxeno.com
+						| .
+			h3 Retrasos, no-show o modificaciones de último momento.
+			ul
+				li #[h4 Para Traslados privados o servicios puerta a puerta.]
+					ul
+						li #[h6 Desde el aeropuerto]
+							ul
+								li	Traslados privados y puerta a puerta	
+									ul
+										li En caso de retraso de su vuelo: El traslado esperará al grupo sin costo. 
+										li En caso de cancelación de su vuelo: El traslado se considera no-show y se puede reprogramar un segundo traslado con el 90% del precio original. Deberá presentar pruebas de la aerolinea de la cancelación de vuelo.
+										li En caso de perdida de vuelo: El traslado se considera no-show y se puede reprogramar un segundo traslado con el 100% del precio original.
+				li #[h4 Collectivo Aeropuerto]
+					ul
+						li El collectivo espera 15 despues de la salida programada. Si llegas retrasado se considera como no-show y no hay reembolso.
+						li li En caso de cancelación de su vuelo: El traslado se considera no-show y no hay reembolso.
+						li En caso de perdida de vuelo: El traslado se considera no-show y no hay reembolso.
+
+				li #[h6 Collectivos Cancún Centro y Playa del Carmen Centro]
+					ul 
+						li Retrasos: El collectivo sale a la hora indicada, si llegas retrasado se considera como no-show y no se reembolsa.
+						li No-Show: No hay reembolso.
+						li Si pierdes el ferry puedes subirte al próximo servicio del mismo día con descuento del 50%. Sujeto a disponibilidad
+					
+
+
+
+			h2 Cancelaciones:
+			p
+				| La póliza de cancelación de Transfer Holbox es la siguiente:
+			ul
+				li
+					| PARA COLLECTIVO AEROPUERTO, TRASLADO PRIVADO Y PUERTA A PUERTA
+					ul
+						li Hasta 48 horas antes: una reembolsa completa .
+						li 48-24 horas antes: 50% reembolsado
+						li 24-0 horas antes: no reembolsable
+				li
+					| PARA LOS COLECTIVOS PLAYA Y CANCUN
+					ul
+						li Minimo 4 horas antes: rembolso total.
+							
+			h3 Para los COLLECTIVOS
+			ul
+				li
+					| No se aceptan pasajeros sin reserva en línea. No se permitirá abordar el vehículo sin una reservación previa
+				li
+					| El colectivo del aeropuerto requiere un mínimo de dos personas
+					| para que salga. Si solamente reservas un lugar y no hay más pasajeros en
+					| el colectivo, te contactarán directamente por correo electrónico para
+					| avisarte de la cancelación a partir de las 9pm del día de la salida y se
+					| te reembolsará por el monto completo. En el caso de una cancelación, te
+					| podremos ofrecer que reserves un traslado privado desde/hacia Holbox.
+
+
+

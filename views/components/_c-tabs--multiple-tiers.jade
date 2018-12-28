@@ -1,0 +1,117 @@
+//-bof tabs
+section.c-block.c-block--tabs.is-up
+	.c-block__column
+		//- .sticky.contain-to-grid
+		.tabs__wrapper&attributes({'class':tab_number})
+			ul.tabs.horizontal(role="navigation",data-tab,data-options="deep_linking:true; scroll_to_content:false;")
+				li.tab-title.active(role="presentational")
+					a(href="#"+tab1_id) 
+						block tab1
+				if tab2_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab2_id) 
+							block tab2
+				if tab3_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab3_id) 
+							block tab3
+				if tab4_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab4_id) 
+							block tab4		
+				if tab5_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab5_id) 
+							block tab5			
+				if tab6_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab6_id) 
+							block tab6			
+
+		.tabs-content
+			if tab1_id
+				.content.active&attributes({id:tab1_id})
+					block tab1Content
+			if tab2_id
+				.content&attributes({id:tab2_id})
+					block tab2Content
+			if tab3_id
+				.content&attributes({id:tab3_id})
+					block tab3Content
+			if tab4_id
+				.content&attributes({id:tab4_id})
+					block tab4Content
+			if tab5_id
+				.content&attributes({id:tab5_id})
+					block tab5Content
+			if tab6_id
+				.content&attributes({id:tab6_id})
+					block tab6Content
+
+		br
+		
+		- tab1_id = null
+		- tab2_id = null
+		- tab3_id = null
+		- tab4_id = null
+		- tab5_id = null
+		- tab6_id = null
+
+		.content
+			block tier2Content
+
+		.tabs__wrapper.tabs__wrapper--nth&attributes({'class':tab_number_2})
+			ul.tabs.horizontal(role="navigation",data-tab,data-options="deep_linking:true; scroll_to_content:false;")
+				li.tab-title.active(role="presentational")
+					a(href="#"+tab1b_id) 
+						block tab1b
+				if tab2b_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab2b_id) 
+							block tab2b
+				if tab3b_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab3b_id) 
+							block tab3b
+				if tab4b_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab4b_id) 
+							block tab4b		
+				if tab5b_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab5b_id) 
+							block tab5b			
+				if tab6b_id
+					li.tab-title(role="presentational")
+						a(href="#"+tab6b_id) 
+							block tab6b			
+
+		.tabs-content
+			if tab1b_id
+				.content.active&attributes({id:tab1b_id})
+					block tab1bContent
+			if tab2b_id
+				.content&attributes({id:tab2b_id})
+					block tab2bContent
+			if tab3b_id
+				.content&attributes({id:tab3b_id})
+					block tab3bContent
+			if tab4b_id
+				.content&attributes({id:tab4b_id})
+					block tab4bContent
+			if tab5b_id
+				.content&attributes({id:tab5b_id})
+					block tab5bContent
+			if tab6b_id
+				.content&attributes({id:tab6b_id})
+					block tab6bContent
+
+
+		- tab1b_id = null
+		- tab2b_id = null
+		- tab3b_id = null
+		- tab4b_id = null
+		- tab5b_id = null
+		- tab6b_id = null
+
+

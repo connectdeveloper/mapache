@@ -1,0 +1,97 @@
+//-bof variables
+block metas
+	//-meta and universal value
+	- var language			= "en"
+	- var id 			= 'e-01'//-the universal id for this object
+	- var title			= 'Que hacer en Holbox, eventos en la isla' //-the title should be less than 70 characters
+	- var description 	= 'Aprovecha tu tiempo en Holbox. Nuestra guía de eventos está al día para que no te pierdas de nada. Tenemos el pulso de Isla Holbox' //- keep to bellow 155 characters add call to action
+	- var og_title		= 'Im click bait' //-95 characters make this enticing to facebook users
+	- var og_image 		= "eventos-en-holbox"//-not sure what to pu here yet
+	- var og_url				= "/en/whats-on-in-holbox.html"//-the relative path of this page
+	- var og_description = "Aprovecha tu tiempo en Holbox. Nuestra guía de eventos está al día para que no te pierdas de nada. Tenemos el pulso de Isla Holbox. Podras ver eventos deportivos, promociones en restaurants hasta la hora perfecta para ir a ver el atardecer"//-you have 297 characters to work with
+	- var twitter_card	= 'summary' //-summary, photo or player
+	- var twitter_url	 = "que-hacer-en-holbox"//-relative path to root
+	- var twitter_title	= "Que hacer en Holbox. Desde la ma&ntilde hasta que cierra la disco"//-70 characters
+	- var twitter_description = "Aprovecha tu tiempo en Holbox. Nuestra guía de eventos está al día para que no te pierdas de nada. Tenemos el pulso de Isla Holbox" //-200 characters
+	- var twitter_image = "Que hacer en Holbox, eventos en la isla"//-must be bigger thatn 60x60
+	- var locale		= "/es/que-hacer-en-holbox.html"//-the absolute path to the alternate language version
+	- var hero_image		= "eventos-en-holbox"
+	- var hero_image_alt = "this is some alt text"
+	- var	gallery_images_test = [{url:'https://images.contentful.com/5pyzqupsur8u/1kjsIfBOmMEI6KGQ0AE6Gi/ad8547f52992af1d3e975886de7d594a/hero5.jpg'},{url:'https://images.contentful.com/5pyzqupsur8u/1kjsIfBOmMEI6KGQ0AE6Gi/ad8547f52992af1d3e975886de7d594a/hero5.jpg'}]
+	-var geolocation=''
+	- var listing_feature_title = 'Meet the chef'
+	- var listing_feature_image_src = 'https://images.contentful.com/5pyzqupsur8u/1kjsIfBOmMEI6KGQ0AE6Gi/ad8547f52992af1d3e975886de7d594a/hero5.jpg'
+	-var listing_feature_content__style = 'Retro pickled migas, synth +1 hashtag swag fap cray High Life 90&apos;s bicycle rights Tumblr.  Tousled hoodie four dollar toast tattooed hashtag wolf fixie Wes Anderson, organic master cleanse health goth pop-up.  Farm-to-table retro bicycle rights selvage, synth hoodie sriracha meh tofu Portland.	blockquote Tousled hoodie four dollar toast tattooed hashtag wolf fixie Wes Anderson, organic master cleanse health goth pop-up.  Farm-to-table'
+
+//- set up the meta tags
+
+//- make sure you put the urls correctly
+extends ../_pages/_layout-style-guide--blocks.jade
+
+//- set up the meta tags
+
+//-the page h1
+block h1 
+	| La Chilanguita
+
+//-quicklook
+
+block c-quicklook__line1
+	| Dinner for 2: 20-60 USD
+
+
+block c-quicklook__line2
+	| Mexican | Grill | Fish | Yucateco | Italian
+
+//-the main copy that for this page
+block copy
+	p‘The little Chilanga (the girl from the capital)’ is a great option if you want something tasty, cheap, fast, and more importantly, very typically Mexican. This modest and quaint little eatery is open both in the mornings and evenings, offering flavoursome dishes for those simpler days.
+
+	p Complete Mexican breakfasts are served from 8am and include classic choices, such as freshly-made chilaquiles, molletes (almost like a tasty, Mexican pizza with beans, cheese and salsa), and a range of dishes with eggs. Mexicans definitely know how to do breakfasts.
+
+	p From 4pm, you can pick from a number of different Mexican antojitos – translated literally as ‘little cravings’ – including tacos, quesadillas, sopes and more. What’s the difference between a sope and a taco, you may ask? It all comes down to how the home-made tortillas are prepared – soft or hard, fried or rolled; at La Chilanguita, you won’t be short of meat or vegetarian topping for these delicious snacks. Always ask about the specials, too. 
+
+	p Thirsty? This friendly local restaurant makes all its juices and natural ‘aguas’ – flavoured water – with fresh fruit as you wait. 
+
+	
+
+
+
+block recomendations
+	p You can’t come to Mexico without trying chilquiles with eggs and a tasty green or red salsa for breakfast – it’s a must-have. 
+	p In the afternoon, we recommend a classic quesadilla with chicken or rajas, a type of Mexican pepper, and a choice of one of the many homemade sauces you can add to these scrumptious delights. 
+	
+	p On those colder days, ask if they have pozole, a Mexican-style soup, as a special.
+
+//- single details
+//- amenities
+block c-single__amenities
+	| CREDIT CARDS ACCEPTED&ensp;|&ensp; CAPACITY: 60 | BAR
+//- hours
+block c-single__hours
+	| Breakfast 8-11, Dinner 6pm-11pm Sat:Breakfast 8-11, Dinner 6pm-12pm, Sun: Breakfast 8-11, Barbacue 12-3pm, Dinner 6pm-12pm
+
+//- contact info
+block c-single__contactinfo
+
+	//- load the mixins for each type of contact link
+	//- telephone
+	+link--telephone('tel:+529841088888')
+		| +53 343 535 53555
+	//- website
+	+link--website('url','awebsite.com')
+	//- facebook
+	+link--facebook ('http://facebook.com/elholboxeno')
+	//- twitter
+	+link--twitter ('http://twitter.com/lolmos')
+		@lolmos
+	//- the actual address
+	.c_contactinfo__block.c-single__address
+		| Calle Tiburón ballena<br>Lote 10
+
+
+//- featured content
+
+block listing_feature_content
+	p Odd Future disrupt freegan, cardigan fanny pack cold-pressed Vice beard farm-to-table forage skateboard.  Trust fund tattooed sustainable gluten-free craft beer readymade, Bushwick viral messenger bag letterpress hoodie paleo. Chia distillery polaroid, mumblecore Bushwick master cleanse sartorial cold-pressed art party umami tousled single-origin coffee lumbersexual.  Pitchfork fixie stumptown gastropub disrupt DIY McSweeney's shabby chic, auth pac
+	blockquote Chia distillery polaroid, mumblecore Bushwick master cleanse sartorial cold-pressed art party

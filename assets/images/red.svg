@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="21px" height="20px" viewBox="0 0 21 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>red</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="elements" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="Letter" sketch:type="MSArtboardGroup" transform="translate(-1916.000000, -1330.000000)">
+            <g id="Ferry-timeblock-plain" sketch:type="MSLayerGroup" transform="translate(1837.500000, 1320.726562)">
+                <path d="M1.98705502,0 L237.890519,0 L307,0 L307,40 L1.98705502,40 L1.98705502,0 Z" id="boundingbox" fill="#FFFFFF" sketch:type="MSShapeGroup"></path>
+                <g id="Oval-26-+-ME---" transform="translate(79.475728, 10.000000)">
+                    <ellipse id="Oval-26" stroke="#979797" fill="#FF0606" sketch:type="MSShapeGroup" cx="9.43851133" cy="9.5" rx="9.43851133" ry="9.5"></ellipse>
+                    <text id="HE---" sketch:type="MSTextLayer" font-family="DIN Alternate" font-size="11" font-weight="bold" line-spacing="16" letter-spacing="-1.10000014" fill="#FFFFFF">
+                        <tspan x="2.98058252" y="13">HE</tspan>
+                        <tspan x="14.0256994" y="13">   </tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

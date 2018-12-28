@@ -1,0 +1,35 @@
+
+$style__block : #06FA73;
+
+.styleguide__block {
+  background: $style__block;
+  font-family:monospace;
+
+}
+
+
+/* tabs  */
+
+
+
+
+
+
+
+/* adverts  */
+
+.c-block--advert {
+	 background: $medium;
+	 width: 100%;
+	 text-align: center;
+	display: block;
+	@extend %smallpadding-bottom;
+	@extend %smallpadding-leftright;
+
+}
+
+.c-advert__creative {
+	width: 100%;
+	height: auto;
+
+}

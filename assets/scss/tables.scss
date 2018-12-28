@@ -1,0 +1,138 @@
+// tables
+// .c-timetable__body
+// .c-timetable__departure
+// .c-timetable__time
+// .c-timetable__service
+
+// .period
+
+%global-table {
+	 // width:calc(100% - #{$pad});
+	 // width: 100%;
+	 // @extend %smallmargin-leftright;
+	 border:none;
+	 border-collapse: collapse;
+	 @media #{$medium-up} {
+	 	width: 100%;
+	 }
+
+	 td {
+	 	@extend %minipadding-topbottom;
+	 	//@extend %minipadding-//;
+	 }
+}
+
+%table-row {/* set the globalstyle for our rows */
+	border-top: solid 1px $dark;
+	border-left: solid $smallpad $light;
+	border-right: solid $smallpad $light;
+	padding: Smallpad;
+	// border-style: solid;
+	background-color: #ffffff;
+	border-collapse: collapse;
+	width:calc(100%-#{$pad})
+	}
+
+.c-timetable {
+	@extend %global-table;
+	}
+
+/* tr each row is a departure */
+.c-timetable__departure, .c-timetable__flight {
+	@extend %table-row;
+	}
+
+
+.c-timetable__header-row {
+	@extend %table-row;
+	border-top:none;
+	}
+
+.period {
+	font-size: 60%;
+}
+
+.c-timetable__departure--next,.is_next{
+	border-left: $smallpad $alert solid;
+	border-right: $smallpad $alert solid;
+	color: $alert;
+
+	& .c-timetable__time  {
+		padding-left: $minipad;
+	}
+
+}
+
+.c-timetable__time {
+	// border-top:solid 1px $dark;
+	.c-timetable__body & {		
+		font-size: rem-calc(18);
+		font-weight: 700;
+		}
+
+	width: 23%;
+}
+
+.c-timetable__service {
+	
+	font-size: rem-calc(15);
+
+	width: 22%;
+
+}
+
+.c-timetable__connections {
+	width: 55%;
+}
+
+
+.c-timetable__user {
+	width: 70%;
+}
+
+.c-timetable__price {
+	width: 30%;
+}
+
+.c-timetable__unit {
+	width: 30%;
+}
+.c-timetable__driver {
+	width: 30%;
+}
+
+.c-timetable__details {
+	width: 30%;
+}
+
+// transfers
+
+
+.c-pricetable {
+	@extend %global-table;
+}
+
+.c-pricetable--transfer-block {
+	width: 100%;
+	float: left;
+}
+
+.c-pricetable__row {
+	@extend %table-row;
+}
+
+.c-pricetable__pax{
+width:35%;
+text-align: center;
+}
+
+.c-pricetable__mxn {
+width:32.5%;
+}
+
+.c-pricetable__usd {
+width:32.5%;
+}
+	
+
+

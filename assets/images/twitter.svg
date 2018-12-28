@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
+    <!-- Generator: Sketch 3.3.2 (12043) - http://www.bohemiancoding.com/sketch -->
+    <title>twitter</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="listings-mobile-portrait" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" sketch:type="MSPage">
+        <g id="foodDrink-single-Premium" sketch:type="MSArtboardGroup" transform="translate(-140.000000, -684.000000)">
+            <g id="listing-amenetiesinfo" sketch:type="MSLayerGroup" transform="translate(1.000000, 580.000000)">
+                <g id="twitter" transform="translate(139.000000, 104.000000)" sketch:type="MSShapeGroup">
+                    <rect id="Rectangle-31" fill="#59ADEB" x="0" y="0" width="14" height="14" rx="3"></rect>
+                    <path d="M12.8695652,3.71213349 C12.4696602,3.8851493 12.0398639,4.00209708 11.5887769,4.05461423 C12.0491241,3.78544135 12.4027807,3.35923167 12.5692539,2.85132579 C12.1383495,3.10058281 11.6611176,3.28157526 11.1531501,3.37909607 C10.7463856,2.95638581 10.1668162,2.69230769 9.52540629,2.69230769 C8.08598037,2.69230769 7.02783347,4.00243159 7.35315534,5.36285975 C5.49978894,5.27218341 3.85658506,4.40625523 2.75672752,3.09044476 C2.17256754,4.06778854 2.4537252,5.34682929 3.44683938,5.99419764 C3.08133706,5.98292743 2.73738919,5.88507211 2.43678767,5.72211715 C2.41259498,6.72979788 3.15296539,7.67204446 4.22538518,7.88221596 C3.91153968,7.96550748 3.56777649,7.98457421 3.21836745,7.91944884 C3.50208421,8.78349866 4.32569122,9.4123149 5.30152491,9.42983777 C4.36397214,10.1464227 3.1831469,10.4664917 2,10.3305029 C2.98686154,10.9475858 4.15905973,11.3076923 5.41839911,11.3076923 C9.55864816,11.3076923 11.8977944,7.89701133 11.7568067,4.83799709 C12.1925654,4.53135976 12.5705994,4.14830111 12.8695652,3.71213349 L12.8695652,3.71213349 Z" id="twitter-icon" fill="#FFFFFF"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

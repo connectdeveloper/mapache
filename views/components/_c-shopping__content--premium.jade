@@ -1,0 +1,71 @@
+//- this file builds the content for single--premium pages
+//- single__content
+section.c-block.c-single__content
+	.c-block__column
+		
+		.c-single__quicklook
+			.c-quicklook__line1
+				if cost_low
+					- priceOf = {en:"From: ",es:"Desde: "};
+					if (language == "en")
+						span.c-label #{priceOf.en} 
+					else 
+						span.c-label #{priceOf.es} 
+					| #{cost_low}	
+
+			.c-quicklook__line2
+				if food_types
+					+related-list__loop(food_types, "What to expect", "Que encontrarás")
+
+		//- the copy
+		.c-main-content__copy
+			if copy
+				!= marked(copy)
+			
+		//-recomendations
+		if recomendation
+			.c-single__recommendations
+				h3.c-recomendations__title
+					if (language == "en")
+						| We recommend you try
+					else 
+						| Te recomendamos que pruebes
+				!= marked(recomendation)
+
+		//- single details
+		.c-single__details
+			.c-single__amenities
+				if capacity
+					if (language == "en")
+						span.c-label 
+							| CAPACITY: 
+						| #{capacity}
+						
+					else
+						span.c-label 
+							| CAPACIDAD: 
+						| #{capacity}
+						
+				br.show-for-small-only
+				//- +related-list__loop(amenities, "Amenities", "Amenidades")
+				if amenities
+					+business-unit__ammenities-loop(amenities)
+
+
+			if opening_time
+				.c-single__hours 
+					if (language == "en")
+						span.c-label Opening Times: 
+					else 
+						span.c-label Horario: 
+					| #{opening_time}
+			
+			+c-single__contactinfo
+					
+					
+ 
+			#map
+			include _c-map--listing.jade	
+			
+			//-feature box mixin
+			+c-single__featurebox

@@ -1,0 +1,28 @@
+//-bof sectionNav
+section.c-block.c-block--tabs.tabs--three.is-up 
+	.c-block__column
+		//- .sticky.contain-to-grid
+		ul.tabs.horizontal(role="navigation",data-tab,data-options="deep_linking:true; scroll_to_content:false;")
+			li.tab-title.active(role="presentational")
+				a(href="#"+tab1_id) 
+					block tab1
+			li.tab-title(role="presentational")
+				a(href="#"+tab2_id) 
+					block tab2
+			li.tab-title(role="presentational")
+				a(href="#"+tab3_id) 
+					block tab3
+		.tabs-content
+			.content.active&attributes({id:tab1_id})
+				block tab1Content
+		
+			.content&attributes({id:tab2_id})
+				block tab2Content
+			
+			.content&attributes({id:tab3_id})
+				block tab3Content
+
+
+- tab1_id = null
+- tab2_id = null
+- tab3_id = null

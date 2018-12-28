@@ -1,0 +1,80 @@
+//-bof variables
+block metas
+	//- section page vars set these manually
+	- var bodyClasses 		= "transportation"
+	- var language			= "en"//-either 'en' or 'es' 
+	- var theUrl			= "/en/getting-to-holbox-bus-times-transfers-car-rental-taxis-and-flights.html" 
+	- var locale			= "/es/como-llegar-a-holbox-horarios-autobuses-traslados-renta-auto-taxis-vuelos.html" 
+	- var thisPageId    	= "2VH1QGIsmIC6AAk4k0S86Y" // the contentful page id
+	- var pages         	= contentful.pages
+	- var places        	= contentful.businesses
+	- var tab1_id 			= "buses-shuttles"
+	- var tab2_id 			= "book-transfer"
+	// - var tab3_id 			= "other-transfer-companies"
+	- var tab3_id 			= "flights"
+	- var tab4_id 			= "taxis"
+	- var tab_number 		= "tabs--four"
+	
+	//- Find the section page based on thisPageId
+	- var sectionPage = null
+	if contentful.sectionPages
+		each currentSectionPage in contentful.sectionPages
+			if currentSectionPage.sys.id == thisPageId
+				- sectionPage = currentSectionPage
+
+	include ../partials/_page__vars.jade
+
+
+
+//- make sure you put the urls correctly
+extends ../_pages/_layout-section-page.jade 
+
+//- set up the meta tags
+
+//-the main copy that for this page
+block copy
+	h1.c-header__title  
+		span #{heading}
+	.c-main-content__copy
+		!= marked(copy)
+
+			
+//-name the tabs in the subnav
+block tab1
+	| Buses &amp; Shuttles
+
+block tab2
+	| Book your Transfer
+
+// block tab3
+// 	| Other transfer companies
+
+block tab3
+	| Flights
+
+block tab4
+	| Taxis Chiquil&aacute;
+
+
+//- insert the content in the tab content blocks
+
+//- tab1 content
+block tab1Content
+	include ../_tabs/_transportation__tabcontent--buses.jade
+
+//- tab2 content
+block tab2Content
+	include ../_tabs/_transportation__tabcontent--transfers.jade
+
+//- tab1content
+//- block tab3Content
+//- 	include ../_tabs/_transportation__tabcontent--transfers2.jade
+
+//- tab14 content
+block tab3Content
+	include ../_tabs/_transportation__tabcontent--flights.jade	
+
+//- tab5 content
+block tab4Content
+	include ../_tabs/_transportation__tabcontent--taxis.jade
+

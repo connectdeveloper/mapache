@@ -1,0 +1,365 @@
+//- this is the tab  content inside the tab "chiquila-holbox" in the getting to holbox page
+//- dependencies : getting-to-holbox.jade
+
+- var today = new Date();
+- var dd = today.getDate();
+- xp ="hxpress"
+- nh ='9hmnos'
+- updatedFerries = "19/12/18"
+
+if (language=="en")
+	p
+		span.small UPDATED #{updatedFerries}
+else
+	p
+		span.small ACTUALIZADO #{updatedFerries}
+
+h3.c-linetitle
+	span 
+		if (language=="en")
+			| Chiquil&aacute; to Holbox<br> Ferry Times
+		else 
+			| Chiquil&aacute; a Holbox<br> Horarios de Ferry
+
+a.c-button--subsection(href="#prices2")
+	if (language=="en")
+		| View ferry prices
+	else
+		| Ver precios de ferry
+br
+br
+
+//- set the table
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__time 
+				if (language=="en")
+					| Departure
+				else
+					| Salida
+			td.c-timetable__service 
+				if (language=="en")
+					| &nbsp;Service&nbsp;
+				else
+					| &nbsp;Servicio&nbsp;
+			td.c-timetable__connections
+				if (language=="en")
+					| Connections
+				else
+					| Conexiones
+	//- tfooter
+	//- 	tr
+	//- 		td(colspan=3) all departures subject to change depending on the weather.
+	tbody.c-timetable__body
+		+c-timetable__departure('06:00','am',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Mérida:
+			br
+			| 11:30pm Oriente 
+			br
+			| Valladolid:
+			br
+			| 3:06am Oriente 
+			br
+			+busButton
+		+c-timetable__departure('07:30','am',nh)
+		+c-timetable__departure('08:00','am',xp)
+		+c-timetable__departure('08:30','am',nh)
+		+c-timetable__departure('09:00','am',xp)
+		+c-timetable__departure('09:30','am',nh)
+		+c-timetable__departure('10:00','am',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			| Playa del Carmen:
+			br
+			| 8:00am Playa Shuttle
+			+busButton			
+		+c-timetable__departure('10:30','am',nh)
+		+c-timetable__departure('11:00','am',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Canc&uacute;n:
+			br
+			| 7:50am Mayab
+			br
+			| Playa del Carmen:
+			br
+			| 8:20am ADO &amp; 8:40am ADO
+			+busButton			
+		+c-timetable__departure('11:30','am',nh)
+
+		+c-timetable__departure('11:30','am',xp)
+
+		+c-timetable__departure('12:00','pm',nh)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Playa del Carmen:
+			br
+			| 9:25am ADO 
+			br
+			+busButton
+		+c-timetable__departure('12:30','pm',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Canc&uacute;n:
+		
+			br
+			| 10:00am Shuttle 
+			br
+			| Playa del Carmen:
+			br
+			| 10:00am &amp; 10:10am ADO 
+			br
+			| 10:30am Playa Shuttle
+			br
+			| Merida:
+			br
+			| 6:45am ADO 
+			br
+			| 7:15 ADO Fiesta Americana
+			br
+			| Valladolid:
+			br
+			| 9:55am ADO 
+			br
+			+busButton
+		+c-timetable__departure('01:00','pm',nh)
+			
+		+c-timetable__departure('01:30','pm',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Playa del Carmen:
+			br
+			| 11:30am Shuttle 
+			br
+			+busButton
+		+c-timetable__departure('02:00','pm',nh)
+
+		+c-timetable__departure('02:30','pm',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Canc&uacute;n:
+			br
+			| 10:30am ADO Primera
+			br
+			if (language=="en")
+				br
+				| Canc&uacute;n Int Airport:
+			else
+				br
+				| Aeropuerto Int Canc&uacute;n
+			br
+			| 12:00pm Transfer Holbox - Airport Shuttle
+			br
+			+busButton
+		+c-timetable__departure('03:30','pm',xp)
+		+c-timetable__departure('04:00','pm',nh)
+		+c-timetable__departure('04:30','pm',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Canc&uacute;n:
+			br
+			| 12:50pm Oriente 	
+			br
+			+busButton
+		+c-timetable__departure('05:00','pm',nh)
+			
+		+c-timetable__departure('05:30','pm',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			| Playa del Carmen:
+			br
+			| 3:30am Playa Shuttle
+			+busButton
+
+		+c-timetable__departure('06:00','pm',nh)
+			if (language=="en")
+				| Arriving from
+				br
+				| Canc&uacute;n Int Airport:
+			else
+				| Llegando de
+				br
+				| Aeropuerto Int Canc&uacute;n
+			br
+			| 3:30pm Transfer Holbox - Airport Shuttle
+			br
+			+busButton
+		+c-timetable__departure('06:30','pm',xp)
+		+c-timetable__departure('07:00','pm',nh)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Canc&uacute;n	
+			br
+			| 04:30pm Shuttle 
+
+			+busButton
+		+c-timetable__departure('07:30','pm',xp)
+		+c-timetable__departure('08:00','pm',nh)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			| Playa del Carmen:
+			br
+			| 6:00am Playa Shuttle
+			+busButton
+			//- if (language=="en")
+			//- 	| Arriving from
+			//- else
+			//- 	| Llegando de
+			//- br
+			//- | Playa del Carmen:
+			//- br
+			//- | 06:30pm Shuttle 
+			//- //- br
+			//- if (language=="en")
+			//- 	| Canc&uacute;n Int Airport:
+			//- else
+			//- 	| Aeropuerto Int Canc&uacute;n
+			//- br
+			//- | 6:30pm Transfer Holbox - Airport Shuttle
+			//- br
+		+c-timetable__departure('08:30','pm',xp)
+			if (language=="en")
+				| Arriving from
+			else
+				| Llegando de
+			br
+			| Playa del Carmen:
+			br
+			| 06:30pm Shuttle 
+			br
+			if (language=="en")
+				| Canc&uacute;n Int Airport:
+			else
+				| Aeropuerto Int Canc&uacute;n
+			br
+			| 6:30pm Transfer Holbox - Airport Shuttle
+			+busButton
+		+c-timetable__departure('09:30','pm',xp)
+		//- +c-timetable__departure('10:00','pm',nh)
+		//- 	if (language=="en")
+		//- 		em ONLY HIGH SEASON
+		//- 	else
+		//- 		em SOLO TEMPORADA ALTA
+
+br
+
+if (language=="en")
+	h4#prices1 Ferry Prices
+
+	p All prices are one-way 
+	p Tickets cannot be purchased in advance or reserved
+else
+	h4#prices1 Precios Ferries
+
+	p Todos los precios son solo la ida
+	p No hay venta con antelacíon ni reservas
+
+table.c-timetable(
+					role="grid",
+					summarry=""
+					)
+	thead.c-timetable__header
+		tr.c-timetable__header-row
+			td.c-timetable__user 
+				if (language=="en")
+					| Passenger type	
+				else
+					| Tipo de pasajero
+			td.c-timetable__prices
+				if (language=="en")
+					| Price 
+				else
+					| Precio
+
+		+c-timetable__prices('$150 pesos')
+			if (language=="en")
+					| Adults and Children over 120cm tall
+			else
+					| Adultos y niños más altos de 120cm
+
+		+c-timetable__prices('$100 pesos')
+			if (language=="en")
+					| Minors (up to 120cm tall)
+			else
+					| Menores (Hasta 120cm de altura)
+		+c-timetable__prices('$100 pesos')
+			if (language=="en")
+					| Elderly Tourists INAMAMP
+			else
+					| Turista Adulto Mayor INAMAMP
+		+c-timetable__prices('$80 pesos')
+			if (language=="en")
+					| Local Adult (with minicipal ID)
+			else
+					| Local Adulto (con credencial municipal)
+		+c-timetable__prices('$30 pesos')
+			if (language=="en")
+					| Local Minor
+			else
+					| Local Menor
+		//- +c-timetable__prices('$40 pesos')
+		//- 	if (language=="en")
+		//- 			| Local Elderly Adult(INAMAP)
+		//- 	else
+		//- 			| Local Adulto Mayor(INAMAP)
+		+c-timetable__prices('$30 pesos')
+			if (language=="en")
+					| Daily commuters:
+					br
+					| Students, Teachers &amp; labourers
+			else
+					| Viajes diarios:
+					br
+					| Estudiantes, Maestros y trabajadores
+		+c-timetable__prices('GRATIS/FREE')
+			if (language=="en")
+					| Infants: 0-2 year olds
+					
+			else
+					| Infantes: 0-2 años
+
+
+if (language=="en")
+	br
+	p All departure times are subject to change due to weather conditions
+
+else
+	br
+	p Todas las salidas sujetas a cambios por clima. 
+	

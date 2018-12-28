@@ -1,0 +1,620 @@
+/*header*/
+
+ body {
+ 	position: relative;
+ }
+
+
+ // set a few variables for the upcoming elements
+
+$c-main-content__button--height:rem-calc(30); /* declare the height for the buttons  */
+
+$c-main-content__button--width:rem-calc(120);
+
+$c-main-content__footer--open__height:$pad*7;
+
+//- header height variables
+$c-header__height--open: 50vh; /* the height when c-main--content is open */
+$c-header__height--open-medium: 20vh; /* the height when c-main--content is open */
+$c-header__height--open-large: 30vh; /* the height when c-main--content is open */
+
+$c-header__height--closed: 30vh;/* the height when c-main--content is closed */
+$c-header__height--closed-medium: 33vh;/* the height when c-main--content is closed */
+$c-header__height--closed-large: 50vh;/* the height when c-main--content is closed */
+
+
+$c-header__width: 100%;
+
+
+
+%image-blur { //set the image blur that we will ue on both instances of the hero image
+	-webkit-filter: blur(2px);
+    -moz-filter: blur(2px);
+    filter: blur(2px);
+}
+
+%image-blur--none { //remove the blur when it;s open
+	-webkit-filter: blur(0);
+    -moz-filter: blur(0);
+    filter: blur(0);
+}
+
+%animate-head{
+	transition: all .5s ease;}
+
+ .c-header {
+ 	text-align: center;
+ 	background: $moyen;
+
+ 	width: 100%;
+  // width: 100vw;
+ 	// @extend .row;
+ 	position: relative;
+ 	z-index: 0;
+ 	display: block;
+ 	overflow: hidden;
+ // 	@extend %animate-head;
+
+ 	&.c-header--heroimage {
+    height: $c-header__height--open;
+    width: $c-header__width;
+
+    @media #{$medium-up} {
+    height: $c-header__height--open-medium;
+    }
+    @media #{$large-up} {
+    height: $c-header__height--open-large;
+    }
+
+ 	}
+
+ 	&.c-header--slider {
+
+ 	}
+
+ 	&.is-half {
+    height: $c-header__height--closed;
+
+    @media #{$medium-up} {
+    height: $c-header__height--closed-medium;
+    }
+    @media #{$large-up} {
+    height: $c-header__height--closed-large;
+    }
+
+ 	}
+}
+
+ .c-logo {
+ 	position: absolute;
+ 	z-index: 10;
+	left:0;
+  right:0;
+  margin-left:auto;
+  margin-right:auto;
+  top:$smallpad;
+  height: 10vh;
+  width: 10vh;
+    @media #{$medium-up} {
+    top:$pad;
+    height: 14vh;
+    width: 14vh;
+    }
+    @media #{$large-up} {
+    top:$pad;
+    height: 19vh;
+    width: 19vh;
+    }
+
+ }
+
+ .c-logo__image {
+  height: 10vh;
+  width: auto;
+    @media #{$medium-up} {
+    top:$pad;
+    height: 14vh;
+    width: auto;
+    }
+    @media #{$large-up} {
+    top:$pad;
+    height: 19vh;
+    width: auto; 
+    }
+ }
+
+.c-header__heroimage {
+  max-width: none;
+  object-fit: cover;
+  object-position: 50% -50%;
+}
+
+header > .c-header__heroimage {
+ // 	position: relative;
+ // 	height: 85vh;
+
+
+
+ }
+
+
+// .c-header__heroimage {
+// 	@extend %image-blur;
+// 	& .is-half {
+// 		@extend %image-blur--none;
+// 	}
+// }
+	.liner1 {
+			// content:" ";
+			width: calc(50% - #{$c-main-content__button--width/2});
+			line-height: inherit;
+			border-top: 1px solid $highlight;
+			display:inline-block;
+			position: absolute;
+			height: 1px;
+			left:0;
+			bottom:0;
+			// top:50%;
+			z-index:10;
+		}
+
+	.liner2 {
+		// content:" ";
+		width: calc(50% - #{$c-main-content__button--width/2});
+		line-height: inherit;
+		border-top: 1px solid $highlight;
+		display:inline-block;
+		position: absolute;
+		height: 1px;
+		bottom:0;
+		right:0;
+		// left:calc(50% - #{rem-calc(70)/2});
+		z-index: 10;
+	}
+
+
+.c-header__title {
+ @extend .c-linetitle;
+ line-height: rem-calc(32);
+ // font-weight: 700;
+ font-size: rem-calc(30);
+
+ .error404 & {
+    
+      font-size: rem-calc(17);
+
+      @media #{$medium-up} {
+      font-size: rem-calc(24);
+      line-height: rem-calc(26);
+    }
+      &:before {
+        display: none;
+      }
+    }
+
+  @media #{$medium-up} {
+    font-size: rem-calc(35);
+  }
+
+  @media #{$large-up} {
+    font-size: rem-calc(44);
+  }
+
+  @extend %animate-head;
+ 	// background: yellow;
+
+ 	span {
+ 		background: $light;
+ 		@extend %animate-head;
+
+    .error404 & {
+      background: none;
+    }
+    
+    @media #{$small-only} {
+    max-width: 85%;
+
+    
+    }
+ 	}
+
+ 	&:before{
+ 	/* tweak the lines so they don't have the set margin */
+ 		left: 0;
+		right:0;
+ 	}
+
+ 	.is-closed & {
+ 		/* lets see if we can move this outside
+	     * needs to be white */
+		color: white;
+		position: absolute;
+		z-index: 25;
+		left:0;
+	  right:0;
+	  margin-left:auto;
+	  margin-right:auto;
+    @extend %text-shadow;
+
+    font-size: rem-calc(17);
+		line-height: rem-calc(18);
+    // place on top
+    top:calc(#{$c-header__height--closed} - #{$pad*4.5});
+
+    @media #{$medium-up} {
+      font-size: rem-calc(24);
+  		line-height: rem-calc(26);
+      top:calc(#{$c-header__height--closed-medium} - #{$pad*5});
+    }
+    @media #{$large-up} {
+      font-size: rem-calc(30);
+  		line-height: rem-calc(32);
+      top:calc(#{$c-header__height--closed-large} - #{$pad*5});
+    }
+
+		&::before {
+			content: none;
+		}
+
+
+		span {
+			background: none;
+			max-width:90%;
+		}
+	}
+}
+
+
+
+
+/* main copy */
+
+.c-main-content {
+padding: $pad*2;
+// padding-right: $pad*2;
+background: $lightless;
+@extend %animate-head;
+
+// margin-bottom: $pad*8;
+
+  &.is-open {
+    .c-header__title {
+      span {
+        background: $lightless;
+      }
+    }
+  }
+
+	&.is-closed{
+		height: 0;
+		// overflow: hidden;
+		padding: 0;
+    margin-bottom: 0;
+		// &::before {
+		// }
+		// &::after {
+		// 	top:-100%;
+		// }
+		// margin-top: calc(-(#{$c-header__height--closed}/2));
+
+	}
+
+}
+
+.c-main-content__copy {
+	@extend %animate-head;
+	.is-closed & {
+		@include visuallyhidden;
+	}
+
+}
+
+/* curtain buttons */
+
+$c-main-content__buttom--border: 2px solid $moyen;/* a quick global to style the buttons' borders */
+
+
+.c-main-content__button {
+  &:hover {
+    cursor: pointer;
+  }
+  
+	text-align: center;
+	border-left:$c-main-content__buttom--border;
+	border-right:$c-main-content__buttom--border;
+	color:white;
+	background: rgba($moyen,.3);
+	// padding: $pad;
+	width: $c-main-content__button--width;
+	height: $c-main-content__button--height;
+	display: inline-block;
+	 margin-left:auto;
+    margin-right:auto;
+    @extend %animate-head;
+
+}
+
+.c-main-content__button--top {
+	border-top:$c-main-content__buttom--border;
+	position: absolute;
+	// top:85vh;
+	margin-top:-#{$c-main-content__button--height};/* keep it flush to the header's bottom border */
+	z-index: 20;
+	left:0;
+    right:0;
+
+    &.is-closed {
+    	border-bottom:$c-main-content__buttom--border;
+    	margin-top:#{(-$c-main-content__button--height/2)}; /* when the content is closed it falls halfway down */
+    }
+}
+
+.c-main-content__button--bottom {
+	border-bottom:$c-main-content__buttom--border;
+	// background: red;
+	z-index: 200;
+	position: relative;
+	top:0;
+
+	 &.is-closed{
+
+	 	@include visuallyhidden; /* hide when gate is closed */
+	}
+
+}
+
+/* this block is the bottom bit that slides down when the content opens
+	a script in app.js get the hero image and clones it inside
+*/
+.c-main-content__footer {
+	text-align: center;
+	height:$c-main-content__footer--open__height;
+	background-color: $moyen;
+	background-position: center bottom;
+	width:100%;
+  width:100vw;
+	display: block;
+	overflow: hidden;
+	position: relative;
+	@extend %animate-head;
+
+	/* move the cloned image inside */
+	& .c-header__heroimage {
+		// height: 85vh;
+		// position: absolute;
+		// margin-left: auto;
+		// margin-right: auto;
+		// left:0;
+		// right:0;
+		// z-index: 15;
+    // object-fit: cover;
+    // object-position: 50% 50%;
+		}
+
+	&.is-open {
+    // height:calc(#{$c-header__height--closed}/2);
+
+    @media #{$medium-up} {
+      height:calc(#{$c-header__height--closed-large}/2.5);
+    }
+    @media #{$large-up} {
+      height:calc(#{$c-header__height--closed-large}/2.5);
+    }
+
+		& .c-header__heroimage {
+			/* move the image up so it goes flush with the top */
+			bottom: 0;
+
+
+
+
+		}
+	}
+
+	&.is-closed {
+		/* change the height of the header when it's closed */
+		height:calc(#{$c-header__height--closed});
+
+    @media #{$medium-up} {
+      height:calc(#{$c-header__height--closed-medium});
+    }
+    @media #{$large-up} {
+      height:calc(#{$c-header__height--closed-large});
+    }
+
+		/* hide the rest of the image */
+		overflow: hidden;
+		// margin-top:#{(-$c-main-content__button--height)/2};
+
+		& .c-header__heroimage {
+			margin-top: 0;
+
+		}
+	}
+}
+
+//an equal sized image frame to be able to match both blocks
+.c-hero-image__frame {
+  position: absolute;
+  // bottom: 100%;
+  width: 100%;
+  // width: 100vw;
+  display: block;
+  // background: red;
+  z-index: 2;
+
+  &.compat-object-fit {
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: center center;
+      & .c-header__heroimage{ // hide image if object fit is not supported - opacity to 0 for the link area
+        opacity: 0;
+      }
+    }
+
+
+    height: calc(#{$c-header__height--closed} * 2);
+    margin-top: 0;
+    top: 0;
+
+
+    @media #{$medium-up} {
+      height: calc(#{$c-header__height--closed-medium} * 2);
+      margin-top: 0;
+      top: 0;
+    }
+    @media #{$large-up} {
+      height: calc(#{$c-header__height--closed-large} * 2);
+      margin-top: 0;
+      top: 0;
+    }
+
+  .c-main-content__footer &{
+    height: calc(#{$c-header__height--closed} * 2);
+    margin-top: -$c-header__height--closed;
+    // top: -$c-header__height--closed;
+
+    //
+    @media #{$medium-up} {
+      height: calc(#{$c-header__height--closed-medium} * 2);
+      margin-top: -$c-header__height--closed-medium;
+      // top: -$c-header__height--closed-medium;
+    }
+    @media #{$large-up} {
+      height: calc(#{$c-header__height--closed-large} * 2);
+      margin-top: -$c-header__height--closed-large;
+      // top: -$c-header__height--closed-large;
+    }
+
+  }
+
+
+
+}
+
+// extra bits to style the header with slider all other styles in  slick-theme.scss
+
+
+%header__slider--height {
+  @media #{$small-only} {
+  max-height: 55vh;
+  }
+  @media #{$medium-up} {
+  max-height: 35vh;
+  }
+  @media #{$large-up} {
+  max-height: 55vh;
+  }
+
+}
+
+.c-header.c-header--slider,
+.slick-trac,
+.slick-slide,
+.slick-slide img,
+.slide--basic-plus,
+.slide--basic-plus img {
+  @extend %header__slider--height;
+}
+
+
+.c-block--column.c-slider {
+  @extend %header__slider--height;
+}
+
+.slick-slide img{
+   @media #{$small-only} {
+    // height: 100%;
+    // width: auto;
+  // object-fit: cover;
+  // object-position: 50% 50%;
+  }
+}
+
+
+// event
+.c-header--event {
+  @media #{$small-only} {
+    height: 75vh;
+  }
+  @media #{$medium-up} {
+    height: 65vh;
+  }
+  @media #{$large-up} {
+    height: 70vh;
+  }
+ 
+
+  & .c-header__framer{ 
+    @media #{$small-only} {
+      height: 75vh;
+    }
+    @media #{$medium-up} {
+      height: 65vh;
+    }
+    @media #{$large-up} {
+      height: 70 vh;
+    }
+
+      &.compat-object-fit {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        
+        & .c-header__heroimage.c-header__heroimage--event{ // hide image if object fit is not supported - opacity to 0 for the link area
+        opacity: 0;
+      }
+    }
+
+    .c-header__heroimage.c-header__heroimage--event{
+
+    }
+  }
+}
+
+// page
+// find details in page.scss
+
+
+// 404
+
+.c-header--404 {
+  //background: none;
+
+  @media #{$small-only} {
+  min-height: 12vh;
+  }
+  @media #{$medium-up} {
+  min-height: 16vh;
+  }
+  @media #{$large-up} {
+  min-height: 19vh;
+  }
+} 
+
+
+// .c-main-content--404 {
+//   position: relative;
+ 
+//   background: none;
+//   p{
+//      font-size: rem-calc(10);
+
+//     @media #{$medium-up} {
+//       font-size: rem-calc(16);
+//     }
+//     color: $lightless;  
+//   }
+
+
+
+ //  @media #{$small-only} {
+ //  margin-top: -80%;
+ //  }
+ //  @media #{$medium-up} {
+ // margin-top: -30vh;
+ //  }
+ //  @media #{$large-up} {
+ //  margin-top: -40vh;
+ //  }
+// }

@@ -1,0 +1,125 @@
+.c-footer {
+	width: 100%;
+	// width: 100vw;
+	background: $dark;
+
+	display: hiden;
+	min-height: 20vh;
+	color: $light;
+
+	& .c-block__column {
+		background: $dark;
+		margin-top: $pad;
+		min-height: $pad*8;
+		padding-bottom: $pad*8;
+	}
+
+	.c-logo {
+
+	}
+
+	h4 {
+		color: $light;
+	}
+}
+
+.c-logo--footer {
+	position: relative;
+	float: left;
+	width:  calc(30%-$smallpad);
+	top:$pad*2.2;
+	margin-right: $smallpad;
+	@media #{$medium-up}{
+			width: 29%;
+			}
+
+	@media #{$large-up}{
+			width:29%;
+			}
+
+	& .c-logo__image {
+		padding-left: $smallpad;
+
+		@media #{$medium-up}{
+			
+			}
+
+		@media #{$large-up}{
+			
+			}
+	}
+}
+
+.c-colophon {
+		float: left;
+		color: $light;
+		width: 67%;
+
+
+		@media #{$medium-up}{
+			width: 60%;
+			}
+
+		@media #{$large-up}{
+			width: 60%;
+			}
+}
+
+
+.c-footer__nav {
+	@extend %smallpadding-leftright;
+	font-size: rem-calc(12); 
+	@include inline-list;
+	margin-left: 0;
+
+
+	li {
+
+		&:nth-child(2), &:nth-child(3){
+			margin-left: 0;
+		}
+		
+		width: 30%;
+
+		@media #{$medium-up}{
+			width: 29%;
+			}
+
+		@media #{$large-up}{
+			width: 29%;
+			}
+	}
+
+}
+
+#c-footer--backtotop{
+	position: relative;
+	float: right;
+	margin-top:-$pad;
+	padding: $smallpad;
+
+	//height: $pad;
+	&:hover {
+		background: $bright;
+	}
+	@media #{$medium-up}{
+		margin-right: calc(#{-$pad} + 1px);
+	}
+
+	// background: red;
+}
+
+#c-footer-back{
+	position: fixed;
+	top: $minipad;
+	z-index: 60;
+	padding: $minipad;
+	background: rgba($moyen,0.55);
+	height: $pad*3.2;
+	@include border($smallpad);
+	&:hover {
+		background: $moyen;
+	}
+
+}
+

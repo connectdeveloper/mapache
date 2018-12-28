@@ -1,0 +1,153 @@
+//- index.jade
+
+//-bof variables
+block metas
+	include ../_dates.jade
+	//- section page vars set these manually
+	- var bodyClasses 		= "home"
+	- var language			= "en"//-either 'en' or 'es' 
+	- var theUrl			= "/en/" 
+	- var locale			= "/es/" 
+	- var thisPageId    	= "5D8DGDHks0GyWCEmGeWU06" // the contentful page id
+
+	- var page_events   	= contentful.todaysEvents
+	- var places        	= contentful.businesses
+	- var pages         	= contentful.pages
+	- var foodId        	= "2uMGbEfB7uoYAQMkAS6IIu"
+	- var beautyId			= "4KhysAQdUAggkq0sKAwsSc"
+	- var accomodationsId   = "5JaTcdyMKs0WKsMqmIyuUU"
+	- var shoppingId  		= "6Hse8fD5YsuO4eE2EsCYqk"
+	- var realEstateId		= "73yjrbZoXuuSs8wWQimSoI"
+	- var thingsToDoId  	= "6KZiwvHEqsaSewQGUEYAig"
+	- var tourOpId			= "1gpc2TBbRQW0ye0gQIQKC8"
+	- var blogId			= "5mRLwUDYm4I0mmEOK0qkWc"
+	- var toursId       	= "2I8IujX52EAy8uqauEkcm8"
+	- var toursPageId		= "RgUhMp83O6EGoyqeY2QEU"
+	- var activitiesPageId  = "4cofbDBy00yEIWE8uYIoII"
+	- var servicesId		= "3DPWJQeTuESsqmQeq6AWYi"
+	- var wedPhotoId		= "5ohcdEkgAos8s6QwWgcMIY"
+	
+
+	- var tab1_id 			= "todays-featured-events"
+	- var tab2_id 			= "book-transfer"
+	- var tab3_id 			= "featured-activities"
+	- var tab4_id 			= "featured-tours"
+	- var tab5_id 			= "featured-blog"
+
+	- var tab1b_id 			= "featured-food-and-drink"
+	- var tab2b_id 			= "featured-accomodations"
+	- var tab3b_id			= "featured-tour-operators"
+	- var tab4b_id			= "featured-shops-services"
+
+	//- var tab3b_id 			= "featured-accomodations"
+
+	//- - var tab4_id 			= "featured-shops"
+	//- - var tab5_id 			= "activities"
+	- var tab_number 		= "tabs--five"
+
+	- var tab_number_2 		= "tabs--four"
+
+	//- Find the section page based on thisPageId
+	- var sectionPage = null
+	if contentful.sectionPages
+		each currentSectionPage in contentful.sectionPages
+			if currentSectionPage.sys.id == thisPageId
+				- sectionPage = currentSectionPage
+
+	include ../partials/_page__vars.jade
+
+
+//- make sure you put the urls correctly
+extends ../_pages/_layout-section-page--index.jade 
+
+//-the main copy that for this page
+block copy 
+	h1.c-header__title
+		span #{heading}
+	.c-main-content__copy
+		!= marked(copy)
+
+
+//-name the tabs in the subnav
+block tab1
+	| Today's Events
+
+block tab2
+	| Book your Transfer
+
+block tab3
+	| Activities
+
+block tab4
+	| Tours
+
+block tab5 
+	| Blog
+
+
+
+//- insert the content in the tab content blocks
+//- tab1 content
+block tab1Content
+	include ../_tabs/_index__tabcontent--events.jade
+
+//- tab2 content
+block tab2Content
+	include ../_tabs/_transportation__tabcontent--transfers.jade
+
+//- tab2 content
+block tab3Content
+	include ../_tabs/_index__tabcontent--activities.jade
+
+//- tab3 content
+block tab4Content
+	include ../_tabs/_index__tabcontent--tours.jade
+
+//- tab4 content
+block tab5Content
+	include ../_tabs/_index__tabcontent--blog.jade
+
+
+
+
+block tier2Content
+	//- #h3.c-linetitle
+	//- 	span Featured Businesses
+	//- p If it's relaxation you're looking for, head to one of the yoga classes available on the island before treating yourself to a soothing spa treatment or massage.
+
+
+
+//-name the tabs in the subnav
+block tab1b
+	| Featured Food &amp; Drink
+
+block tab2b
+	| Featured Hotels
+
+block tab3b 
+	| Featured Tour Operators &amp; Watersports
+
+block tab4b
+	| Featured Shops &amp; Services
+
+
+//- insert the content in the tab content blocks
+
+//- tab2 content
+block tab1bContent
+	include ../_tabs/_index__tabcontent--food-and-drink.jade
+
+//- tab3 content
+block tab2bContent
+	include ../_tabs/_index__tabcontent--accommodations.jade
+
+//- tab4 content
+block tab3bContent
+	include ../_tabs/_index__tabcontent--tour-operators.jade
+
+//- tab5 content
+block tab4bContent
+	include ../_tabs/_index__tabcontent--shops-services.jade
+
+
+

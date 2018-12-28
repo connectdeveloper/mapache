@@ -1,0 +1,76 @@
+//- index.jade
+//-bof variables
+block metas
+	//- section page vars set these manually
+	- var bodyClasses 		= "home"
+	- var language			= "es"//-either 'en' or 'es' 
+	- var theUrl			= "/es"
+	- var locale			= "/en/" 
+	- var thisPageId    	= "5D8DGDHks0GyWCEmGeWU06" // the contentful page id
+	
+	- var page_events   	= contentful.todaysEvents
+	- var places        	= contentful.businesses
+	- var pages         	= contentful.pages
+	- var foodId        	= "2uMGbEfB7uoYAQMkAS6IIu"
+	- var thingsToDoId  	= "6KZiwvHEqsaSewQGUEYAig"
+	- var toursId      		= "2I8IujX52EAy8uqauEkcm8"
+
+
+	- var tab1_id = "eventos-destacados-de-hoy"
+	- var tab2_id = "bares-y-restaurantes-destacados"
+	- var tab3_id = "actividades-destacadas"
+
+
+	
+	//- Find the section page based on thisPageId
+	- var sectionPage = null
+	if contentful.sectionPages
+		each currentSectionPage in contentful.sectionPages
+			if currentSectionPage.sys.id == thisPageId
+				- sectionPage = currentSectionPage
+
+	include ../partials/_page__vars.jade
+
+
+//- make sure you put the urls correctly
+extends ../_pages/_layout-section-page.jade 
+
+//-the main copy that for this page
+block copy 
+	h1.c-header__title  
+		span #{title}
+	.c-main-content__copy
+		!= marked(copy)
+
+
+	//-name the tabs in the subnav
+block tab1
+	| Eventos
+
+block tab2 
+	| Comida &amp; Bebida
+	
+
+block tab3
+	if (language=="en")
+		| Activities
+	else
+		| Actividades
+
+//- insert the content in the tab content blocks
+//- tab1 content
+block tab1Content
+
+	include ../_tabs/_index__tabcontent--events.jade
+
+//- tab3 content
+block tab2Content
+	//- h3.c-linetitle
+	//- 	span
+	//- 		| Restaurantes y Bares
+
+	include ../_tabs/_index__tabcontent--food-and-drink.jade
+
+//- tab13 content
+block tab3Content
+	include ../_tabs/_index__tabcontent--activities.jade

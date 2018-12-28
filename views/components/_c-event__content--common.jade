@@ -1,0 +1,83 @@
+
+//- this file builds the content for business--premium pages
+//- single__content
+section.c-block.c-single__content.c-single__content--common.c-event__content
+	.c-block__column
+		.c-single__quicklook
+			//- .c-single__quicklook
+			.c-quicklook__line1
+				+related-list__loop(event_type, "Event Type", "Tipo de Evento")
+			
+
+		//- the copy
+		.c-main-content__copy
+			if copy
+				!= marked(copy)
+
+		//- single details
+		if telephone || event_location_name
+			.c-single__details
+
+				.c-single__amenities
+					if capacity
+						if (language == "en")
+							span.c-label CAPACITY: 
+							| #{capacity}&ensp;|&ensp;
+						else
+							span.c-label CAPACIDAD: 
+							| #{capacity}&ensp;|&ensp;
+					
+					if amenities
+						+related-list__loop(amenities, "Amenities", "Amenidades")
+							
+					if event_location
+						- locationID = event_location.sys.id
+						- places = contentful.businesses
+						each place in places
+							- placeID = place.sys.id
+							if placeID == locationID
+								+related-list__loop(amenities)
+				if opening_time
+					.c-single__hours 
+							| #{opening_time}
+				if telephone || event_location_name
+					.c-single__contactinfo
+						if telephone
+							+link--telephone(telephone)
+							.c_contactinfo__block
+						if event_location_name
+							.c_contactinfo__block.c-single__address.c_contactinfo__block--wide 
+								if event_location_url
+									.contactinfo_location
+										if (language == "en")
+											span.c-label WHERE:&nbsp; 
+										else
+											span.c-label DONDE:&nbsp; 
+										a(href ='#{event_location_url}')
+											| #{event_location_name}
+										| , #{address}
+										
+								else if event_location_name
+									.contactinfo_location
+										if (language == "en")
+											span.c-label WHERE:&nbsp;
+										else
+											span.c-label DONDE:&nbsp;
+										| #{event_location_name}
+
+
+		#map
+		include _c-map--event.jade
+
+
+		//- section.c-block--advert
+		//- 	if (language == "en")
+		//- 		| advertisement
+		//- 	else 
+		//- 		| publicidad
+		//- 	include c-ad/_c-ad--event.jade
+
+
+	
+	
+		include  ../_asides/_aside--event.jade

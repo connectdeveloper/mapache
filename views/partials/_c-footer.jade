@@ -1,0 +1,104 @@
+//-footer 
+
+
+.c-footer
+	.c-block
+		.c-block__column
+
+			button#c-footer--backtotop
+				if (language == "en")
+					| &#8593; Back to top 
+				else
+					| &#8593; Regresar hasta arriba
+
+
+			if language == "en"
+				<!-- Go to www.addthis.com/dashboard to customize your tools --><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab153bcc1fb530d"></script>
+
+				<!-- Go to www.addthis.com/dashboard to customize your tools --><div class="addthis_inline_follow_toolbox"></div>
+
+				h4 Check out our Instagram Feed
+				<!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/94d8c215a3505c1eb6aef793eb23cfff.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+			else
+				<!-- Go to www.addthis.com/dashboard to customize your tools --><script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5ab1510e3370c047"></script>
+
+				<!-- Go to www.addthis.com/dashboard to customize your tools --><div class="addthis_inline_follow_toolbox"></div>
+				
+				h4 Checa nuestro canal de Instagram
+				<!-- LightWidget WIDGET --><script src="https://cdn.lightwidget.com/widgets/lightwidget.js"></script><iframe src="//lightwidget.com/widgets/d7395c6f27795c039d4b4fb03c4c2a68.html" scrolling="no" allowtransparency="true" class="lightwidget-widget" style="width: 100%; border: 0; overflow: hidden;"></iframe>
+
+
+
+	.c-block
+		.c-block__column
+
+			//- button#c-footer--backtotop
+			//- 	if (language == "en")
+			//- 		| &#8593; Back to top 
+			//- 	else
+			//- 		| &#8593; Regresar hasta arriba
+
+
+			a.c-logo.c-logo--footer(href= '#{root_url}')
+				img.c-logo__image(src='/images/holboxeno-logo.svg' alt="Holboxeño Logo")
+
+			.c-colophon
+				if (language == "en")
+					p The Holboxeño is the definitive guide to Isla Holbox. We have the most up-to-date events and food &amp; drink guide, so you can make the most out of your stay in Holbox.
+				else
+					p El Holboxeño es la guía más completa de Isla Holbox. Tenemos la guía al día con todos los eventos, restaurantes y bares para que le saques el mayor provecho a tu estancia en Holbox.
+	br
+	br
+
+	.c-block
+		.c-block__column
+				
+			ul.c-footer__nav
+				li
+					if (language == "en")
+						| All content &copy;
+						br
+						| El Holboxeño 2016
+					else
+						| Todo contenido 
+						br
+						|&copy; El Holboxeño 2016
+
+				li
+					if (language == "en")
+						| Have a question? Chat with us now: #[a(class="c-button--subsection open-chat") OPEN CHAT]
+					else
+						| Alguna pregunta? Chatea con nosotros ahora: #[a(class="c-button--subsection open-chat") ABRIR CHAT]	
+
+					br
+					br
+
+					if (language == "en")
+						| Reach us via WhatsApp: 
+					else
+						| Contáctanos por WhatsApp:
+					br
+					| #[a(href="https://wa.me/529841164374") +52-1-984-116-43-74]
+
+					br
+					br
+
+					if (language == "en")
+						| Get listed
+						br
+						a.c-footer__link(href='https://goo.gl/forms/0qVPJgVd1B4rNc0r2') FORM
+					else
+						| Aparece en la guía
+						br
+						a.c-footer__link(href='https://goo.gl/forms/0qVPJgVd1B4rNc0r2') FORM
+
+
+			//- button#c-footer-back(onclick="goBack()")
+			//- 	if (language == "en")
+			//- 			| &#8592; Back 
+			//- 		else
+			//- 			| &#8592; Atr&aacute;z
+
+
+
+			

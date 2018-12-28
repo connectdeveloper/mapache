@@ -1,0 +1,22 @@
+- var content_type 				= "page"
+
+
+if sectionPage
+	- var heading   			= sectionPage.getHeading(language)
+	- var hero_image    		= sectionPage.getHeroImage(language)
+	- var copy          		= sectionPage.getCopy(language)
+	- var gallery_images 		= sectionPage.getGalleryImages(language)
+
+else
+	- var heading   			= entry.getHeading(language)
+	- var hero_image    		= entry.getHeroImage(language)
+	- var excerpt 				= entry.getExcerpt(language)
+	- var copy 					= entry.getCopy(language)
+	- var bodyClasses 			= entry.bodyClass + " single-page"
+	- var premium				= true
+	
+	if entry.getGalleryImages(language)
+		- var gallery_images    = entry.getGalleryImages(language)
+
+	if entry.selected_bu
+		- var selected_bu				= entry.selected_bu

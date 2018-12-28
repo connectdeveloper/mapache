@@ -1,0 +1,39 @@
+//- events__tabcontent--future
+
+//- this is the tab  content inside the tab "nth day and after" in the home page
+//- dependencies : events-in-isla-holbox.jade
+
+
+- var fecha = null
+
+if futureEvents.length > 0
+	each event in futureEvents
+
+		//- check if we are already working on this date
+		if fecha !== event.date
+			//- if not then start placing the title
+			h4.c-linetitle
+				span= dateFormat(event.date, language)
+			- fecha = event.date
+			//- now run the loop
+			+events__loop(event)
+			//- if this event has the same date as the previous then just run the loop
+		else if fecha == event.date
+			+events__loop(event)
+else
+	if (language =="en")
+		p Oh oh, it seems there are future events planned yet. If you are still looking for something to do: 
+		+c-button--section("/en/activities/")
+			| Have a look at our activities page
+	else 
+		p Oh oh, al parecer no hay eventos en el futuro planeados todav&iacute;a. Si buscas algo m&aacute;s que hacer: 
+		+c-button--section("/es/actividades/")
+			| Visita nuestra p&aacute;gina de actividades
+
+
+
+//- // advert component
+//- section.c-block--advert
+//- 	| advertisement
+//- 	a.c-advert(href="#")
+//- 		img.c-advert__creative(src="/images/advertbox.png")

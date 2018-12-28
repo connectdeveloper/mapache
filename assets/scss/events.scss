@@ -1,0 +1,483 @@
+/* events */
+
+.c-event {
+		@extend %mediaobject;
+		@extend %flexbox;
+		@include flex-dir(row);
+		@include justify-content (flex-start);
+		@include align-items(center);
+		position: relative;
+		// border-bottom: 1px solid $dark;
+
+		min-height: rem-calc(40);
+			@media #{$medium-up}{
+			min-height: rem-calc(50);
+		}
+
+		@media #{$large-up}{
+			min-height: rem-calc(60);
+		}
+
+		&.c-event--premium {
+			/* add padding top and bottom */
+
+			// @extend %smallpadding-topbottom;
+	}
+
+		//- hack!!!!
+
+		&.c-event--common:hover{
+			// background: rgba($dark ,0.05)!important;
+			cursor: default !important; 
+			// color: $dark;
+			.c-event__excerpt, .c-even--time  {
+				// color: $dark;
+			}
+
+		}
+
+		&.c-event--common{
+			// background: rgba($dark,0.05)!important;
+		}
+}
+
+.c-event:hover  .c-event__copy .c-event__link{
+		color: $anchor-font-color-hover;
+	}
+
+.c-event__image-and-mast {
+	position: relative;
+	width: 50%;
+	z-index: 20;
+	margin-right: $minipad;
+	top: 0;
+	bottom:100%;
+	// background: pink;
+	min-height: rem-calc(120);
+	max-height: rem-calc(160);
+	display: block;
+	.tabs-content & {
+		margin-left: $smallpad;
+	}
+}
+
+.c-event__time {
+	@include flex-shrink(12);
+	background: $highlight;
+	// height: 100%;
+	// font-size: rem-calc(18);
+	font-size: rem-calc(12);
+	// width: 14%;
+	@extend %minipadding-right;
+	text-align: center;
+	letter-spacing: -0.045em;
+	font-weight: 700;
+	// min-height: rem-calc(40);
+	// vertical-align: center;
+
+
+		.c-event--plain &{
+		margin-left: $smallpad;
+		width: 15%;
+		@extend %minipadding-leftright;
+		@extend %smallpadding-topbottom;
+	}
+
+		.c-event--common &{
+			margin-left: $smallpad;
+			width: 13.5%;
+			@extend %minipadding-leftright;
+			@extend %smallpadding-topbottom;
+		}
+
+	&.c-event__time--common{
+		height: rem-calc($pad);
+	}
+
+	&.c-event__time--premium{
+	/*sizing the time inside the premium box
+	we'll try to bforce it to the left*/
+	background: $highlight;
+	text-align: left;
+
+	padding: $minipad;
+	width:auto;
+	// display: block;
+	@extend %mastTitle;
+	// display: block;
+	position: absolute;
+	height:auto;
+	top:60%;
+	z-index: 20;
+	//@extend %vertical-align;
+	}
+
+}
+
+.c-event__time::nth-word(2){
+font-size: rem-calc(3)!important;
+}
+
+.c-image__frame {
+	position: relative;
+	z-index: 15;
+	background: red;
+	display: block;
+	// left: 0;
+	// right: 100%;
+	// top:0;
+	// bottom:0;
+	// top:$minipad;
+	// bottom:$minipad;
+	// min-height: 111px;
+
+			// height: rem-calc(120);
+			// width: rem-calc(155);
+
+		height: rem-calc(140);
+		max-height: rem-calc(150);
+
+
+		// @media #{$medium-up}{
+		// 	height: rem-calc(182);
+		// 	width: rem-calc(350);
+		// }
+		//
+		// @media #{$large-up}{
+		// 	height: rem-calc(192);
+		// 	width: rem-calc(350);
+		// }
+
+
+
+		&.compat-object-fit {
+		 background-size: cover;
+		 background-position: center center;
+		 	& .c-event__image--premium { // hide image if object fit is not supported - opacity to 0 for the link area
+				opacity: 0;
+		 	}
+	 	}
+}
+
+
+.c-event__image{
+
+	&.c-event__image--premium {
+		// width: 100%;
+		background: $moyen;
+		object-fit: cover;
+		// object-position: 50% 50%;
+		height: 100%;
+		width:100%;
+		};
+
+	&.c-event__image--common {
+		
+		@extend %smallpadding-left;
+		}
+
+	}
+
+
+/* for event listings */
+
+
+.c-event__copy {
+		// @include flex-grow (3);
+		// background: green;
+
+		@extend %media__copy;
+		@extend %smallmargin-topbottom;
+		@extend %smallpadding-left;
+
+	.c-event__copy--location{
+		font-size:  rem-calc(13);
+		line-height: rem-calc(11);
+		font-weight: 700;
+		@extend %minimargin-topbottom;
+	}
+
+	.c-event--plain &{
+		width:85%;
+	}
+
+	 .c-event--common &{
+		width:65%;
+	}
+
+	.c-event--premium & {
+		position: relative;
+		width: 48%;
+		text-align: center;
+		padding-left: $minipad;
+		padding-right: $minipad;
+		margin-left: -$minipad;
+		margin-right: -$minipad;
+		padding-bottom: $pad;
+		height: rem-calc(140);
+		max-height: rem-calc(150);
+
+
+		.c-event__title{
+			margin-left: auto;
+			margin-right: auto;
+			// padding-top: 0%;
+			text-align: center;
+			display: block;
+			// min-height: 50%;
+			width: 95%;
+			border-bottom: 1px solid $dark;
+
+			a {
+				display: block;
+				line-height: rem-calc(16);
+				@extend %vertical-align;
+
+			}
+		}
+
+	
+
+	}
+
+}
+
+.c-copy__top-half {
+	position: absolute;
+	top:0;
+	height: 40%;
+	z-index: auto;
+	@media #{$medium-up}{
+		height: 49%;
+	}
+}
+
+.c-copy__bottom-half {
+	position: absolute;
+	bottom: 0;
+	height: 60%;
+	z-index: auto;
+	width: 95%;
+	overflow: hidden;
+	// background: red;
+
+	@media #{$medium-up}{
+		height: 49%;
+	}
+
+	&::before {
+		content: " ";
+	    position: absolute; 
+	    bottom:0;
+	    height: #{$pad*3};
+	    left:0;
+	    right: 0;
+
+	    background: -webkit-linear-gradient(
+	        rgba($lightless, 0) 0%,
+	        rgba($lightless, 1) 100%
+	    ); 
+	    background-image: -moz-linear-gradient(
+	        rgba($lightless, 0) 0%,
+	        rgba($lightless, 1) 100%
+	    );
+	    background-image: -o-linear-gradient(
+	        rgba($lightless, 0) 0%,
+	        rgba($lightless, 1) 100%
+	    );
+	    background-image: linear-gradient(
+	        rgba($lightless, 0) 0%,
+	        rgba($lightless, 1) 100%
+	    );
+	    background-image: -ms-linear-gradient(
+	        rgba($lightless, 0) 0%,
+	        rgba($lightless, 1) 100%
+	    );
+
+	   .c-event--premium:hover & {
+	   		background: -webkit-linear-gradient(
+	        rgba($moyen, 0) 0%,
+	        rgba($moyen, 1) 100%
+		    ); 
+		    background-image: -moz-linear-gradient(
+		        rgba($moyen, 0) 0%,
+		        rgba($moyen, 1) 100%
+		    );
+		    background-image: -o-linear-gradient(
+		        rgba($moyen, 0) 0%,
+		        rgba($moyen, 1) 100%
+		    );
+		    background-image: linear-gradient(
+		        rgba($moyen, 0) 0%,
+		        rgba($moyen, 1) 100%
+		    );
+		    background-image: -ms-linear-gradient(
+		        rgba($moyen, 0) 0%,
+		        rgba($moyen, 1) 100%
+		    );
+	   }
+	} 
+
+
+
+
+}
+
+
+
+/* the header bits */
+.c-header--event {
+	& .c-block {
+		position: absolute;
+		bottom:0;
+		z-index: 4;
+		left: 0;
+		right:0;
+	}
+
+	& .c-block__column {
+		@media #{$medium-up}{
+			padding-left: 0.4rem;
+			padding-right: 0.4rem;
+		}
+
+	}
+
+
+}
+
+.c-event__mast {
+	background: $highlight;
+	text-align: left;
+	padding: $smallpad;
+	width:auto;
+	display: block;
+	float: left;
+	@extend %mastTitle--small;
+	display: block;
+	// position: absolute;
+	height:auto;
+	// bottom:0;
+	width: 100%;
+	// margin-left: -1px;
+	margin-right: 1px;
+	// z-index: 3;
+
+	.c-single__quicklook{
+		position: relative;
+		z-index: 9;
+	}
+	.c-quicklook__line1 {
+		border-bottom: 1px solid $light;
+	}
+
+	@media #{$medium-up}{
+		.c-quicklook__line1 {
+		 	font-size: rem-calc(18)
+		}
+		
+		// width: 62.5rem;
+	 }
+
+
+	@media #{$large-up}{
+		.c-quicklook__line1 {
+		 	font-size: rem-calc(20)
+		}
+		
+	}
+
+ 	.c-event__title {
+		font-size:  rem-calc(25);
+		line-height: rem-calc(25);
+		
+	@media #{$medium-up}{
+		font-size:  rem-calc(32);
+		line-height: rem-calc(34);
+		}
+
+	}
+
+	.c-date {
+		// float: left;
+		// background: $light;
+		// padding: $smallpad;
+	}
+
+	.c-time {
+		// float: left;
+		// background: $light;
+		// padding: $smallpad;
+		position: absolute;
+		right:$minipad;
+		top: 0;
+		z-index: 10;
+
+	}
+
+	.c-price {
+		float: left;
+		// width:100%;
+		// height: $pad*1.5;
+		background: rgba($dark,0.8); 
+		color: $light;
+		padding: $smallpad;
+		margin-top: $smallpad;
+	}
+
+	.c-label {
+		color: scale-color($dark, $lightness: 55%);
+		@media #{$medium-up}{
+			font-size: rem-calc(12);
+		}
+	}
+
+}
+
+.c-event__content {
+	& .c-block__column{
+		padding-top: $pad;
+	}
+}
+
+/* map popups */
+
+.c-event__excerpt{
+	margin: 0;
+	line-height: rem-calc(14);
+	font-size:  rem-calc(13);
+}
+
+.c-map__popup {
+		// @include flex-grow (3);
+		// // background: green;
+		display: block;
+		width: 100%;
+		@extend %media__copy;
+		@extend %smallmargin-topbottom;
+		@include justify-content (center);
+		text-align: center;
+		padding-left: $minipad;
+		padding-right: $minipad;
+
+
+		.popup__title {
+			margin-left: auto;
+			margin-right: auto;
+			height: 50%;
+			text-align: center;
+
+			//background: grey;
+			display: block;
+			width: 90%;
+			border-bottom: 1px solid $dark;
+			}
+
+		.popup__date-time{
+			background: $highlight;
+			text-align: left;
+			padding: $minipad;
+		}
+
+
+}

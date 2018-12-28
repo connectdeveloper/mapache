@@ -1,0 +1,72 @@
+//- ferries
+
+
+
+mixin c-timetable__departure(time,ampm,service)
+	tr.c-timetable__departure
+			td.c-timetable__time
+				=time
+				span.period
+					=ampm
+			td.c-timetable__service
+				=service
+			td.c-timetable__connections
+				if block
+					block
+				else
+//- ferry prices
+mixin c-timetable__prices(price)
+	tr.c-timetable__departure
+			td.c-timetable__user
+				if block
+					block
+				else
+			td.c-timetable__price
+				=price
+
+//- buses
+mixin c-timetable__taxi(driver, phone1, phone2)
+	tr.c-timetable__departure
+			td.c-timetable__unit
+				if block
+					block
+				else
+			td.c-timetable__driver
+				=driver
+			td.c-timetable__details
+				if phone1
+					| whatsapp: 
+					=phone1
+				if phone2
+					br
+					| whatsapp: 
+					=phone2
+
+//- transfers
+mixin c-pricetable__row(pax, mxn, usd)
+	tr.c-pricetable__row
+			td.c-pricetable__pax
+				if pax =="1-2"
+					if (language=="en")
+						- pax = "Up to 2"
+					else
+						- pax = "Hasta 2"
+
+				=pax
+			td.c-pricetable__mxn
+				=mxn
+			td.c-pricetable__usd
+				=usd		
+
+
+mixin c-pricetable__row--kids(pax_en,pax_es, mxn, usd)
+	tr.c-pricetable__row
+			td.c-pricetable__pax 
+				if (language=="en")
+					=pax_en
+				else
+					=pax_es
+			td.c-pricetable__mxn
+				=mxn
+			td.c-pricetable__usd
+				=usd
